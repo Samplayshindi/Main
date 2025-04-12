@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sam Plays - Coming Soon</title>
+  <link rel="icon" type="image/png" href="https://i2.imageban.ru/out/2025/04/12/7f6f0dae06fbdc5d9a8b592f4a3ba931.png">
   <link href="https://fonts.cdnfonts.com/css/dungeon-depths" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
   <link href="https://fonts.cdnfonts.com/css/globoface-gothic-display-2001" rel="stylesheet">
@@ -97,7 +98,6 @@
       pointer-events: none;
       opacity: 0.5;
       cursor: default;
-      /* Ensure disabled links don't change background on hover */
       background-color: transparent !important;
       color: white !important;
     }
@@ -160,7 +160,7 @@
       display: flex;
       align-items: center;
       gap: 60px;
-      text-align: center; /* Center text within the container */
+      text-align: center;
     }
 
     .coming-soon-text {
@@ -182,7 +182,7 @@
       opacity: 0;
       animation: expandIn 1s ease-out forwards;
       animation-delay: 0.2s;
-      animation-fill-mode: forwards; /* Ensure it stays visible after animation */
+      animation-fill-mode: forwards;
     }
 
     .hand {
@@ -191,24 +191,24 @@
       top: 50%;
       left: 50%;
       transform-origin: bottom center;
-      transform: translateX(-50%) translateY(-100%) rotate(0deg); /* Adjusted transform */
-      border-radius: 2px; /* Slightly rounded hands */
+      transform: translateX(-50%) translateY(-100%) rotate(0deg);
+      border-radius: 2px;
     }
 
     .hour {
       width: 4px;
-      height: 40px; /* Relative to clock size */
+      height: 40px;
     }
 
     .minute {
       width: 3px;
-      height: 55px; /* Relative to clock size */
+      height: 55px;
       background: #aeefff;
     }
 
     .second {
       width: 2px;
-      height: 65px; /* Relative to clock size */
+      height: 65px;
       background: #ff6f61;
     }
 
@@ -238,15 +238,15 @@
       }
 
       .hand.hour {
-        height: 25px; /* Adjusted for smaller clock */
+        height: 25px;
       }
 
       .hand.minute {
-        height: 35px; /* Adjusted for smaller clock */
+        height: 35px;
       }
 
       .hand.second {
-        height: 45px; /* Adjusted for smaller clock */
+        height: 45px;
       }
 
       .sixth-page {
@@ -296,7 +296,6 @@
       if (loader) {
         loader.classList.add("hide");
       }
-      // Initial clock update on load
       updateAnalogClock();
     });
 
@@ -304,14 +303,12 @@
       const now = new Date();
       const sec = now.getSeconds();
       const min = now.getMinutes();
-      const hr = now.getHours() % 12; // Use 12-hour format
+      const hr = now.getHours() % 12;
 
-      // Calculate degrees: seconds (6 deg/sec), minutes (6 deg/min + 0.1 deg/sec), hours (30 deg/hr + 0.5 deg/min)
       const secondDeg = sec * 6;
       const minuteDeg = min * 6 + sec * 0.1;
       const hourDeg = hr * 30 + min * 0.5;
 
-      // Check if elements exist before trying to set style
       const secondHand = document.getElementById('secondHand');
       const minuteHand = document.getElementById('minuteHand');
       const hourHand = document.getElementById('hourHand');
@@ -327,9 +324,7 @@
       }
     }
 
-    // Update the clock every second
     setInterval(updateAnalogClock, 1000);
-
   </script>
 
 </body>
