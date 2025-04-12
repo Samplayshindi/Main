@@ -97,6 +97,9 @@
       pointer-events: none;
       opacity: 0.5;
       cursor: default;
+      /* Ensure disabled links don't change background on hover */
+      background-color: transparent !important;
+      color: white !important;
     }
 
     header h1 {
@@ -157,6 +160,7 @@
       display: flex;
       align-items: center;
       gap: 60px;
+      text-align: center; /* Center text within the container */
     }
 
     .coming-soon-text {
@@ -178,7 +182,7 @@
       opacity: 0;
       animation: expandIn 1s ease-out forwards;
       animation-delay: 0.2s;
-      animation-fill-mode: forwards;
+      animation-fill-mode: forwards; /* Ensure it stays visible after animation */
     }
 
     .hand {
@@ -187,23 +191,24 @@
       top: 50%;
       left: 50%;
       transform-origin: bottom center;
-      transform: translateX(-50%) translateY(-100%) rotate(0deg);
+      transform: translateX(-50%) translateY(-100%) rotate(0deg); /* Adjusted transform */
+      border-radius: 2px; /* Slightly rounded hands */
     }
 
     .hour {
       width: 4px;
-      height: 40px;
+      height: 40px; /* Relative to clock size */
     }
 
     .minute {
       width: 3px;
-      height: 55px;
+      height: 55px; /* Relative to clock size */
       background: #aeefff;
     }
 
     .second {
       width: 2px;
-      height: 65px;
+      height: 65px; /* Relative to clock size */
       background: #ff6f61;
     }
 
@@ -233,15 +238,15 @@
       }
 
       .hand.hour {
-        height: 25px;
+        height: 25px; /* Adjusted for smaller clock */
       }
 
       .hand.minute {
-        height: 35px;
+        height: 35px; /* Adjusted for smaller clock */
       }
 
       .hand.second {
-        height: 45px;
+        height: 45px; /* Adjusted for smaller clock */
       }
 
       .sixth-page {
@@ -263,7 +268,7 @@
   </div>
 
   <header>
-    <a href="" class="header-link">About</a>
+    <a href="https://samplayshindi.github.io/Main/About.html" class="header-link">About</a>
     <h1>Sam Plays</h1>
     <span class="header-link disabled">Recent Videos</span>
   </header>
@@ -291,25 +296,40 @@
       if (loader) {
         loader.classList.add("hide");
       }
+      // Initial clock update on load
+      updateAnalogClock();
     });
 
     function updateAnalogClock() {
       const now = new Date();
       const sec = now.getSeconds();
       const min = now.getMinutes();
-      const hr = now.getHours() % 12;
+      const hr = now.getHours() % 12; // Use 12-hour format
 
+      // Calculate degrees: seconds (6 deg/sec), minutes (6 deg/min + 0.1 deg/sec), hours (30 deg/hr + 0.5 deg/min)
       const secondDeg = sec * 6;
       const minuteDeg = min * 6 + sec * 0.1;
       const hourDeg = hr * 30 + min * 0.5;
 
-      document.getElementById('secondHand').style.transform = `translateX(-50%) translateY(-100%) rotate(${secondDeg}deg)`;
-      document.getElementById('minuteHand').style.transform = `translateX(-50%) translateY(-100%) rotate(${minuteDeg}deg)`;
-      document.getElementById('hourHand').style.transform = `translateX(-50%) translateY(-100%) rotate(${hourDeg}deg)`;
+      // Check if elements exist before trying to set style
+      const secondHand = document.getElementById('secondHand');
+      const minuteHand = document.getElementById('minuteHand');
+      const hourHand = document.getElementById('hourHand');
+
+      if (secondHand) {
+        secondHand.style.transform = `translateX(-50%) translateY(-100%) rotate(${secondDeg}deg)`;
+      }
+      if (minuteHand) {
+        minuteHand.style.transform = `translateX(-50%) translateY(-100%) rotate(${minuteDeg}deg)`;
+      }
+      if (hourHand) {
+        hourHand.style.transform = `translateX(-50%) translateY(-100%) rotate(${hourDeg}deg)`;
+      }
     }
 
+    // Update the clock every second
     setInterval(updateAnalogClock, 1000);
-    updateAnalogClock();
+
   </script>
 
 </body>
