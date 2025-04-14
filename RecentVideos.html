@@ -3,11 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sam Plays - Coming Soon</title>
+  <title>Sam Plays - Recent Videos</title>
   <link rel="icon" type="image/png" href="https://i2.imageban.ru/out/2025/04/12/7f6f0dae06fbdc5d9a8b592f4a3ba931.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.cdnfonts.com/css/dungeon-depths" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
   <link href="https://fonts.cdnfonts.com/css/globoface-gothic-display-2001" rel="stylesheet">
+
   <style>
     html {
       scroll-behavior: smooth;
@@ -16,8 +19,8 @@
     body {
       margin: 0;
       padding: 0;
-      font-family: Arial, sans-serif;
-      overflow: hidden;
+      font-family: 'Montserrat', sans-serif; /* Base font */
+      overflow-x: hidden;
       background-color: #000;
       user-select: none;
     }
@@ -48,7 +51,6 @@
 
     @keyframes spin {
       0% { transform: rotate(0deg); }
-      50% { transform: rotate(180deg); }
       100% { transform: rotate(360deg); }
     }
 
@@ -64,27 +66,29 @@
       visibility: hidden;
     }
 
+    /* --- Start Reverted Header Styles --- */
     header {
       background-image: url('https://i7.imageban.ru/out/2025/04/06/af188a519c20b914cf028c2121d90835.png');
       background-size: cover;
       background-position: center;
       text-align: center;
-      padding: 20px 10px;
+      padding: 20px 10px; /* Original Padding */
       border-bottom: 4px solid white;
       display: flex;
-      justify-content: center;
+      justify-content: center; /* Original Justify */
       align-items: center;
       position: relative;
       z-index: 10;
+      /* Removed flex-wrap from reverted styles */
     }
 
     header .header-link {
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Montserrat', sans-serif; /* Original Font */
       color: white;
-      font-size: 1.1em;
+      font-size: 1.1em; /* Original Size */
       text-decoration: none;
-      margin: 0 15px;
-      padding: 5px 10px;
+      margin: 0 15px; /* Original Margin */
+      padding: 5px 10px; /* Original Padding */
       border-radius: 5px;
       transition: background-color 0.3s ease, color 0.3s ease;
     }
@@ -96,30 +100,38 @@
 
     header .header-link.disabled {
       pointer-events: none;
-      opacity: 0.5;
+      opacity: 0.5; /* Original Opacity */
       cursor: default;
       background-color: transparent !important;
       color: white !important;
+       /* Match margin/padding of active links for alignment */
+       margin: 0 15px; /* Original Margin */
+       padding: 5px 10px; /* Original Padding */
+       display: inline-block; /* Ensure it takes space */
     }
 
     header h1 {
-      font-family: 'Globoface-Gothic-Display-2001', sans-serif;
+      font-family: 'Globoface-Gothic-Display-2001', sans-serif; /* Original Font */
       color: white;
-      font-size: 2.5em;
-      margin: 10px 0 0 0;
-      padding: 0 10px;
-      letter-spacing: 2px;
+      font-size: 2.5em; /* Original Size */
+      margin: 10px 0 0 0; /* Original Margin */
+      padding: 0 10px; /* Original Padding */
+      letter-spacing: 2px; /* Original Spacing */
       text-align: center;
-      flex-grow: 1;
+      flex-grow: 1; /* Original Flex Grow */
     }
+    /* --- End Reverted Header Styles --- */
+
 
     .sixth-page {
-      height: 85vh;
+      min-height: 100vh;
       width: 100vw;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 40px;
+      padding: 80px 40px 60px 40px;
+      box-sizing: border-box;
       background-image: url('https://i1.imageban.ru/out/2025/04/06/5243d476031464519085b4403a378f02.jpg');
       background-size: cover;
       background-position: center;
@@ -127,6 +139,18 @@
       background-attachment: fixed;
       position: relative;
       color: white;
+    }
+
+    /* <<< HEADING FONT CHANGED BACK */
+    .page-heading {
+        font-family: 'Dungeon Depths', sans-serif; /* Changed back */
+        font-weight: normal; /* Dungeon depths likely doesnt need weight */
+        font-size: 3.8rem; /* Adjusted size */
+        color: #e8faff;
+        text-align: center;
+        margin-bottom: 50px;
+        text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.6);
+        width: 100%;
     }
 
     .go-back-btn {
@@ -141,6 +165,7 @@
       justify-content: center;
       transition: all 0.3s ease;
       cursor: pointer;
+      z-index: 15;
     }
 
     .go-back-btn:hover {
@@ -156,108 +181,172 @@
       transform: scaleX(-1);
     }
 
+    /* Grid Container */
     .content-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 40px;
+      width: 100%;
+      max-width: 1300px;
+      padding: 0;
+    }
+
+    /* Video box styles */
+    .video-box {
+      background-color: rgba(15, 25, 35, 0.7);
+      border-radius: 18px;
+      padding: 25px;
+      box-sizing: border-box;
+      opacity: 0;
+      animation: fadeIn 0.8s ease-out forwards;
+      display: flex; /* Still use flex for internal stacking */
+      flex-direction: column;
+      /* Removed justify-content: space-between; */
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+      transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1),
+                  background-color 0.35s ease,
+                  box-shadow 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    /* Animation Delays */
+    .video-box:nth-child(1) { animation-delay: 0s; }
+    .video-box:nth-child(2) { animation-delay: 0.1s; }
+    .video-box:nth-child(3) { animation-delay: 0.2s; }
+    .video-box:nth-child(4) { animation-delay: 0.3s; }
+    .video-box:nth-child(5) { animation-delay: 0.4s; }
+    .video-box:nth-child(6) { animation-delay: 0.5s; }
+
+
+    .video-box a {
+      text-decoration: none;
+      color: inherit;
       display: flex;
-      align-items: center;
-      gap: 60px;
-      text-align: center;
+      flex-direction: column;
+      flex-grow: 1; /* Allow link to take available space */
     }
 
-    .coming-soon-text {
-      font-family: 'Dungeon Depths', sans-serif;
-      font-size: 4rem;
-      text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.7);
-      opacity: 0;
-      animation: expandIn 1s ease-out forwards;
+    .video-box img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      display: block;
+      margin-bottom: 20px; /* <<< DEFAULT space above title */
+      border: 2px solid transparent;
+      transition: border-color 0.35s ease, margin-bottom 0.3s ease;
     }
 
-    .clock-circle {
-      width: 150px;
-      height: 150px;
-      border: 4px solid rgba(255, 255, 255, 0.8);
-      border-radius: 50%;
-      position: relative;
-      background: rgba(0, 0, 0, 0.4);
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-      opacity: 0;
-      animation: expandIn 1s ease-out forwards;
-      animation-delay: 0.2s;
-      animation-fill-mode: forwards;
+     /* Specific adjustment for second box's text position */
+    .video-box:nth-child(2) img {
+        margin-bottom: 35px; /* <<< INCREASED space above title */
+    }
+    /* Example: To adjust 5th box text: */
+    /* .video-box:nth-child(5) img { margin-bottom: 15px; } */
+
+
+    .video-box .video-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.1em;
+      font-weight: 600;
+      color: #e8faff;
+      margin: 0; /* Removed margin-top: auto */
+      line-height: 1.4;
+      /* Title now sits naturally below image based on img margin */
     }
 
-    .hand {
-      position: absolute;
-      background: white;
-      top: 50%;
-      left: 50%;
-      transform-origin: bottom center;
-      transform: translateX(-50%) translateY(-100%) rotate(0deg);
-      border-radius: 2px;
+    /* Hover Animation */
+    .video-box:hover {
+      transform: translateY(-8px);
+      background-color: rgba(30, 45, 60, 0.85);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.6);
     }
 
-    .hour {
-      width: 4px;
-      height: 40px;
+    .video-box:hover img {
+      border-color: #4fc3f7;
     }
 
-    .minute {
-      width: 3px;
-      height: 55px;
-      background: #aeefff;
-    }
-
-    .second {
-      width: 2px;
-      height: 65px;
-      background: #ff6f61;
-    }
-
-    @keyframes expandIn {
+    /* Fade-in Animation */
+    @keyframes fadeIn {
       from {
         opacity: 0;
-        transform: scale(0.8);
+        transform: translateY(20px);
       }
       to {
         opacity: 1;
-        transform: scale(1);
+        transform: translateY(0);
       }
+    }
+
+
+    /* --- Start Reverted Header Responsive Styles --- */
+     @media (max-width: 768px) {
+       header h1 {
+         font-size: 1.8em; /* Original Responsive Size */
+       }
+       /* No specific rules for links in original @768px */
+     }
+     /* --- End Reverted Header Responsive Styles --- */
+
+    /* --- Start Page Responsive Styles --- */
+    @media (max-width: 1150px) {
+       .content-container {
+           grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+           max-width: 800px;
+       }
     }
 
     @media (max-width: 768px) {
-      header h1 {
-        font-size: 1.8em;
-      }
-
-      .coming-soon-text {
-        font-size: 2.5rem;
-      }
-
-      .clock-circle {
-        width: 100px;
-        height: 100px;
-      }
-
-      .hand.hour {
-        height: 25px;
-      }
-
-      .hand.minute {
-        height: 35px;
-      }
-
-      .hand.second {
-        height: 45px;
-      }
-
       .sixth-page {
-        padding: 20px;
+        padding: 60px 20px 40px 20px;
+        justify-content: flex-start;
+        min-height: calc(100vh - 70px); /* Keep approx header adjustment */
+      }
+
+      .page-heading {
+          font-size: 3rem; /* Adjust heading size */
+          margin-bottom: 40px;
       }
 
       .content-container {
-        flex-direction: column;
-        gap: 30px;
+         max-width: 500px;
+         gap: 30px;
       }
     }
+
+     @media (max-width: 480px) {
+        header { /* Allow header items to wrap */
+            padding: 15px 5px;
+            flex-wrap: wrap; /* Ensure wrapping is allowed */
+            justify-content: center;
+        }
+        header h1 {
+            font-size: 1.8em; /* Consistent with original @768 */
+            padding: 0 10px;
+            width: 100%; /* Allow H1 to take full width if wrapped */
+            margin-top: 5px; /* Adjust margin if wrapped */
+        }
+        header .header-link, header .header-link.disabled {
+             margin: 5px 10px; /* Adjust margin for wrapping */
+         }
+
+        .page-heading {
+            font-size: 2.5rem; /* Dungeon Depths might need different sizing */
+        }
+        .content-container {
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+        .video-box {
+            padding: 20px;
+        }
+        .video-box .video-title {
+            font-size: 1em;
+        }
+        .go-back-btn {
+            top: 15px;
+            left: 15px;
+        }
+     }
+     /* --- End Page Responsive Styles --- */
+
   </style>
 </head>
 <body>
@@ -280,51 +369,71 @@
       </svg>
     </a>
 
+    <h2 class="page-heading">Recent Videos</h2>
+
     <div class="content-container">
-      <div class="coming-soon-text">Coming Soon</div>
-      <div class="clock-circle">
-        <div class="hand hour" id="hourHand"></div>
-        <div class="hand minute" id="minuteHand"></div>
-        <div class="hand second" id="secondHand"></div>
-      </div>
-    </div>
-  </section>
+       <div class="video-box">
+           <a href="https://youtu.be/Hy67SdfabQQ" target="_blank" title="Watch Making my First Farm 🧑‍🌾 [Minecraft Part 6]">
+               <img src="https://i1.imageban.ru/out/2025/04/13/28e4502f5ab1865fe25957a5d79204b6.jpg" alt="Minecraft Farm Thumbnail">
+               <p class="video-title">Making my First Farm 🧑‍🌾 [Minecraft Part 6]</p>
+           </a>
+       </div>
+
+       <div class="video-box">
+           <a href="https://youtu.be/tWY0ghnb8-Y" target="_blank" title="Watch Can i beat this guy? [Akinator Part 2]">
+               <img src="https://i3.imageban.ru/out/2025/04/13/9f227beacfd43f082b239a1b9b25994b.jpg" alt="Akinator Thumbnail">
+               <p class="video-title">Can i beat this guy? [Akinator Part 2]</p>
+           </a>
+       </div>
+
+       <div class="video-box">
+           <a href="https://youtu.be/lS8X0lv1Xm8" target="_blank" title="Watch Playing this game once again... [Minecraft Survival Part 5]">
+               <img src="https://i4.imageban.ru/out/2025/04/13/275c5407c98edca94ebc0a64c0dcf9b8.jpg" alt="Minecraft Survival Thumbnail">
+               <p class="video-title">Playing this game once again... [Minecraft Survival Part 5]</p>
+           </a>
+       </div>
+
+       <div class="video-box">
+           <a href="https://youtu.be/_xAe_RBzuYM" target="_blank" title="Watch Exploring The Mysterious Depths! | Subnautica Part 2">
+               <img src="https://i5.imageban.ru/out/2025/04/13/5d2a407f8dade569402c04a0c05974b2.jpg" alt="Subnautica Thumbnail">
+               <p class="video-title">Exploring The Mysterious Depths! | Subnautica Part 2</p>
+           </a>
+       </div>
+
+        <div class="video-box">
+           <a href="https://youtu.be/lDNlLVJVNgc" target="_blank" title="Watch Ocean World with Aliens | Subnautica Part - 1">
+               <img src="https://i8.imageban.ru/out/2025/04/13/c45dc5c4c679216ffb4d3c28125e7bc9.jpg" alt="Subnautica Part 1 Thumbnail">
+               <p class="video-title">Ocean World with Aliens | Subnautica Part - 1</p>
+           </a>
+       </div>
+
+       <div class="video-box">
+           <a href="https://youtu.be/qTBNixDtIxo" target="_blank" title="Watch Would You Rather (Episode 2)">
+               <img src="https://i8.imageban.ru/out/2025/04/13/fff733e800139473071161774379d8ad.jpg" alt="Would You Rather Thumbnail">
+               <p class="video-title">Would You Rather (Episode 2)</p>
+           </a>
+       </div>
+
+    </div> </section>
 
   <script>
+    // Loader Hiding
     window.addEventListener("load", () => {
       const loader = document.getElementById("loader");
       if (loader) {
         loader.classList.add("hide");
       }
-      updateAnalogClock();
     });
 
-    function updateAnalogClock() {
-      const now = new Date();
-      const sec = now.getSeconds();
-      const min = now.getMinutes();
-      const hr = now.getHours() % 12;
-
-      const secondDeg = sec * 6;
-      const minuteDeg = min * 6 + sec * 0.1;
-      const hourDeg = hr * 30 + min * 0.5;
-
-      const secondHand = document.getElementById('secondHand');
-      const minuteHand = document.getElementById('minuteHand');
-      const hourHand = document.getElementById('hourHand');
-
-      if (secondHand) {
-        secondHand.style.transform = `translateX(-50%) translateY(-100%) rotate(${secondDeg}deg)`;
-      }
-      if (minuteHand) {
-        minuteHand.style.transform = `translateX(-50%) translateY(-100%) rotate(${minuteDeg}deg)`;
-      }
-      if (hourHand) {
-        hourHand.style.transform = `translateX(-50%) translateY(-100%) rotate(${hourDeg}deg)`;
-      }
-    }
-
-    setInterval(updateAnalogClock, 1000);
+    // Disable Right-Click on Video Boxes
+    document.addEventListener('DOMContentLoaded', () => {
+        const videoBoxes = document.querySelectorAll('.video-box');
+        videoBoxes.forEach(box => {
+            box.addEventListener('contextmenu', (event) => {
+                event.preventDefault();
+            });
+        });
+    });
   </script>
 
 </body>
