@@ -5,14 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Sam Plays - About</title>
     <link rel="icon" type="image/png" href="https://i2.imageban.ru/out/2025/04/12/7f6f0dae06fbdc5d9a8b592f4a3ba931.png">
-    <link href="https://fonts.cdnfonts.com/css/dungeon-depths" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/dungeon-depths" rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/globoface-gothic-display-2001" rel="stylesheet">
     <style>
-        /* Basic reset and smooth scrolling */
+        /* --- Base & Reset --- */
         html {
             scroll-behavior: smooth;
             height: 100%;
+            overflow-x: hidden; /* Prevent horizontal scroll */
         }
 
         body {
@@ -24,9 +27,10 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            overflow-x: hidden; /* Prevent horizontal scroll on body */
         }
 
-        /* Loader Styles */
+        /* --- Loader Styles --- */
         #loader {
             position: fixed;
             width: 100vw;
@@ -67,71 +71,84 @@
             opacity: 0;
             visibility: hidden;
         }
+        /* --- End Loader --- */
 
-        /* --- Header Styles --- */
+        /* --- Header --- */
+        /* Styles replicated from Home page for consistency */
         header {
-            background-image: url('https://i7.imageban.ru/out/2025/04/06/af188a519c20b914cf028c2121d90835.png');
-            background-size: cover;
-            background-position: center;
-            text-align: center;
-            padding: 20px 10px;
-            border-bottom: 4px solid white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            z-index: 10;
-            flex-shrink: 0;
+          background-image: url('https://i8.imageban.ru/out/2025/05/04/75362458277a6b1aa7b76085614aa66a.jpg'); /* Replicated BG */
+          background-size: cover;
+          background-position: center;
+          text-align: center;
+          padding: 20px 10px;
+          border-bottom: 4px solid white;
+          position: relative; /* Needed for overlay */
+          z-index: 10; /* Above page content */
+          display: flex;
+          justify-content: center; /* Centering items */
+          align-items: center;
+          flex-wrap: wrap; /* Allow wrapping */
+          flex-shrink: 0; /* Prevent header from shrinking */
         }
 
-        header a.header-link {
-            font-family: 'Montserrat', sans-serif;
-            color: white;
-            font-size: 1.1em;
-            text-decoration: none;
-            margin: 0 15px;
-            padding: 5px 10px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease, color 0.3s ease;
+        /* Dark Overlay for Header Background */
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(0, 0, 0, 0.3); /* Adjust darkness */
+            z-index: 1; /* Below content */
         }
 
+        /* Base style for header links */
+        .header-link { /* Now only applies to <a> tags in header */
+          font-family: 'Montserrat', sans-serif;
+          color: white;
+          font-size: 1em; /* Base size */
+          text-decoration: none;
+          margin: 5px 10px; /* Consistent margin */
+          padding: 5px 10px;
+          border-radius: 5px;
+          opacity: 1;
+          text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+          position: relative; /* Ensure content is above overlay */
+          z-index: 2;
+          transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+        }
+
+        /* Style for clickable links hover/active */
         header a.header-link:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-            color: #e0f7fa;
+          background-color: rgba(255, 255, 255, 0.2);
+          color: #e0f7fa;
+        }
+        header a.header-link:active {
+            transform: scale(0.95);
+            background-color: rgba(255, 255, 255, 0.3);
         }
 
-        header span.header-link {
-            font-family: 'Montserrat', sans-serif;
-            color: white;
-            font-size: 1.1em;
-            text-decoration: none;
-            margin: 0 15px;
-            padding: 5px 10px;
-            border-radius: 5px;
-            display: inline-block;
-            pointer-events: none;
-            opacity: 0.5;
-            cursor: default;
-        }
-        header span.header-link:hover {
-            background-color: transparent;
-        }
+        /* NOTE: Removed the span.header-link style as it's no longer used */
 
         header h1 {
-            font-family: 'Globoface-Gothic-Display-2001', sans-serif;
-            color: white;
-            font-size: 2.5em;
-            margin: 10px 0 0 0;
-            padding: 0 10px;
-            letter-spacing: 2px;
-            text-align: center;
-            flex-grow: 1;
+          font-family: 'Globoface-Gothic-Display-2001', sans-serif;
+          color: white;
+          font-size: 2.2em; /* Base size */
+          margin: 10px 15px; /* Consistent margin */
+          padding: 0;
+          letter-spacing: 2px;
+          text-align: center;
+          flex-grow: 1; /* Allows title to take space */
+          min-width: 180px; /* Consistent minimum width */
+          order: 0; /* Title is logically between links */
+          user-select: none;
+          text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+          position: relative; /* Ensure content is above overlay */
+          z-index: 2;
         }
-        /* --- End Header Styles --- */
+        /* --- End Header --- */
 
         /* Main Content Section Styles */
         .fifth-page {
-            flex-grow: 1;
+            flex-grow: 1; /* Allows section to fill remaining space */
             width: 100%;
             display: flex;
             flex-direction: column;
@@ -147,7 +164,7 @@
             position: relative;
             color: white;
             text-align: center;
-            overflow: auto;
+            overflow: hidden; /* Prevent content overflow issues */
         }
 
         /* Go Back Button Styles */
@@ -164,12 +181,11 @@
             transition: all 0.3s ease;
             cursor: pointer;
             text-decoration: none;
-            z-index: 5;
+            z-index: 5; /* Above background, below potential modals */
         }
 
         .go-back-btn:hover {
             background: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
             transform: scale(1.1);
         }
 
@@ -177,29 +193,32 @@
             width: 22px;
             height: 22px;
             fill: white;
-            transform: scaleX(-1);
+            transform: scaleX(-1); /* Flips arrow */
         }
 
         /* Container for the main about text content */
         .about-content-container {
             max-width: 800px;
-            width: 100%;
+            width: 95%; /* Use percentage for better flexibility */
+            margin-top: 30px; /* Add some space below back button */
+            margin-bottom: 30px; /* Add space above footer if any */
         }
 
         .about-heading {
             font-family: 'Dungeon Depths', sans-serif;
-            font-size: 4rem;
+            font-size: 3.5rem; /* Adjusted size */
             margin-bottom: 25px;
             margin-top: 0;
             text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.7);
             opacity: 0;
             animation: expandIn 1s ease-out forwards;
+            animation-delay: 0.1s; /* Faster delay */
             font-weight: normal;
         }
 
         .about-paragraph {
             font-family: 'Montserrat', sans-serif;
-            font-size: 1.2rem;
+            font-size: 1.1rem; /* Adjusted size */
             max-width: 750px;
             color: #f0f0f0;
             text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
@@ -207,28 +226,39 @@
             margin: 0 auto;
             opacity: 0;
             animation: expandIn 1s ease-out forwards;
-            animation-delay: 0.2s;
+            animation-delay: 0.3s; /* Staggered delay */
+            user-select: text; /* Allow selecting paragraph text */
         }
 
         /* Social Links Styles */
         .social-links-container {
             display: flex;
             justify-content: center;
-            align-items: center; /* Align items vertically */
+            align-items: center;
             gap: 30px;
-            margin-top: 50px;
+            margin-top: 40px; /* Reduced margin */
             width: 100%;
             flex-wrap: wrap;
             opacity: 0;
+            /* Apply base animation to container */
             animation: expandIn 1s ease-out forwards;
-            animation-delay: 0.4s;
+            animation-delay: 0.5s; /* Delay for container */
             padding: 10px 0;
         }
 
         .social-icon {
             display: inline-block;
-            line-height: 0; /* Prevents extra space below image */
+            line-height: 0;
+            /* Add individual animation properties */
+            opacity: 0; /* Start hidden for staggered effect */
+            animation: fadeInIcon 0.6s ease-out forwards;
         }
+
+        /* Staggered animation delays for icons */
+        .social-icon:nth-child(1) { animation-delay: 0.7s; }
+        .social-icon:nth-child(2) { animation-delay: 0.8s; }
+        .social-icon:nth-child(3) { animation-delay: 0.9s; } /* Twitter */
+        .social-icon:nth-child(4) { animation-delay: 1.0s; }
 
         /* Default size for social icons */
         .social-icon img {
@@ -237,117 +267,91 @@
             border-radius: 10px;
             opacity: 0.85;
             transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
-                        opacity 0.3s ease;
-            vertical-align: middle; /* Helps with alignment if line-height changes */
+                        opacity 0.3s ease; /* Removed box-shadow transition */
+            vertical-align: middle;
         }
 
         /* Specific larger size for the Twitter icon */
         .social-icon.twitter-icon-larger img {
-            width: 70px;  /* Increased size */
-            height: 70px; /* Increased size */
+            width: 70px;
+            height: 70px;
         }
 
         .social-icon:hover img {
             opacity: 1;
-            transform: scale(1.25) translateY(-6px);
+            transform: scale(1.2) translateY(-5px);
+            /* box-shadow removed */
         }
         /* End Social Links Styles */
 
-        /* Animation for Heading, Paragraph, and Social Links */
-        @keyframes expandIn {
-            from {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
+        /* Animation Keyframes */
+        @keyframes expandIn { /* Used for main content blocks */
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
         }
 
-        /* --- Header Responsive Styles --- */
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 1.8em;
-            }
+        @keyframes fadeInIcon { /* Used for individual icons */
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        /* --- End Header Responsive Styles --- */
+        /* End Animation Keyframes */
 
-        /* --- Page Responsive Styles --- */
+
+        /* --- Responsive Styles --- */
         @media (max-width: 768px) {
+            /* --- Header Mobile --- */
+            /* These rules ensure the mobile header matches the first code's behavior */
             header {
-                flex-wrap: wrap;
+                justify-content: space-between; /* Space out items */
                 padding: 15px 10px;
             }
             header h1 {
-                order: -1;
-                width: 100%;
-                margin-bottom: 10px;
-                margin-top: 5px;
+                font-size: 1.8em;
+                order: 0; /* Keep title visually centered if space allows */
+                margin: 5px 10px; /* Consistent mobile margin */
+                flex-grow: 0; /* Prevent excessive growth */
             }
+            header .header-link {
+                font-size: 0.9em;
+                margin: 5px 8px; /* Consistent mobile margin */
+                padding: 4px 8px;
+            }
+             /* --- End Header Mobile --- */
 
-            .about-heading {
-                font-size: 2.5rem;
-            }
+            .about-heading { font-size: 2.5rem; }
+            .about-paragraph { font-size: 1rem; max-width: 95%; }
 
-            .about-paragraph {
-                font-size: 1rem;
-                max-width: 95%;
-            }
+            .social-links-container { gap: 25px; margin-top: 35px; }
+            .social-icon img { width: 50px; height: 50px; }
+            .social-icon.twitter-icon-larger img { width: 65px; height: 65px; }
 
-            .social-links-container {
-                gap: 25px;
-                margin-top: 40px;
-            }
-            /* Default responsive icon size */
-            .social-icon img {
-                width: 50px;
-                height: 50px;
-            }
-            /* Larger responsive size for Twitter */
-            .social-icon.twitter-icon-larger img {
-                width: 65px;
-                height: 65px;
-            }
+            .go-back-btn { padding: 8px; top: 15px; left: 15px; }
+            .go-back-btn svg { width: 20px; height: 20px; }
 
-            .go-back-btn {
-                padding: 8px;
-                top: 15px;
-                left: 15px;
-            }
-            .go-back-btn svg {
-                width: 20px;
-                height: 20px;
-            }
-
-            .fifth-page {
-                padding: 50px 15px;
-            }
+            .fifth-page { padding: 50px 15px; background-attachment: scroll; /* Mobile performance */ }
         }
 
         @media (max-width: 480px) {
-            .about-heading {
-                font-size: 2.2rem;
-            }
-            .about-paragraph {
-                font-size: 0.95rem;
-            }
-            /* Default smaller responsive icon size */
-            .social-icon img {
-                width: 45px;
-                height: 45px;
-            }
-             /* Larger smaller responsive size for Twitter */
-            .social-icon.twitter-icon-larger img {
-                width: 60px;
-                height: 60px;
-            }
-            .social-links-container {
-                gap: 20px;
-                margin-top: 35px;
-            }
+            /* --- Header Small Mobile --- */
+             /* These rules ensure the small mobile header matches the first code's behavior */
+             header h1 {
+                 font-size: 1.5em;
+                 margin: 3px 8px; /* Consistent small mobile margin */
+             }
+             header .header-link {
+                 font-size: 0.8em;
+                 margin: 3px 5px; /* Consistent small mobile margin */
+                 padding: 3px 6px;
+             }
+             /* --- End Header Small Mobile --- */
+
+            .about-heading { font-size: 2.2rem; }
+            .about-paragraph { font-size: 0.95rem; }
+            .social-icon img { width: 45px; height: 45px; }
+            .social-icon.twitter-icon-larger img { width: 60px; height: 60px; }
+            .social-links-container { gap: 20px; margin-top: 30px; }
         }
-        /* --- End Page Responsive Styles --- */
+        /* --- End Responsive Styles --- */
 
     </style>
 </head>
@@ -359,8 +363,10 @@
     </div>
 
     <header>
-        <span class="header-link">About</span> <h1>Sam Plays</h1>
-        <a href="https://samplayshindi.github.io/Main/RecentVideos.html" class="header-link">Recent Videos</a> </header>
+        <a href="https://samplayshindi.github.io/Main/About.html" class="header-link">About</a>
+        <h1>Sam Plays</h1>
+        <a href="https://samplayshindi.github.io/Main/RecentVideos.html" class="header-link">Recent Videos</a>
+    </header>
 
     <section class="fifth-page">
         <a href="https://samplayshindi.github.io/Main/Index.html" class="go-back-btn" title="Go Back">
@@ -388,14 +394,16 @@
                     <img src="https://i7.imageban.ru/out/2025/04/14/ba01657b172eb4a2cbe3d9a23a89e639.png" alt="Discord">
                 </a>
             </div>
-        </div> </section>
+        </div>
+    </section>
 
     <script>
-        // Wait for the entire page to load
+        // Loader Script
         window.addEventListener("load", () => {
             const loader = document.getElementById("loader");
             if (loader) {
-                loader.classList.add("hide");
+                // Optional slight delay can prevent flash if content loads instantly
+                setTimeout(() => loader.classList.add("hide"), 100);
             }
         });
     </script>
