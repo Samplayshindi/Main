@@ -10,7 +10,6 @@ This is the official repository for my personal website, built using **HTML, CSS
 The website is currently in **early development**. New features, improvements, and design updates are being added regularly.  
 If you have suggestions, spot any issues, or feel something could be better, feel free to open an issue or reach out. Feedback is always appreciated!
 
----
 
 • 📂 Project Structure
 
@@ -31,26 +30,8 @@ Thanks for checking out the project!
 
 ✨ BONUS 🔮
 
-🚀 Coming Soon in v1.4.0
+🚀 Coming in Future Updates :
 
-• New Background Theme
-
-• Reworked Home Page Layout
-
-• Improved Recent Videos Tab
-
-• Smoother Animations
-
-• Scroll-to-Top Button
-
-• Performance Boosts
-
-• Mobile Touch Enhancements
-
-
-🧪 Planned for Future Updates :
-
-• Dark Mode Toggle
 
 • Contact/Feedback Form
 
@@ -65,8 +46,6 @@ Thanks for checking out the project!
 • Custom Cursor Option
 
 • Mini Animations on Hover
-
-• Embedded Polls & Q&A
 
 • Multi-Language Support
 
