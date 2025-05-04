@@ -30,30 +30,49 @@ Thanks for checking out the project!
 
 
 ✨ BONUS 🔮
+
 🚀 Coming Soon in v1.4.0
 
-New Background Theme
-Reworked Home Page Layout
-Improved Recent Videos Tab
-Smoother Animations
-Scroll-to-Top Button
-Navigation Cleanup
-Revamped Social Media Icons
-Performance Boosts
-Mobile Touch Enhancements
+• New Background Theme
+
+• Reworked Home Page Layout
+
+• Improved Recent Videos Tab
+
+• Smoother Animations
+
+• Scroll-to-Top Button
+
+• Navigation Cleanup
+
+• Revamped Social Media Icons
+
+• Performance Boosts
+
+• Mobile Touch Enhancements
+
 
 🧪 Planned for Future Updates :
 
-Dark Mode Toggle
-Contact/Feedback Form
-Live YouTube Feed Integration
-Styled 404 Error Page
-Keyboard Navigation Support
-Keyboard Shortcuts (Easter Eggs)
-Custom Cursor Option
-Mini Animations on Hover
-Embedded Polls & Q&A
-Multi-Language Support
+• Dark Mode Toggle
+
+• Contact/Feedback Form
+
+• Live YouTube Feed Integration
+
+• Styled 404 Error Page
+
+• Keyboard Navigation Support
+
+• Keyboard Shortcuts (Easter Eggs)
+
+• Custom Cursor Option
+
+• Mini Animations on Hover
+
+• Embedded Polls & Q&A
+
+• Multi-Language Support
 
 
 *Thanks.*
