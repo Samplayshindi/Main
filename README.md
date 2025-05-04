@@ -43,10 +43,6 @@ Thanks for checking out the project!
 
 • Scroll-to-Top Button
 
-• Navigation Cleanup
-
-• Revamped Social Media Icons
-
 • Performance Boosts
 
 • Mobile Touch Enhancements
