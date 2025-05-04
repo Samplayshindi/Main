@@ -5,29 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sam Plays - Home</title>
   <link rel="icon" type="image/png" href="https://i2.imageban.ru/out/2025/04/12/7f6f0dae06fbdc5d9a8b592f4a3ba931.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
   <link href="https://fonts.cdnfonts.com/css/dungeon-depths" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
   <link href="https://fonts.cdnfonts.com/css/globoface-gothic-display-2001" rel="stylesheet">
+
   <style>
-    /* Placed Font Import at the top */
-    @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
-    /* Ensure Montserrat is included */
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
-
-
+    /* --- Base & Reset --- */
     html {
       scroll-behavior: smooth;
+      overflow-x: hidden; /* Prevent horizontal scroll */
     }
 
     body {
       margin: 0;
       padding: 0;
-      font-family: Arial, sans-serif; /* Default font */
+      font-family: 'Montserrat', Arial, sans-serif; /* Default font */
       overflow-x: hidden;
       background-color: #000;
-      user-select: none;
     }
 
+    /* --- Loader --- */
     #loader {
       position: fixed;
       width: 100vw;
@@ -40,6 +40,7 @@
       align-items: center;
       z-index: 1000;
       transition: opacity 0.8s ease, visibility 0.8s ease;
+      user-select: none; /* Specific user-select */
     }
 
     .spinner {
@@ -54,7 +55,6 @@
 
     @keyframes spin {
       0% { transform: rotate(0deg); }
-      50% { transform: rotate(180deg); }
       100% { transform: rotate(360deg); }
     }
 
@@ -71,30 +71,44 @@
       visibility: hidden;
     }
 
+    /* --- Header --- */
     header {
-      background-image: url('https://i7.imageban.ru/out/2025/04/06/af188a519c20b914cf028c2121d90835.png');
+      background-image: url('https://i8.imageban.ru/out/2025/05/04/75362458277a6b1aa7b76085614aa66a.jpg');
       background-size: cover;
       background-position: center;
       text-align: center;
       padding: 20px 10px;
       border-bottom: 4px solid white;
-      position: relative;
-      z-index: 10;
+      position: relative; /* Needed for pseudo-element overlay */
+      z-index: 10; /* Above page content */
       display: flex;
       justify-content: center;
       align-items: center;
+      flex-wrap: wrap;
+    }
+
+    /* Dark Overlay for Header Background */
+    header::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background-color: rgba(0, 0, 0, 0.3); /* Adjust darkness (0.3 = 30% black) */
+        z-index: 1; /* Sit between background image and content */
     }
 
     header .header-link {
       font-family: 'Montserrat', sans-serif;
       color: white;
-      font-size: 1.1em;
+      font-size: 1em; /* Smaller links */
       text-decoration: none;
-      margin: 0 15px;
+      margin: 5px 10px; /* Adjusted margin */
       padding: 5px 10px;
       border-radius: 5px;
-      transition: background-color 0.3s ease, color 0.3s ease;
+      transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
       opacity: 1;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+      position: relative; /* Ensure links are above overlay */
+      z-index: 2;
     }
 
     header .header-link:hover {
@@ -102,21 +116,35 @@
       color: #e0f7fa;
     }
 
+    header .header-link:active { /* Mobile Touch Enhancement */
+        transform: scale(0.95);
+        background-color: rgba(255, 255, 255, 0.3);
+    }
+
     header h1 {
       font-family: 'Globoface-Gothic-Display-2001', sans-serif;
       color: white;
-      font-size: 2.5em;
-      margin: 10px 0 0 0;
-      padding: 0 10px;
+      font-size: 2.2em; /* Smaller title */
+      margin: 10px 15px;
+      padding: 0;
       letter-spacing: 2px;
       opacity: 1;
       text-align: center;
       flex-grow: 1;
+      min-width: 180px; /* Adjusted min-width */
+      order: 0;
+      user-select: none;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+      position: relative; /* Ensure title is above overlay */
+      z-index: 2;
     }
+    /* --- End Header --- */
 
-    /* Styles for pages/sections */
-    .first-page, .second-page, .third-page, .fourth-page {
+
+    /* --- Page Sections --- */
+    .page-section {
       width: 100vw;
+      min-height: 50vh;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -124,55 +152,49 @@
       box-sizing: border-box;
       background-size: cover;
       background-repeat: no-repeat;
-      background-position: center;
+      background-position: center center;
       background-attachment: fixed;
       position: relative;
       color: white;
+      overflow: hidden;
     }
 
     .first-page {
-      min-height: 100vh;
+      min-height: 90vh;
       background-image: url('https://i1.imageban.ru/out/2025/04/06/5243d476031464519085b4403a378f02.jpg');
       justify-content: center;
       padding-top: 60px;
+      display: flex;
+      align-items: center;
     }
 
     .second-page {
-      min-height: 55vh;
+      min-height: 65vh;
       background-image: url('https://i7.imageban.ru/out/2025/04/06/8c0dd853258a2a835557ab4c45a48d4b.jpg');
       z-index: 1;
       text-align: center;
       padding: 50px 20px 40px 20px;
-      opacity: 1;
-       justify-content: center;
-    }
-
-    @keyframes fadeIn {
-      to { opacity: 1; }
+      justify-content: center;
     }
 
     .third-page {
-      min-height: 60vh;
+      min-height: 78vh;
       height: auto;
       background-image: url('https://i6.imageban.ru/out/2025/04/06/d275c17e0cab441306595f35e43d07bc.png');
       z-index: 2;
-      opacity: 1;
-      padding-top: 60px;
-      padding-bottom: 60px;
+      padding: 60px 20px;
       justify-content: flex-start;
     }
 
     .fourth-page {
-      min-height: 60vh;
+      min-height: 60vh; /* Increased min-height */
       height: auto;
       background-image: url('https://i6.imageban.ru/out/2025/04/06/2a6b0f7d04b5c667054039cc093d710e.jpg');
-      background-size: cover;
-      background-position: center;
+      background-color: #000; /* Added black background fallback */
       z-index: 3;
       display: flex;
       align-items: center;
       justify-content: center;
-      opacity: 1;
     }
 
     /* Section stroke */
@@ -184,25 +206,21 @@
       z-index: 5;
     }
 
-    /* Hero content */
-      .hero-content {
+    /* --- Hero Content (First Page Rework - Centered Stack) --- */
+    .hero-content {
       display: flex;
-      flex-direction: column;
-      align-items: center;
+      flex-direction: column; /* Stacked layout */
+      align-items: center; /* Center items horizontally */
       justify-content: center;
-      text-align: center;
-      max-width: 1000px;
+      text-align: center; /* Center all text */
+      max-width: 1000px; /* Adjusted max-width */
       width: 90%;
       margin: 0 auto;
       z-index: 5;
-      animation: fadeInScale 1.2s ease-out forwards;
-      opacity: 0;
-      transform: scale(0.95);
+      gap: 20px; /* Adjust gap for vertical spacing */
     }
 
-    @keyframes fadeInScale {
-      to { opacity: 1; transform: scale(1); }
-    }
+    /* Removed .hero-image-col, .hero-text-col */
 
     .image-wrapper {
       position: relative;
@@ -210,8 +228,9 @@
       padding: 6px;
       border-radius: 14px;
       width: 100%;
-      max-width: 450px;
-      margin-bottom: 20px;
+      max-width: 450px; /* Limit image size */
+      margin: 0 auto 20px auto; /* Bottom margin */
+      user-select: none;
     }
 
     .image-wrapper::before {
@@ -226,66 +245,108 @@
     }
 
     @keyframes rgbBorderDark {
-      0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; }
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     .image-wrapper img {
-      border-radius: 12px; width: 100%; user-select: none; pointer-events: none; display: block;
+      border-radius: 12px;
+      width: 100%;
+      display: block;
     }
 
     .welcome-text {
       font-family: 'Dungeon Depths', sans-serif;
-      font-size: 50px; color: white; margin-top: 30px;
-      opacity: 0; animation: welcomeFadeIn 1.2s ease-out forwards;
+      font-size: 45px; /* Slightly smaller */
+      color: white;
+      margin-top: 0;
+      margin-bottom: 10px; /* Reduced bottom margin */
       text-shadow: 2px 2px 10px rgba(0,0,0,0.6);
     }
 
     .experience-container {
       font-family: 'Montserrat', sans-serif;
-      opacity: 0; animation: welcomeFadeIn 1.2s ease-out forwards; margin-top: 20px;
+      margin-top: 0;
+      /* Centering handled by parent .hero-content */
     }
 
     .experience-text {
-      font-size: 30px; color: white; margin-bottom: 15px; text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.5);
-    }
-
-    @keyframes welcomeFadeIn {
-      to { opacity: 1; transform: scale(1); }
+      font-size: 22px; /* Adjusted size */
+      color: white;
+      margin-bottom: 25px;
+      text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.5);
+      line-height: 1.5;
+      max-width: 500px; /* Limit text width */
+      margin-left: auto; /* Center block */
+      margin-right: auto; /* Center block */
     }
 
     .subscribe-button {
-      display: inline-block; padding: 12px 25px; text-decoration: none;
-      font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 1.2rem;
-      color: white; background-color: #e53935; border-radius: 10px;
+      display: inline-block;
+      padding: 12px 25px;
+      text-decoration: none;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 1.1rem; /* Adjusted size */
+      color: white;
+      background-color: #e53935;
+      border: none;
+      border-radius: 10px;
       transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+      cursor: pointer;
     }
-    .subscribe-button:hover { background-color: #c62828; transform: scale(1.03); }
-    .subscribe-button:active { transform: scale(0.97); }
-
-    .scroll-down {
-      position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
-      font-size: 1.2rem; color: #fff; opacity: 0.8;
-      animation: bounce 2s infinite; cursor: pointer; z-index: 6;
+    .subscribe-button:hover {
+      background-color: #c62828;
+      transform: scale(1.03);
     }
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0) translateX(-50%); } 50% { transform: translateY(-8px) translateX(-50%); }
+    .subscribe-button:active {
+      transform: scale(0.97);
+      background-color: #b71c1c;
     }
 
-    /* Third Page Heading */
+    /* --- Second Page Content --- */
+     .second-page img {
+        width: 40%;
+        max-width: 200px;
+        height: auto;
+        margin: 10px auto;
+        display: block;
+        user-select: none;
+        pointer-events: none;
+    }
+    .quote-text {
+        font-family: 'Montserrat', sans-serif;
+        color: white;
+        font-size: 1.5rem;
+        max-width: 600px;
+        margin: 25px auto;
+        text-align: center;
+        line-height: 1.6;
+        text-shadow: 1px 1px 6px rgba(0,0,0,0.5);
+    }
+
+    /* --- Third Page (FAQ) --- */
     .third-page-heading {
-      width: 90%; max-width: 1200px; text-align: center;
-      font-family: 'Dungeon Depths', sans-serif; color: #fff; font-size: 36px;
-      text-shadow: 2px 2px 6px rgba(0,0,0,0.7); z-index: 6;
-      margin: 0 0 30px 0; padding: 0 10px; box-sizing: border-box;
-      opacity: 1; flex-shrink: 0;
+      width: 90%;
+      max-width: 1200px;
+      text-align: center;
+      font-family: 'Dungeon Depths', sans-serif;
+      color: #fff;
+      font-size: 36px;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+      z-index: 6;
+      margin: 0 auto 30px auto;
+      padding: 0 10px;
+      box-sizing: border-box;
+      flex-shrink: 0;
     }
 
-    /* --- FAQ STYLES (Glassmorphism - Final Animations/Font/Fixes) --- */
-
+    /* --- FAQ STYLES --- */
     :root {
       --glass-bg: rgba(255, 255, 255, 0.1);
       --glass-bg-hover: rgba(255, 255, 255, 0.18);
-      --glass-bg-active: rgba(255, 255, 255, 0.22);
+      --glass-bg-active: rgba(255, 255, 255, 0.25);
       --glass-border: rgba(255, 255, 255, 0.25);
       --glass-text: #f0f8ff;
       --glass-accent: #ffffff;
@@ -294,51 +355,67 @@
     }
 
     .faq-container {
-      max-width: 850px; width: 90%; margin: 0 auto 40px auto;
-      font-family: 'Montserrat', sans-serif; position: relative; z-index: 11; user-select: none;
-      max-height: 65vh; overflow-y: auto; padding-right: 5px;
-      background: var(--glass-bg); border-radius: 15px; border: 1px solid var(--glass-border);
-      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15); flex-shrink: 1;
+      max-width: 750px; /* Smaller width */
+      width: 90%;
+      margin: 0 auto 40px auto; /* Centered */
+      font-family: 'Montserrat', sans-serif;
+      position: relative;
+      z-index: 11;
+      max-height: 60vh; /* Slightly reduced max-height */
+      overflow-y: auto;
+      padding-right: 5px;
+      background: var(--glass-bg);
+      border-radius: 15px;
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+      flex-shrink: 1;
     }
 
+    /* Custom Scrollbar */
     .faq-container::-webkit-scrollbar { width: 8px; }
     .faq-container::-webkit-scrollbar-track { background: var(--scrollbar-track); border-radius: 10px; margin: 5px 0; }
     .faq-container::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 10px; }
     .faq-container::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.45); }
 
-    .faq-list { list-style: none; padding: 5px; margin: 0; }
-    .faq-item { /* No styles */ }
+    .faq-list { list-style: none; padding: 10px 5px; margin: 0; }
+    .faq-item { margin-bottom: 5px; }
 
     .faq-question {
       font-family: 'Montserrat', sans-serif; font-weight: 600;
-      background: transparent; color: var(--glass-text); border: none; border-radius: 10px;
+      background: transparent; color: var(--glass-text);
+      border: none; border-radius: 10px;
       padding: 18px 20px; width: 100%; text-align: left; font-size: 17px;
       cursor: pointer; display: flex; justify-content: space-between; align-items: center;
-      margin-bottom: 5px;
-      transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out;
+      transition: background-color 0.3s ease, color 0.3s ease, transform 0.15s ease;
     }
     .faq-question:hover { background-color: var(--glass-bg-hover); }
-    .faq-question.active { background-color: var(--glass-bg-active); color: var(--glass-accent); }
+    .faq-question:active {
+        transform: scale(0.99);
+        background-color: var(--glass-bg-active);
+    }
+    .faq-question.active {
+        background-color: var(--glass-bg-active);
+        color: var(--glass-accent);
+    }
 
     .faq-answer {
       max-height: 0;
-      overflow: hidden; /* Keep hidden overflow */
+      overflow: hidden;
       background: transparent;
       color: var(--glass-text);
       opacity: 0;
       padding: 0 25px;
-      margin-left: 10px;
-      margin-right: 10px;
-      /* border-left: none; */ /* Explicitly none */
-      transform: translateY(-15px);
-      visibility: hidden; /* Hidden by default */
-      /* Smoother, synchronized animation with visibility delay on close */
-      transition: max-height 0.4s cubic-bezier(0.25, 0.1, 0.25, 1.0),
-                  opacity 0.3s ease 0.05s, /* Faster fade, slightly delayed */
-                  transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1.0),
-                  padding 0.4s cubic-bezier(0.25, 0.1, 0.25, 1.0),
-                  visibility 0s linear 0.4s; /* Delay hiding until transition ends */
+      margin: 0 10px;
+      transform: translateY(-10px);
+      visibility: hidden;
+      transition: max-height 0.4s ease-in-out,
+                  opacity 0.3s ease-in-out 0.05s,
+                  transform 0.4s ease-in-out,
+                  padding 0.4s ease-in-out,
+                  margin-bottom 0.4s ease-in-out,
+                  visibility 0s linear 0.4s;
     }
 
     .faq-answer p {
@@ -348,85 +425,185 @@
     }
 
     .faq-answer.show {
-      max-height: 300px; /* Adjust if needed */
+      max-height: 300px;
       opacity: 1;
       transform: translateY(0);
       padding: 15px 25px;
       margin-top: -5px;
       margin-bottom: 10px;
-      visibility: visible; /* Make visible instantly */
-      /* Override the visibility transition delay when showing */
-      transition-delay: 0s; /* Reset delays for all transitioning properties */
+      visibility: visible;
+      transition-delay: 0s;
+      transition-timing-function: ease-in-out;
     }
 
     .icon {
       font-size: 18px; color: var(--glass-text);
-      transition: transform 0.5s ease-in-out, color 0.4s ease-in-out;
+      transition: transform 0.4s ease-in-out, color 0.4s ease-in-out;
       margin-left: 15px; flex-shrink: 0;
     }
     .faq-question.active .icon { transform: rotate(90deg); color: var(--glass-accent); }
-
     .question-text { flex-grow: 1; margin-right: 10px; }
 
-    /* --- END OF FAQ STYLES --- */
-
-
-    /* Fourth page */
+    /* --- Fourth Page (Thanks/Contact) --- */
     .thanks-container {
       display: flex; flex-direction: column; align-items: center;
-      justify-content: center; text-align: center; opacity: 1;
+      justify-content: center; text-align: center;
+      padding: 20px;
     }
     .thanks-text {
-      font-family: 'Globoface-Gothic-Display-2001', sans-serif; font-size: 6rem; color: white;
+      font-family: 'Globoface-Gothic-Display-2001', sans-serif;
+      font-size: 5rem; /* Smaller text */
+      color: white;
       animation: thanksBouncingText 3s ease-in-out infinite;
       text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+      margin-bottom: 10px;
     }
     .contact-text {
-      font-family: 'Montserrat', sans-serif; font-size: 1.2rem; color: white;
-      margin-top: 5px; text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.1rem; /* Smaller text */
+      color: white;
+      margin-top: 5px;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
     }
     @keyframes thanksBouncingText {
-      0%, 100% { transform: translateY(0); } 40% { transform: translateY(-15px); }
+      0%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-15px); }
+      60% { transform: translateY(-15px); }
     }
 
-    /* Animation on scroll */
+    /* --- Animation on Scroll --- */
     .animate-on-scroll {
-      opacity: 0; transform: translateY(30px); transition: opacity 1s ease, transform 1s ease;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.25, 0.1, 0.25, 1.0), transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1.0);
     }
-    .animate-on-scroll.animated { opacity: 1; transform: translateY(0); }
+    .animate-on-scroll.animated {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* Animation delays for stacked hero */
+    .image-wrapper.animate-on-scroll { transition-delay: 0.2s; }
+    .welcome-text.animate-on-scroll { transition-delay: 0.4s; }
+    .experience-container.animate-on-scroll { transition-delay: 0.6s; }
 
-    /* Media Queries */
+
+    /* --- Scroll-to-Top Button --- */
+    #scrollTopBtn {
+      position: fixed;
+      bottom: 20px; /* Adjust position slightly */
+      right: 20px; /* Adjust position slightly */
+      z-index: 999;
+      background-color: rgba(255, 255, 255, 0.25);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 50%; /* Circle */
+      width: 45px; /* Smaller */
+      height: 45px; /* Smaller */
+      font-size: 20px; /* Smaller arrow */
+      line-height: 43px; /* Adjust for new height */
+      text-align: center;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+      transition: opacity 0.4s ease, visibility 0.4s ease, transform 0.4s ease, background-color 0.3s ease;
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+    }
+
+    #scrollTopBtn.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    #scrollTopBtn:hover {
+      background-color: rgba(255, 255, 255, 0.4);
+    }
+     #scrollTopBtn:active {
+      background-color: rgba(255, 255, 255, 0.5);
+      transform: scale(0.95);
+    }
+
+
+    /* --- Media Queries --- */
     @media (max-width: 768px) {
-      header { display: flex; justify-content: space-between; align-items: center; padding: 20px 10px; }
-      header h1 { flex-grow: 1; text-align: center; margin: 0; font-size: 1.8em; order: 2; }
-      header .header-link { font-size: 0.9em; margin: 0 8px; padding: 3px 6px; order: 1; }
-      header .header-link:last-of-type { order: 3; }
+       /* --- Header Mobile --- */
+      header {
+        justify-content: space-between;
+        padding: 15px 10px;
+      }
+      header h1 {
+        font-size: 1.8em; /* Keep mobile size */
+        order: 0;
+        margin: 5px 10px;
+        flex-grow: 0;
+      }
+      header .header-link {
+        font-size: 0.9em; /* Keep mobile size */
+        margin: 5px 8px;
+        padding: 4px 8px;
+      }
+      /* --- End Header Mobile --- */
 
-      .welcome-text { font-size: 30px; }
-      .experience-text { font-size: 1.2rem; }
-      .third-page-heading { font-size: 28px; margin-bottom: 20px;}
+      /* --- Hero Mobile (Already stacked, adjust text sizes) --- */
+       .welcome-text { font-size: 30px; }
+       .experience-text { font-size: 18px; line-height: 1.5; } /* Adjusted size */
+       .subscribe-button { font-size: 1rem; padding: 10px 20px; }
+       .image-wrapper { max-width: 80%; }
+       /* --- End Hero Mobile --- */
 
-      .faq-container { max-height: 70vh; }
+      .third-page-heading { font-size: 28px; margin-bottom: 25px;}
+
+      .faq-container { max-height: 65vh; width: 95%; } /* Adjust max-height */
       .faq-question { font-size: 16px; padding: 15px 18px; }
       .faq-answer.show { padding: 12px 20px; }
       .faq-answer p { font-size: 14px; }
       .icon { font-size: 16px; }
 
-      .thanks-text { font-size: 3rem; }
-      .contact-text { font-size: 1rem; }
+      .thanks-text { font-size: 3rem; } /* Adjusted size */
+      .contact-text { font-size: 1rem; } /* Adjusted size */
 
-      .first-page, .second-page, .third-page, .fourth-page {
-        background-position: center; background-size: cover; background-attachment: scroll;
+      .page-section {
+        padding: 60px 15px 30px 15px;
+        background-attachment: scroll; /* CRITICAL for mobile performance */
       }
-      .second-page img { width: 70%; max-width: none; height: auto; margin: 20px auto; }
-      .quote-text { font-size: 1.2rem; margin: 20px auto;}
+      .second-page img {
+        width: 50%;
+        max-width: 150px;
+        margin: 20px auto;
+       }
+      .quote-text { font-size: 1.2rem; max-width: 90%; }
       .second-page { padding-top: 40px; }
+
+       #scrollTopBtn { /* Slightly smaller on mobile */
+            width: 40px;
+            height: 40px;
+            font-size: 18px;
+            line-height: 38px;
+            bottom: 15px;
+            right: 15px;
+       }
     }
 
-    /* Second page image on PC */
-    .second-page img { width: 40%; max-width: 200px; height: auto; margin: 10px auto; display: block; }
-    /* Second page text on PC */
-    .quote-text { font-family: 'Montserrat', sans-serif; color: white; font-size: 1.5rem; max-width: 600px; margin: 25px auto; text-align: center; opacity: 1; }
+     @media (max-width: 480px) {
+         /* --- Header Small Mobile --- */
+         header h1 { font-size: 1.5em; margin: 3px 8px; }
+         header .header-link { font-size: 0.8em; margin: 3px 5px; padding: 3px 6px;}
+         /* --- End Header Small Mobile --- */
+
+         /* --- Hero Small Mobile --- */
+         .image-wrapper { max-width: 90%; }
+         .welcome-text { font-size: 24px; }
+         .experience-text { font-size: 16px; } /* Further adjusted size */
+         /* --- End Hero Small Mobile --- */
+
+         .third-page-heading { font-size: 24px; }
+         .faq-question { font-size: 15px; padding: 12px 15px; }
+         .faq-answer p { font-size: 13px; }
+         .thanks-text { font-size: 2.5rem; } /* Further adjusted size */
+         .quote-text { font-size: 1.1rem; }
+     }
 
   </style>
 </head>
@@ -442,35 +619,35 @@
     <a href="https://samplayshindi.github.io/Main/RecentVideos.html" class="header-link">Recent Videos</a>
   </header>
 
-  <section class="first-page">
+  <section class="first-page page-section" id="home">
     <div class="hero-content">
-      <div class="image-wrapper">
-        <img src="https://i7.imageban.ru/out/2025/04/06/8ceada8ba819390324da470129adb577.jpg" alt="Gaming Setup">
-      </div>
-      <div class="welcome-text">Welcome.</div>
-      <div class="experience-container">
-        <div class="experience-text">
-          Experience high-quality gaming <br>
-          content across titles like Minecraft,<br>
-          BGMI and Grand Theft Auto.
-        </div>
-        <a href="https://www.youtube.com/channel/UCRLPBBL_LGFl14mIGaOMnxA?sub_confirmation=1" class="subscribe-button" target="_blank">Subscribe</a>
-      </div>
+        <div class="image-wrapper animate-on-scroll">
+         <img src="https://i7.imageban.ru/out/2025/04/06/8ceada8ba819390324da470129adb577.jpg" alt="Gaming Setup">
+       </div>
+        <div class="welcome-text animate-on-scroll">Welcome.</div>
+       <div class="experience-container animate-on-scroll">
+         <div class="experience-text">
+           Experience high-quality gaming
+           content across titles like Minecraft,
+           Subnautica and Grand Theft Auto.
+         </div>
+         <a href="https://www.youtube.com/channel/UCRLPBBL_LGFl14mIGaOMnxA?sub_confirmation=1" class="subscribe-button" target="_blank" rel="noopener noreferrer">Subscribe</a>
+       </div>
     </div>
-  </section>
-
-  <div class="section-stroke"></div>
-
-  <section class="second-page" id="second">
-    <img src="https://i5.imageban.ru/out/2025/04/08/2896378b9be9960e625cccabbd9877bd.png" alt="Quote Image">
-    <div class="quote-text">"Sam Plays is a very good content creator. His gaming videos are engaging and entertaining. Keep up the great work, Sam Plays! Thank you for providing such awesome videos. I hope he never quits."</div>
     </section>
 
   <div class="section-stroke"></div>
 
-  <section class="third-page">
+  <section class="second-page page-section" id="quote">
+    <img src="https://i5.imageban.ru/out/2025/04/08/2896378b9be9960e625cccabbd9877bd.png" alt="Quote Image" class="animate-on-scroll">
+    <div class="quote-text animate-on-scroll">"Sam Plays is a very good content creator. His gaming videos are engaging and entertaining. Keep up the great work, Sam Plays! Thank you for providing such awesome videos. I hope he never quits."</div>
+  </section>
+
+  <div class="section-stroke"></div>
+
+  <section class="third-page page-section" id="faq">
     <h2 class="third-page-heading animate-on-scroll">Gaming Videos FAQs</h2>
-    <div class="faq-container">
+    <div class="faq-container animate-on-scroll">
       <ul class="faq-list">
         <li class="faq-item">
           <button class="faq-question">
@@ -523,80 +700,89 @@
 
   <div class="section-stroke"></div>
 
-  <section class="fourth-page" id="fourth">
+  <section class="fourth-page page-section" id="contact">
     <div class="thanks-container animate-on-scroll">
       <div class="thanks-text">Thanks</div>
       <div class="contact-text">Contact stgbussiness436@gmail.com for more info</div>
     </div>
   </section>
 
+  <button id="scrollTopBtn" title="Go to top" aria-label="Scroll to top">▲</button>
+
   <script>
-    // Loader Script
+    // --- Loader Script ---
     window.addEventListener("load", () => {
-      document.getElementById("loader").classList.add("hide");
+      setTimeout(() => {
+           document.getElementById("loader")?.classList.add("hide");
+      }, 100);
     });
 
-    // Prevent right-click on the specific image in second-page
+    // --- Prevent Right-Click on Specific Image ---
     const secondPageImg = document.querySelector('.second-page img');
     if (secondPageImg) {
-       secondPageImg.addEventListener('contextmenu', (event) => {
-         event.preventDefault();
-       });
+        secondPageImg.addEventListener('contextmenu', (event) => {
+          event.preventDefault();
+        });
+        secondPageImg.addEventListener('dragstart', (event) => {
+            event.preventDefault();
+        });
     }
 
-    // FAQ Script (No changes needed here)
-    document.querySelectorAll('.faq-question').forEach(button => {
+    // --- FAQ Accordion Script ---
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    faqQuestions.forEach(button => {
       button.addEventListener('click', () => {
         const faqItem = button.closest('.faq-item');
-        const answer = faqItem.querySelector('.faq-answer');
-        const wasVisible = answer.classList.contains('show');
+        const answer = faqItem?.querySelector('.faq-answer');
+        const wasVisible = answer?.classList.contains('show');
 
-        // Close all other open answers first
         document.querySelectorAll('.faq-item').forEach(item => {
-            if (item !== faqItem) {
-                item.querySelector('.faq-answer').classList.remove('show');
-                item.querySelector('.faq-question').classList.remove('active');
+            const otherAnswer = item.querySelector('.faq-answer');
+            const otherButton = item.querySelector('.faq-question');
+            if (item !== faqItem && otherAnswer?.classList.contains('show')) {
+                otherAnswer.classList.remove('show');
+                otherButton?.classList.remove('active');
             }
         });
 
-        // Toggle the clicked answer/question
-        if (!wasVisible) {
-          answer.classList.add('show');
-          button.classList.add('active');
-        } else {
-          answer.classList.remove('show');
-          button.classList.remove('active');
+        if (answer) {
+            if (!wasVisible) {
+                answer.classList.add('show');
+                button.classList.add('active');
+            } else {
+                answer.classList.remove('show');
+                button.classList.remove('active');
+            }
         }
       });
     });
 
-    // Animation on Scroll Helper
-    function isInViewport(el) {
-      if (!el) return false;
-      const rect = el.getBoundingClientRect();
-      return (
-        rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.bottom >= 0 &&
-        rect.left <= (window.innerWidth || document.documentElement.clientWidth) &&
-        rect.right >= 0
-      );
-    }
+    // --- Intersection Observer for Scroll Animations ---
+    const animatedElements = document.querySelectorAll('.animate-on-scroll');
+    const observer = new IntersectionObserver((entries, observerRef) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animated');
+                // observerRef.unobserve(entry.target); // Optional: Unobserve after first animation
+            }
+        });
+    }, { root: null, rootMargin: '0px', threshold: 0.1 });
+    animatedElements.forEach(el => { if (el) { observer.observe(el); } });
 
-    function handleScrollAnimation() {
-      const animatedElements = document.querySelectorAll('.animate-on-scroll');
-      animatedElements.forEach(el => {
-        if (isInViewport(el)) {
-          el.classList.add('animated');
-        }
-      });
+    // --- Scroll-to-Top Button Logic ---
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+    if (scrollTopBtn) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > window.innerHeight / 2) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        }, { passive: true });
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
     }
-
-    // Run animations on scroll and load
-    window.addEventListener('scroll', handleScrollAnimation);
-    window.addEventListener('load', () => {
-       handleScrollAnimation();
-       document.getElementById("loader").classList.add("hide");
-    });
   </script>
 
 </body>
