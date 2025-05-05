@@ -32,9 +32,7 @@ New videos are on the way!
 
 ---
 
-## ✨ What’s Next
-
-Here’s a sneak peek at what’s on the roadmap:
+## What’s Next?:-
 
 -  Contact / Feedback Form  
 -  Live YouTube Feed Integration  
