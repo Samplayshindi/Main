@@ -15,7 +15,21 @@ If spot something off or have an idea, feel free to open an issue or drop me a m
 
 ## 📁 Project Structure
 
-📄 _Guide coming soon._
+- Samplayshindi/
+- ├── Main/
+- │   ├── Index.html         (The main homepage)
+- │   ├── About.html         (The 'About Me' page)
+- │   ├── RecentVideos.html  (Page showcasing recent videos)
+- │   └── [Assests Like Images and more]
+- └── README.md (This file)
+
+The main website files are inside this github repository called `Main/`.
+
+* `Index.html` is the the first page you see when you visit the site.
+* `About.html` is like a **wikipedia page**, telling you more about me.
+* `RecentVideos.html` is your **To Keep Updated** to catch up on my latest gaming videos.
+* The `README.md` file you're reading right now lives at the very top level, providing an overview of the entire project.
+
 
 ---
 
