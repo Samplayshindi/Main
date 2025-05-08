@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sam Plays - Recent Videos</title>
+  <title data-translate-key="page_title_recent_videos">Sam Plays - Recent Videos</title>
   <link rel="icon" type="image/png" href="https://i2.imageban.ru/out/2025/04/12/7f6f0dae06fbdc5d9a8b592f4a3ba931.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
   <link href="https://fonts.cdnfonts.com/css/dungeon-depths" rel="stylesheet">
   <link href="https://fonts.cdnfonts.com/css/globoface-gothic-display-2001" rel="stylesheet">
 
@@ -23,7 +24,12 @@
       overflow-x: hidden;
       background-color: #000;
       user-select: none;
+      cursor: default; /* Default cursor */
     }
+
+    /* --- Custom Cursor Classes --- */
+    body.cursor-crosshair { cursor: crosshair; }
+
 
     #loader {
       position: fixed;
@@ -35,7 +41,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      z-index: 1000;
+      z-index: 10000; /* Ensure loader is on top */
       transition: opacity 0.8s ease, visibility 0.8s ease;
     }
 
@@ -55,6 +61,7 @@
     }
 
     .loader-text {
+      font-family: 'Montserrat', sans-serif;
       font-size: 1.4em;
       text-align: center;
       color: #e0f7fa;
@@ -66,90 +73,184 @@
       visibility: hidden;
     }
 
-    /* --- Start Exact Header Styles (from Snippet 1 via Snippet 2 Correction) --- */
+    /* --- Header --- */
     header {
-      background-image: url('https://i8.imageban.ru/out/2025/05/04/75362458277a6b1aa7b76085614aa66a.jpg'); /* Matching BG */
+      background-image: url('https://i8.imageban.ru/out/2025/05/04/75362458277a6b1aa7b76085614aa66a.jpg');
       background-size: cover;
       background-position: center;
-      text-align: center;
-      padding: 20px 10px;
+      padding: 15px 15px;
       border-bottom: 4px solid white;
       position: relative;
-      z-index: 10;
+      top: 0;
+      left: 0;
+      z-index: 1000;
       display: flex;
-      justify-content: center;
       align-items: center;
-      flex-wrap: wrap;
-      flex-shrink: 0;
+      justify-content: space-between;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     header::before {
         content: "";
         position: absolute;
         top: 0; left: 0; right: 0; bottom: 0;
-        background-color: rgba(0, 0, 0, 0.3); /* Matching Overlay */
+        background-color: rgba(0, 0, 0, 0.3);
         z-index: 1;
     }
 
-    .header-link { /* Base style for header links */
-      font-family: 'Montserrat', sans-serif;
-      color: white;
-      font-size: 1em; /* Matching Size */
-      text-decoration: none;
-      margin: 5px 10px; /* Matching Margin */
-      padding: 5px 10px; /* Matching Padding */
-      border-radius: 5px;
-      opacity: 1;
-      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-      position: relative;
-      z-index: 2;
-      transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    .header-left {
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+        position: relative;
+        z-index: 2;
     }
 
-    header a.header-link:hover { /* Style for clickable links hover */
+    header .header-link {
+      font-family: 'Montserrat', sans-serif;
+      color: white;
+      font-size: 1em;
+      text-decoration: none;
+      margin: 0 8px;
+      padding: 5px 10px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+      opacity: 1;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+      white-space: nowrap;
+    }
+
+    header .header-link:hover {
       background-color: rgba(255, 255, 255, 0.2);
       color: #e0f7fa;
     }
-    header a.header-link:active { /* Style for clickable links active */
+
+    header .header-link:active {
         transform: scale(0.95);
         background-color: rgba(255, 255, 255, 0.3);
     }
 
-    /* Style for the disabled/current page link */
     header a.header-link.disabled {
-      opacity: 0.6; /* Dimmer */
+      opacity: 0.6;
       cursor: default;
-      pointer-events: none; /* Not interactive */
-      background-color: transparent !important; /* Override hover */
-      color: white !important; /* Override hover */
+      pointer-events: none;
+      background-color: transparent !important;
+      color: white !important;
     }
 
     header h1 {
-      font-family: 'Globoface-Gothic-Display-2001', sans-serif; /* Matching Font */
+      font-family: 'Globoface-Gothic-Display-2001', sans-serif;
       color: white;
-      font-size: 2.2em; /* Matching Size */
-      margin: 10px 15px; /* Matching Margin */
-      padding: 0;
+      font-size: 2.2em;
+      padding: 0 10px;
       letter-spacing: 2px;
+      opacity: 1;
       text-align: center;
-      flex-grow: 1;
-      min-width: 180px; /* Matching Min Width */
-      order: 0; /* Title between links */
+      white-space: nowrap;
       user-select: none;
       text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
-      position: relative;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
       z-index: 2;
+      margin: 0;
+      min-width: 0;
     }
-    /* --- End Exact Header Styles --- */
+
+    #settingsBtn {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.8em;
+        cursor: pointer;
+        padding: 0;
+        line-height: 1;
+        flex-shrink: 0;
+        position: relative;
+        z-index: 2;
+        transition: color 0.3s ease, transform 0.2s ease;
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    }
+    #settingsBtn:hover {
+        color: #e0f7fa;
+        transform: rotate(20deg);
+    }
+     #settingsBtn:active {
+         transform: scale(0.9) rotate(15deg);
+     }
+    /* --- End Header Styles --- */
+
+    /* --- Settings Panel --- */
+    #settingsPanel {
+        position: fixed;
+        top: 70px;
+        right: 20px;
+        width: 300px;
+        max-height: calc(100vh - 90px);
+        background: rgba(30, 30, 30, 0.85);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 12px;
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.4);
+        z-index: 9999;
+        color: white;
+        font-family: 'Montserrat', sans-serif;
+        padding: 20px;
+        box-sizing: border-box;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px) scale(0.98);
+        transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+        overflow-y: auto;
+    }
+
+    #settingsPanel.visible {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0) scale(1);
+    }
+
+    #settingsPanel h3 {
+        margin-top: 0;
+        margin-bottom: 15px;
+        font-size: 1.1em;
+        font-weight: 600;
+        color: #e0f7fa;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        padding-bottom: 8px;
+    }
+
+    .setting-section { margin-bottom: 20px; }
+    .setting-section:last-child { margin-bottom: 5px; }
+
+    /* Styles for Cursor Options */
+    .cursor-options label {
+        display: block; margin-bottom: 8px; cursor: pointer;
+        font-size: 0.95em; color: #eee;
+    }
+    .cursor-options input[type="radio"] {
+        margin-right: 8px; accent-color: #4fc3f7; cursor: pointer;
+    }
+
+    /* Styles for Language Selector */
+    #languageSelector {
+        width: 100%; padding: 8px 10px; border-radius: 5px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        background-color: rgba(0, 0, 0, 0.3); color: white;
+        font-family: 'Montserrat', sans-serif; font-size: 0.95em; cursor: pointer;
+    }
+    #languageSelector option { background-color: #333; color: white; }
+    /* --- End Settings Panel Styles --- */
 
 
-    .sixth-page {
+    .sixth-page { /* Main content section */
       min-height: 100vh;
       width: 100vw;
       display: flex;
       flex-direction: column;
       align-items: center;
-      /* Removed justify-content: center to allow natural flow from top */
       padding: 80px 40px 60px 40px;
       box-sizing: border-box;
       background-image: url('https://i1.imageban.ru/out/2025/04/06/5243d476031464519085b4403a378f02.jpg');
@@ -161,23 +262,23 @@
       color: white;
     }
 
-    .page-heading {
-        font-family: 'Dungeon Depths', sans-serif;
-        font-weight: normal;
-        font-size: 3.8rem;
-        color: #e8faff;
-        text-align: center;
-        margin-bottom: 50px; /* Space below heading */
-        margin-top: 0; /* Reset top margin */
-        text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.6);
-        width: 100%;
+    .page-heading { /* "Recent Videos" title */
+      font-family: 'Dungeon Depths', sans-serif;
+      font-weight: normal;
+      font-size: 3.2rem;
+      color: #e8faff;
+      text-align: center;
+      margin-bottom: 40px;
+      margin-top: 20px;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+      width: 100%;
     }
 
     .go-back-btn {
       position: absolute;
       top: 20px;
       left: 20px;
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.1);
       padding: 10px;
       border-radius: 50%;
       display: flex;
@@ -186,12 +287,11 @@
       transition: all 0.3s ease;
       cursor: pointer;
       z-index: 15;
-      text-decoration: none; /* Ensure no underline if used as <a> */
+      text-decoration: none;
     }
 
     .go-back-btn:hover {
-      background: rgba(255, 255, 255, 0.2);
-      /* box-shadow: 0 0 10px rgba(255, 255, 255, 0.4); */ /* Optional: remove glow here too */
+      background: rgba(255, 255, 255, 0.25);
       transform: scale(1.1);
     }
 
@@ -205,34 +305,36 @@
     /* Grid Container */
     .content-container {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap: 40px;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 35px;
       width: 100%;
-      max-width: 1300px;
+      max-width: 1200px;
       padding: 0;
     }
 
-    /* --- Improved Video Box Styles --- */
+    /* --- Video Box Styles --- */
     .video-box {
-      background-color: rgba(20, 30, 40, 0.75); /* Slightly adjusted alpha */
-      border-radius: 15px; /* Slightly adjusted radius */
-      padding: 25px;
+      background-color: rgba(15, 23, 32, 0.65);
+      border-radius: 12px;
+      padding: 20px;
       box-sizing: border-box;
       opacity: 0;
-      animation: fadeIn 0.8s ease-out forwards;
+      animation: fadeIn 0.7s ease-out forwards;
       display: flex;
       flex-direction: column;
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Softer base shadow */
-      transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1); /* Removed background/shadow transition */
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+      transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
+                  background-color 0.3s ease,
+                  box-shadow 0.3s ease;
     }
 
     /* Animation Delays */
     .video-box:nth-child(1) { animation-delay: 0s; }
-    .video-box:nth-child(2) { animation-delay: 0.1s; }
-    .video-box:nth-child(3) { animation-delay: 0.2s; }
-    .video-box:nth-child(4) { animation-delay: 0.3s; }
-    .video-box:nth-child(5) { animation-delay: 0.4s; }
-    .video-box:nth-child(6) { animation-delay: 0.5s; }
+    .video-box:nth-child(2) { animation-delay: 0.08s; }
+    .video-box:nth-child(3) { animation-delay: 0.16s; }
+    .video-box:nth-child(4) { animation-delay: 0.24s; }
+    .video-box:nth-child(5) { animation-delay: 0.32s; }
+    .video-box:nth-child(6) { animation-delay: 0.4s; }
 
 
     .video-box a {
@@ -246,144 +348,144 @@
     .video-box img {
       width: 100%;
       height: auto;
-      border-radius: 10px; /* Slightly softer radius for image */
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      border-radius: 8px;
       display: block;
-      margin-bottom: 20px; /* Default space */
+      margin-bottom: 15px;
       border: 2px solid transparent;
-      transition: border-color 0.35s ease, margin-bottom 0.3s ease;
-    }
-
-    /* Specific adjustment for second box's text position */
-    .video-box:nth-child(2) img {
-        margin-bottom: 35px; /* Retained specific adjustment */
+      transition: border-color 0.3s ease;
     }
 
     .video-box .video-title {
       font-family: 'Montserrat', sans-serif;
-      font-size: 1.1em;
+      font-size: 1.05em;
       font-weight: 600;
-      color: #e8faff;
+      color: #e0f0ff;
       margin: 0;
-      line-height: 1.4;
+      line-height: 1.35;
     }
 
-    /* Improved Hover Animation */
     .video-box:hover {
-      transform: translateY(-8px);
-      /* Removed background-color change */
-      /* Removed box-shadow change (no glow) */
+      transform: translateY(-10px) scale(1.02);
+      background-color: rgba(25, 38, 50, 0.8);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.45);
     }
 
     .video-box:hover img {
-      border-color: #4fc3f7; /* Keep image border highlight */
+      border-color: #58c9f3;
     }
-    /* --- End Improved Video Box Styles --- */
+    /* --- End Video Box Styles --- */
 
     /* Fade-in Animation */
     @keyframes fadeIn {
       from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(25px) scale(0.98);
       }
       to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
       }
     }
 
-
-    /* --- Start Header Responsive Styles --- */
+    /* --- Responsive Styles --- */
     @media (max-width: 768px) {
-        /* These rules ensure the mobile header matches the first code's behavior */
-        header {
-            justify-content: space-between; /* Space out items */
-            padding: 15px 10px;
-        }
-        header h1 {
-            font-size: 1.8em;
-            order: 0; /* Keep title visually centered if space allows */
-            margin: 5px 10px; /* Consistent mobile margin */
-            flex-grow: 0; /* Prevent excessive growth */
-        }
-        header .header-link { /* Applies to both active and disabled links */
-            font-size: 0.9em;
-            margin: 5px 8px; /* Consistent mobile margin */
-            padding: 4px 8px;
-        }
-    }
-     /* --- End Header Responsive Styles --- */
+      header {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+      }
+      header h1 {
+        position: static;
+        transform: none;
+        order: 1;
+        margin-bottom: 10px;
+        font-size: 1.8em;
+      }
+      .header-left {
+        order: 2;
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
+        margin-bottom: 5px;
+      }
+      header .header-link {
+        font-size: 0.9em;
+        margin: 0 10px;
+      }
+      #settingsBtn {
+        order: 3;
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        font-size: 1.6em;
+      }
+      #settingsPanel {
+        width: 280px; right: 10px; top: 65px;
+        max-height: calc(100vh - 80px);
+      }
 
-    /* --- Start Page Responsive Styles --- */
-    @media (max-width: 1150px) {
-        .content-container {
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            max-width: 800px;
-        }
-    }
-
-    @media (max-width: 768px) {
       .sixth-page {
         padding: 60px 20px 40px 20px;
-        /* justify-content: flex-start; */ /* Already default */
-        min-height: calc(100vh - 70px); /* Adjust if header height changes significantly */
-        background-attachment: scroll; /* Performance on mobile */
+        background-attachment: scroll;
       }
-
       .page-heading {
-          font-size: 3rem;
-          margin-bottom: 40px;
+        font-size: 2.8rem;
+        margin-bottom: 30px;
+        margin-top: 10px;
       }
-
       .content-container {
-         max-width: 500px;
-         gap: 30px;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        max-width: 90%;
+        gap: 25px;
+      }
+      .video-box {
+        padding: 15px;
+      }
+      .video-box .video-title {
+        font-size: 1em;
+      }
+       .go-back-btn {
+        top: 15px;
+        left: 15px;
+        padding: 8px;
+      }
+      .go-back-btn svg {
+        width: 20px; height: 20px;
       }
     }
 
     @media (max-width: 480px) {
-        /* Header wrapping behavior from Snippet 1 */
-        header {
-            padding: 15px 5px;
-            /* flex-wrap: wrap; - Already default */
-            /* justify-content: center; - Already default */
-        }
-        header h1 {
-            font-size: 1.5em; /* Small mobile size */
-            padding: 0 10px;
-            width: 100%; /* Allow H1 to take full width if wrapped */
-            margin-top: 5px; /* Adjust margin if wrapped */
-            margin-bottom: 5px; /* Add bottom margin if wrapped */
-        }
-        header .header-link { /* Applies to both active and disabled */
-             font-size: 0.8em; /* Small mobile size */
-             margin: 3px 5px; /* Adjust margin for wrapping */
-             padding: 3px 6px;
-         }
+      header h1 {
+        font-size: 1.6em;
+        white-space: normal;
+      }
+      header .header-link {
+        font-size: 0.85em;
+        margin: 0 5px;
+        padding: 4px 8px;
+      }
+      #settingsBtn {
+        font-size: 1.5em;
+        top: 12px; right: 12px;
+      }
+       #settingsPanel {
+        width: calc(100vw - 20px); left: 10px; right: 10px; top: 60px;
+      }
 
-        .page-heading {
-            font-size: 2.5rem;
-        }
-        .content-container {
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        }
-        .video-box {
-            padding: 20px;
-            border-radius: 12px; /* Adjust radius for smaller size */
-        }
-        .video-box .video-title {
-            font-size: 1em;
-        }
-        .go-back-btn {
-            top: 15px;
-            left: 15px;
-            padding: 8px;
-        }
-        .go-back-btn svg {
-             width: 20px;
-             height: 20px;
-         }
+      .page-heading {
+        font-size: 2.2rem;
+      }
+      .content-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+       .video-box img {
+        margin-bottom: 12px;
+      }
     }
-    /* --- End Page Responsive Styles --- */
+    /* --- End Responsive Styles --- */
 
   </style>
 </head>
@@ -391,14 +493,39 @@
 
   <div id="loader">
     <div class="spinner"></div>
-    <div class="loader-text">Loading, Please Wait</div>
+    <div class="loader-text" data-translate-key="loader_text">Loading, Please Wait</div>
   </div>
 
   <header>
-    <a href="https://samplayshindi.github.io/Main/About.html" class="header-link">About</a>
-    <h1>Sam Plays</h1>
-    <a href="https://samplayshindi.github.io/Main/RecentVideos.html" class="header-link disabled">Recent Videos</a>
+      <div class="header-left">
+        <a href="https://samplayshindi.github.io/Main/About.html" class="header-link" data-translate-key="nav_about">About</a>
+        <a href="https://samplayshindi.github.io/Main/RecentVideos.html" class="header-link disabled" data-translate-key="nav_recent_videos">Recent Videos</a>
+      </div>
+      <h1 data-translate-key="title">Sam Plays</h1>
+      <button id="settingsBtn" title="Settings" aria-label="Open Settings">⚙️</button>
   </header>
+
+  <div id="settingsPanel">
+    <div class="setting-section cursor-options">
+        <h3 data-translate-key="settings_cursor_title">Cursor Style</h3>
+        <label>
+            <input type="radio" name="cursor-style" value="default" checked> <span data-translate-key="cursor_default">Default</span>
+        </label>
+        <label>
+            <input type="radio" name="cursor-style" value="crosshair"> <span data-translate-key="cursor_crosshair">Crosshair</span>
+        </label>
+    </div>
+
+    <div class="setting-section language-options">
+        <h3 data-translate-key="settings_language_title">Language</h3>
+        <select id="languageSelector" aria-label="Select language">
+            <option value="en">English</option>
+            <option value="es">Español (Spanish)</option>
+            <option value="hi">हिन्दी (Hindi)</option>
+        </select>
+    </div>
+    </div>
+
 
   <section class="sixth-page">
     <a href="https://samplayshindi.github.io/Main/Index.html" class="go-back-btn" title="Go Back">
@@ -407,79 +534,215 @@
       </svg>
     </a>
 
-    <h2 class="page-heading">Recent Videos</h2>
+    <h2 class="page-heading" data-translate-key="page_heading_recent_videos">Recent Videos</h2>
 
     <div class="content-container">
         <div class="video-box">
             <a href="https://youtu.be/Hy67SdfabQQ" target="_blank" title="Watch Making my First Farm 🧑‍🌾 [Minecraft Part 6]">
-                <img src="https://i1.imageban.ru/out/2025/04/13/28e4502f5ab1865fe25957a5d79204b6.jpg" alt="Minecraft Farm Thumbnail">
-                <p class="video-title">Making my First Farm 🧑‍🌾 [Minecraft Part 6]</p>
+                <img src="https://i1.imageban.ru/out/2025/04/13/28e4502f5ab1865fe25957a5d79204b6.jpg" alt="Minecraft Farm Thumbnail" onerror="this.onerror=null;this.src='https://placehold.co/600x338/101720/e0f0ff?text=Video+Not+Found';">
+                <p class="video-title" data-translate-key="video_title_mc_farm">Making my First Farm 🧑‍🌾 [Minecraft Part 6]</p>
             </a>
         </div>
 
         <div class="video-box">
             <a href="https://youtu.be/tWY0ghnb8-Y" target="_blank" title="Watch Can i beat this guy? [Akinator Part 2]">
-                <img src="https://i3.imageban.ru/out/2025/04/13/9f227beacfd43f082b239a1b9b25994b.jpg" alt="Akinator Thumbnail">
-                <p class="video-title">Can i beat this guy? [Akinator Part 2]</p>
+                <img src="https://i3.imageban.ru/out/2025/04/13/9f227beacfd43f082b239a1b9b25994b.jpg" alt="Akinator Thumbnail" onerror="this.onerror=null;this.src='https://placehold.co/600x338/101720/e0f0ff?text=Video+Not+Found';">
+                <p class="video-title" data-translate-key="video_title_akinator2">Can i beat this guy? [Akinator Part 2]</p>
             </a>
         </div>
 
         <div class="video-box">
             <a href="https://youtu.be/lS8X0lv1Xm8" target="_blank" title="Watch Playing this game once again... [Minecraft Survival Part 5]">
-                <img src="https://i4.imageban.ru/out/2025/04/13/275c5407c98edca94ebc0a64c0dcf9b8.jpg" alt="Minecraft Survival Thumbnail">
-                <p class="video-title">Playing this game once again... [Minecraft Survival Part 5]</p>
+                <img src="https://i4.imageban.ru/out/2025/04/13/275c5407c98edca94ebc0a64c0dcf9b8.jpg" alt="Minecraft Survival Thumbnail" onerror="this.onerror=null;this.src='https://placehold.co/600x338/101720/e0f0ff?text=Video+Not+Found';">
+                <p class="video-title" data-translate-key="video_title_mc_survival5">Playing this game once again... [Minecraft Survival Part 5]</p>
             </a>
         </div>
 
         <div class="video-box">
             <a href="https://youtu.be/_xAe_RBzuYM" target="_blank" title="Watch Exploring The Mysterious Depths! | Subnautica Part 2">
-                <img src="https://i5.imageban.ru/out/2025/04/13/5d2a407f8dade569402c04a0c05974b2.jpg" alt="Subnautica Thumbnail">
-                <p class="video-title">Exploring The Mysterious Depths! | Subnautica Part 2</p>
+                <img src="https://i5.imageban.ru/out/2025/04/13/5d2a407f8dade569402c04a0c05974b2.jpg" alt="Subnautica Thumbnail" onerror="this.onerror=null;this.src='https://placehold.co/600x338/101720/e0f0ff?text=Video+Not+Found';">
+                <p class="video-title" data-translate-key="video_title_subnautica2">Exploring The Mysterious Depths! | Subnautica Part 2</p>
             </a>
         </div>
 
-         <div class="video-box">
+        <div class="video-box">
             <a href="https://youtu.be/lDNlLVJVNgc" target="_blank" title="Watch Ocean World with Aliens | Subnautica Part - 1">
-                <img src="https://i8.imageban.ru/out/2025/04/13/c45dc5c4c679216ffb4d3c28125e7bc9.jpg" alt="Subnautica Part 1 Thumbnail">
-                <p class="video-title">Ocean World with Aliens | Subnautica Part - 1</p>
+                <img src="https://i8.imageban.ru/out/2025/04/13/c45dc5c4c679216ffb4d3c28125e7bc9.jpg" alt="Subnautica Part 1 Thumbnail" onerror="this.onerror=null;this.src='https://placehold.co/600x338/101720/e0f0ff?text=Video+Not+Found';">
+                <p class="video-title" data-translate-key="video_title_subnautica1">Ocean World with Aliens | Subnautica Part - 1</p>
             </a>
         </div>
 
         <div class="video-box">
             <a href="https://youtu.be/qTBNixDtIxo" target="_blank" title="Watch Would You Rather (Episode 2)">
-                <img src="https://i8.imageban.ru/out/2025/04/13/fff733e800139473071161774379d8ad.jpg" alt="Would You Rather Thumbnail">
-                <p class="video-title">Would You Rather (Episode 2)</p>
+                <img src="https://i8.imageban.ru/out/2025/04/13/fff733e800139473071161774379d8ad.jpg" alt="Would You Rather Thumbnail" onerror="this.onerror=null;this.src='https://placehold.co/600x338/101720/e0f0ff?text=Video+Not+Found';">
+                <p class="video-title" data-translate-key="video_title_wyr2">Would You Rather (Episode 2)</p>
             </a>
         </div>
-
     </div>
   </section>
 
   <script>
-    // Loader Hiding
-    window.addEventListener("load", () => {
+    // --- Translations Object (Subset for this page) ---
+    const translations = {
+        'en': {
+            'page_title_recent_videos': "Sam Plays - Recent Videos",
+            'loader_text': "Loading, Please Wait",
+            'nav_about': "About",
+            'nav_recent_videos': "Recent Videos",
+            'title': "Sam Plays",
+            'settings_cursor_title': "Cursor Style",
+            'cursor_default': "Default",
+            'cursor_crosshair': "Crosshair",
+            'settings_language_title': "Language",
+            'page_heading_recent_videos': "Recent Videos",
+            // Video titles (add keys if you want these translated too)
+            'video_title_mc_farm': "Making my First Farm 🧑‍🌾 [Minecraft Part 6]",
+            'video_title_akinator2': "Can i beat this guy? [Akinator Part 2]",
+            'video_title_mc_survival5': "Playing this game once again... [Minecraft Survival Part 5]",
+            'video_title_subnautica2': "Exploring The Mysterious Depths! | Subnautica Part 2",
+            'video_title_subnautica1': "Ocean World with Aliens | Subnautica Part - 1",
+            'video_title_wyr2': "Would You Rather (Episode 2)",
+        },
+        'es': {
+            'page_title_recent_videos': "Sam Plays - Videos Recientes",
+            'loader_text': "Cargando, por favor espera",
+            'nav_about': "Acerca de",
+            'nav_recent_videos': "Videos Recientes",
+            'title': "Sam Plays",
+            'settings_cursor_title': "Estilo de Cursor",
+            'cursor_default': "Predeterminado",
+            'cursor_crosshair': "Mira",
+            'settings_language_title': "Idioma",
+            'page_heading_recent_videos': "Videos Recientes",
+            'video_title_mc_farm': "Haciendo mi Primera Granja 🧑‍🌾 [Minecraft Parte 6]",
+            'video_title_akinator2': "¿Puedo vencer a este tipo? [Akinator Parte 2]",
+            'video_title_mc_survival5': "Jugando este juego una vez más... [Minecraft Survival Parte 5]",
+            'video_title_subnautica2': "¡Explorando Las Profundidades Misteriosas! | Subnautica Parte 2",
+            'video_title_subnautica1': "Mundo Oceánico con Aliens | Subnautica Parte - 1",
+            'video_title_wyr2': "¿Qué Preferirías? (Episodio 2)",
+        },
+         'hi': {
+            'page_title_recent_videos': "सैम प्लेज़ - हाल के वीडियो",
+            'loader_text': "लोड हो रहा है, कृपया प्रतीक्षा करें",
+            'nav_about': "बारे में",
+            'nav_recent_videos': "हाल के वीडियो",
+            'title': "सैम प्लेज़",
+            'settings_cursor_title': "कर्सर शैली",
+            'cursor_default': "डिफ़ॉल्ट",
+            'cursor_crosshair': "क्रॉसहेयर",
+            'settings_language_title': "भाषा",
+            'page_heading_recent_videos': "हाल के वीडियो",
+            'video_title_mc_farm': "मेरा पहला फार्म बना रहा हूँ 🧑‍🌾 [माइनक्राफ्ट भाग 6]",
+            'video_title_akinator2': "क्या मैं इस आदमी को हरा सकता हूँ? [एकिनेटर भाग 2]",
+            'video_title_mc_survival5': "एक बार फिर इस गेम को खेल रहा हूँ... [माइनक्राफ्ट सर्वाइवल भाग 5]",
+            'video_title_subnautica2': "रहस्यमयी गहराइयों की खोज! | सबनॉटिका भाग 2",
+            'video_title_subnautica1': "एलियंस के साथ महासागर की दुनिया | सबनॉटिका भाग - 1",
+            'video_title_wyr2': "क्या तुम पसंद करोगे (एपिसोड 2)",
+         }
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // --- Loader Hiding ---
       const loader = document.getElementById("loader");
       if (loader) {
-         // Slight delay optional to prevent flash
-         setTimeout(() => loader.classList.add("hide"), 100);
+        setTimeout(() => loader.classList.add("hide"), 100);
       }
-    });
 
-    // Disable Right-Click on Video Boxes
-    document.addEventListener('DOMContentLoaded', () => {
-        const videoBoxes = document.querySelectorAll('.video-box');
-        videoBoxes.forEach(box => {
-            box.addEventListener('contextmenu', (event) => {
-                event.preventDefault();
-            });
-            // Optional: Prevent dragging images within boxes too
-            const img = box.querySelector('img');
-            if (img) {
-              img.addEventListener('dragstart', (event) => {
-                event.preventDefault();
-              });
-            }
+      // --- Elements ---
+      const settingsBtn = document.getElementById('settingsBtn');
+      const settingsPanel = document.getElementById('settingsPanel');
+      const cursorRadios = document.querySelectorAll('input[name="cursor-style"]');
+      const languageSelector = document.getElementById('languageSelector');
+
+      // --- Settings Panel Toggle ---
+      if (settingsBtn && settingsPanel) {
+          settingsBtn.addEventListener('click', (event) => {
+              event.stopPropagation();
+              settingsPanel.classList.toggle('visible');
+          });
+          document.addEventListener('click', (event) => {
+              if (settingsPanel.classList.contains('visible') &&
+                  !settingsPanel.contains(event.target) &&
+                  event.target !== settingsBtn) {
+                  settingsPanel.classList.remove('visible');
+              }
+          });
+      }
+
+      // --- Cursor Style Functionality ---
+      function applyCursor(cursorType) {
+        document.body.className = document.body.className.replace(/cursor-\S*/g, '').trim(); // Remove any existing cursor- class
+        if (cursorType !== 'default') {
+          document.body.classList.add(`cursor-${cursorType}`);
+        }
+        localStorage.setItem('selectedCursor', cursorType);
+      }
+
+      const savedCursor = localStorage.getItem('selectedCursor') || 'default';
+      cursorRadios.forEach(radio => {
+        if (radio.value === savedCursor) {
+          radio.checked = true;
+        }
+        radio.addEventListener('change', () => {
+          if (radio.checked) {
+            applyCursor(radio.value);
+          }
         });
+      });
+      applyCursor(savedCursor); // Apply initially
+
+      // --- Language Functionality ---
+      function getCurrentLang() {
+        return localStorage.getItem('selectedLanguage') || 'en';
+      }
+
+      function applyTranslations(lang) {
+        const langDict = translations[lang];
+        if (!langDict) {
+          console.warn(`Translations for "${lang}" not found.`);
+          return;
+        }
+        document.querySelectorAll('[data-translate-key]').forEach(element => {
+          const key = element.dataset.translateKey;
+          const translation = langDict[key];
+          if (translation !== undefined) {
+             if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                 if (element.placeholder) { element.placeholder = translation; }
+             } else {
+                 element.textContent = translation;
+             }
+          } else if (lang !== 'en' && translations['en'][key]) {
+             // Fallback to English if translation is missing for the selected language
+             element.textContent = translations['en'][key];
+          }
+        });
+        document.documentElement.lang = lang;
+        localStorage.setItem('selectedLanguage', lang);
+      }
+
+      const savedLanguage = getCurrentLang();
+      if (languageSelector) {
+        languageSelector.value = savedLanguage;
+        languageSelector.addEventListener('change', () => {
+          applyTranslations(languageSelector.value);
+        });
+      }
+      applyTranslations(savedLanguage); // Apply initially
+
+
+      // --- Disable Right-Click and Dragging on Video Boxes/Images ---
+      const videoBoxes = document.querySelectorAll('.video-box');
+      videoBoxes.forEach(box => {
+        box.addEventListener('contextmenu', (event) => {
+          event.preventDefault();
+        });
+        const img = box.querySelector('img');
+        if (img) {
+          img.addEventListener('dragstart', (event) => {
+            event.preventDefault();
+          });
+        }
+      });
     });
   </script>
 
