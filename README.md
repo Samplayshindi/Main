@@ -51,17 +51,4 @@ New videos are on the way!
 
 ---
 
-## What’s Next?:-
-
--  Contact / Feedback Form  
--  Live YouTube Feed Integration  
--  Styled 404 Error Page  
--  Keyboard Navigation Support  
--  Easter-Egg Keyboard Shortcuts  
--  Custom Cursor Options  
--  Mini Animations on Hover  
--  Multi-Language Support  
-
----
-
 Thanks for stopping by. your support means a lot.
