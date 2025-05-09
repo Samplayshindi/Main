@@ -1,691 +1,1094 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title data-translate-key="page_title_about">Sam Plays - About</title>
-    <link rel="icon" type="image/png" href="https://i2.imageban.ru/out/2025/04/12/7f6f0dae06fbdc5d9a8b592f4a3ba931.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
-    <link href="https://fonts.cdnfonts.com/css/dungeon-depths" rel="stylesheet">
-    <link href="https://fonts.cdnfonts.com/css/globoface-gothic-display-2001" rel="stylesheet">
-    <style>
-        /* --- Base & Reset --- */
-        html {
-            scroll-behavior: smooth;
-            height: 100%;
-            overflow-x: hidden; /* Prevent horizontal scroll */
-        }
+<html lang="en"> <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title data-translate-key="page_title">Sam Plays - Home</title> <link rel="icon" type="image/png" href="https://i2.imageban.ru/out/2025/04/12/7f6f0dae06fbdc5d9a8b592f4a3ba931.png">
 
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Montserrat', sans-serif;
-            background-color: #000;
-            user-select: none;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            overflow-x: hidden; /* Prevent horizontal scroll on body */
-            cursor: default; /* Default cursor */
-        }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/dungeon-depths" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/globoface-gothic-display-2001" rel="stylesheet">
 
-        /* --- Custom Cursor Classes --- */
-        body.cursor-crosshair { cursor: crosshair; }
+  <style>
+    /* --- Base & Reset --- */
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden; 
+    }
 
-        /* --- Loader Styles --- */
-        #loader {
-            position: fixed;
-            width: 100vw;
-            height: 100vh;
-            background: #081c2c;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 10000; /* Ensure loader is on top */
-            transition: opacity 0.8s ease, visibility 0.8s ease;
-        }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', Arial, sans-serif; 
+      overflow-x: hidden;
+      background-color: #000;
+      cursor: default;
+    }
 
-        .spinner {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            border: 8px solid rgba(255, 255, 255, 0.3);
-            border-top-color: #4fc3f7;
-            animation: spin 1.4s linear infinite;
-            margin-bottom: 20px;
-        }
+    /* --- Custom Cursor Classes --- */
+    body.cursor-crosshair { cursor: crosshair; }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .loader-text {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.4em;
-            text-align: center;
-            color: #e0f7fa;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
-        }
-
-        #loader.hide {
-            opacity: 0;
-            visibility: hidden;
-        }
-        /* --- End Loader --- */
-
-        /* --- Header (Copied from Index.html) --- */
-        header {
-          background-image: url('https://i8.imageban.ru/out/2025/05/04/75362458277a6b1aa7b76085614aa66a.jpg');
-          background-size: cover;
-          background-position: center;
-          padding: 15px 15px;
-          border-bottom: 4px solid white;
-          position: relative;
-          top: 0;
-          left: 0;
-          z-index: 1000;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          width: 100%;
-          box-sizing: border-box;
-          flex-shrink: 0; /* Prevent header shrinking */
-        }
-
-        header::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-color: rgba(0, 0, 0, 0.3);
-            z-index: 1;
-        }
-
-        .header-left {
-            display: flex;
-            align-items: center;
-            flex-shrink: 0;
-            position: relative;
-            z-index: 2;
-        }
-
-        header .header-link {
-          font-family: 'Montserrat', sans-serif;
-          color: white;
-          font-size: 1em;
-          text-decoration: none;
-          margin: 0 8px;
-          padding: 5px 10px;
-          border-radius: 5px;
-          transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
-          opacity: 1;
-          text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-          white-space: nowrap;
-        }
-
-        header .header-link:hover {
-          background-color: rgba(255, 255, 255, 0.2);
-          color: #e0f7fa;
-        }
-
-        header .header-link:active {
-            transform: scale(0.95);
-            background-color: rgba(255, 255, 255, 0.3);
-        }
-
-        /* Style for the disabled/current page link */
-        header a.header-link.disabled {
-          opacity: 0.6;
-          cursor: default;
-          pointer-events: none;
-          background-color: transparent !important;
-          color: white !important;
-        }
-
-        header h1 {
-          font-family: 'Globoface-Gothic-Display-2001', sans-serif;
-          color: white;
-          font-size: 2.2em;
-          padding: 0 10px;
-          letter-spacing: 2px;
-          opacity: 1;
-          text-align: center;
-          white-space: nowrap;
-          user-select: none;
-          text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
-          position: absolute;
-          left: 50%;
-          transform: translateX(-50%);
-          z-index: 2;
-          margin: 0;
-          min-width: 0;
-        }
-
-        #settingsBtn {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.8em;
-            cursor: pointer;
-            padding: 0;
-            line-height: 1;
-            flex-shrink: 0;
-            position: relative;
-            z-index: 2;
-            transition: color 0.3s ease, transform 0.2s ease;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-        }
-        #settingsBtn:hover {
-            color: #e0f7fa;
-            transform: rotate(20deg);
-        }
-         #settingsBtn:active {
-             transform: scale(0.9) rotate(15deg);
-         }
-        /* --- End Header Styles --- */
-
-        /* --- Settings Panel --- */
-        #settingsPanel {
-            position: fixed;
-            top: 70px;
-            right: 20px;
-            width: 300px;
-            max-height: calc(100vh - 90px);
-            background: rgba(30, 30, 30, 0.85);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 12px;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.4);
-            z-index: 9999;
-            color: white;
-            font-family: 'Montserrat', sans-serif;
-            padding: 20px;
-            box-sizing: border-box;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px) scale(0.98);
-            transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
-            overflow-y: auto;
-        }
-
-        #settingsPanel.visible {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0) scale(1);
-        }
-
-        #settingsPanel h3 {
-            margin-top: 0;
-            margin-bottom: 15px;
-            font-size: 1.1em;
-            font-weight: 600;
-            color: #e0f7fa;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            padding-bottom: 8px;
-        }
-
-        .setting-section { margin-bottom: 20px; }
-        .setting-section:last-child { margin-bottom: 5px; }
-
-        /* Styles for Cursor Options */
-        .cursor-options label {
-            display: block; margin-bottom: 8px; cursor: pointer;
-            font-size: 0.95em; color: #eee;
-        }
-        .cursor-options input[type="radio"] {
-            margin-right: 8px; accent-color: #4fc3f7; cursor: pointer;
-        }
-
-        /* Styles for Language Selector */
-        #languageSelector {
-            width: 100%; padding: 8px 10px; border-radius: 5px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            background-color: rgba(0, 0, 0, 0.3); color: white;
-            font-family: 'Montserrat', sans-serif; font-size: 0.95em; cursor: pointer;
-        }
-        #languageSelector option { background-color: #333; color: white; }
-        /* --- End Settings Panel Styles --- */
-
-        /* Main Content Section Styles */
-        .fifth-page {
-            flex-grow: 1; /* Allows section to fill remaining space */
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 60px 20px;
-            box-sizing: border-box;
-            background-image: url('https://i6.imageban.ru/out/2025/04/10/7197fffff73716a4f1fc62c02b0251ce.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            position: relative;
-            color: white;
-            text-align: center;
-            overflow: hidden; /* Prevent content overflow issues */
-        }
-
-        /* Go Back Button Styles */
-        .go-back-btn {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background: rgba(255, 255, 255, 0.1); /* Slightly more visible */
-            padding: 10px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            text-decoration: none;
-            z-index: 15; /* Below header, above page content */
-        }
-
-        .go-back-btn:hover {
-            background: rgba(255, 255, 255, 0.25);
-            transform: scale(1.1);
-        }
-
-        .go-back-btn svg {
-            width: 22px;
-            height: 22px;
-            fill: white;
-            transform: scaleX(-1); /* Flips arrow */
-        }
-
-        /* Container for the main about text content */
-        .about-content-container {
-            max-width: 800px;
-            width: 95%; /* Use percentage for better flexibility */
-            margin-top: 30px; /* Add some space below back button */
-            margin-bottom: 30px; /* Add space above footer if any */
-        }
-
-        .about-heading {
-            font-family: 'Dungeon Depths', sans-serif;
-            font-size: 3.5rem; /* Adjusted size */
-            margin-bottom: 25px;
-            margin-top: 0;
-            text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.7);
-            opacity: 0;
-            animation: expandIn 1s ease-out forwards;
-            animation-delay: 0.1s; /* Faster delay */
-            font-weight: normal;
-        }
-
-        .about-paragraph {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.1rem; /* Adjusted size */
-            max-width: 750px;
-            color: #f0f0f0;
-            text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
-            line-height: 1.7;
-            margin: 0 auto;
-            opacity: 0;
-            animation: expandIn 1s ease-out forwards;
-            animation-delay: 0.3s; /* Staggered delay */
-            user-select: text; /* Allow selecting paragraph text */
-        }
-
-        /* Social Links Styles */
-        .social-links-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 30px;
-            margin-top: 40px; /* Reduced margin */
-            width: 100%;
-            flex-wrap: wrap;
-            opacity: 0;
-            /* Apply base animation to container */
-            animation: expandIn 1s ease-out forwards;
-            animation-delay: 0.5s; /* Delay for container */
-            padding: 10px 0;
-        }
-
-        .social-icon {
-            display: inline-block;
-            line-height: 0;
-            /* Add individual animation properties */
-            opacity: 0; /* Start hidden for staggered effect */
-            animation: fadeInIcon 0.6s ease-out forwards;
-        }
-
-        /* Staggered animation delays for icons */
-        .social-icon:nth-child(1) { animation-delay: 0.7s; }
-        .social-icon:nth-child(2) { animation-delay: 0.8s; }
-        .social-icon:nth-child(3) { animation-delay: 0.9s; } /* Twitter */
-        .social-icon:nth-child(4) { animation-delay: 1.0s; }
-
-        /* Default size for social icons */
-        .social-icon img {
-            width: 55px;
-            height: 55px;
-            border-radius: 10px;
-            opacity: 0.85;
-            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
-                        opacity 0.3s ease; /* Removed box-shadow transition */
-            vertical-align: middle;
-        }
-
-        /* Specific larger size for the Twitter icon */
-        .social-icon.twitter-icon-larger img {
-            width: 70px;
-            height: 70px;
-        }
-
-        .social-icon:hover img {
-            opacity: 1;
-            transform: scale(1.2) translateY(-5px);
-        }
-        /* End Social Links Styles */
-
-        /* Animation Keyframes */
-        @keyframes expandIn { /* Used for main content blocks */
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        @keyframes fadeInIcon { /* Used for individual icons */
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        /* End Animation Keyframes */
+    /* --- Root Variables for Glassmorphism --- */
+    :root {
+      --glass-bg: rgba(255, 255, 255, 0.1);
+      --glass-bg-hover: rgba(255, 255, 255, 0.18);
+      --glass-bg-active: rgba(255, 255, 255, 0.25);
+      --glass-border: rgba(255, 255, 255, 0.25);
+      --glass-text: #f0f8ff; 
+      --glass-accent: #ffffff; 
+      --scrollbar-thumb: rgba(255, 255, 255, 0.3);
+      --scrollbar-track: rgba(0, 0, 0, 0.1);
+    }
 
 
-        /* --- Responsive Styles --- */
-        @media (max-width: 768px) {
-          header {
-            flex-direction: column;
-            align-items: center;
-            padding: 10px;
-          }
-          header h1 {
-            position: static;
-            transform: none;
-            order: 1;
-            margin-bottom: 10px;
-            font-size: 1.8em;
-          }
-          .header-left {
-            order: 2;
-            flex-direction: row;
-            justify-content: center;
-            width: 100%;
-            margin-bottom: 5px;
-          }
-          header .header-link {
-            font-size: 0.9em;
-            margin: 0 10px;
-          }
-          #settingsBtn {
-            order: 3;
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            font-size: 1.6em;
-          }
-          #settingsPanel {
-            width: 280px; right: 10px; top: 65px;
-            max-height: calc(100vh - 80px);
-          }
+    /* --- Loader --- */
+    #loader {
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      background: #081c2c;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+      user-select: none;
+    }
 
-          .about-heading { font-size: 2.5rem; }
-          .about-paragraph { font-size: 1rem; max-width: 95%; }
+    .spinner {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 8px solid rgba(255, 255, 255, 0.3);
+      border-top-color: #4fc3f7;
+      animation: spin 1.4s linear infinite;
+      margin-bottom: 20px;
+    }
 
-          .social-links-container { gap: 25px; margin-top: 35px; }
-          .social-icon img { width: 50px; height: 50px; }
-          .social-icon.twitter-icon-larger img { width: 65px; height: 65px; }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
 
-          .go-back-btn { padding: 8px; top: 15px; left: 15px; }
-          .go-back-btn svg { width: 20px; height: 20px; }
+    .loader-text {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.4em;
+      text-align: center;
+      color: #e0f7fa;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+    }
 
-          .fifth-page { padding: 50px 15px; background-attachment: scroll; /* Mobile performance */ }
-        }
+    #loader.hide {
+      opacity: 0;
+      visibility: hidden;
+    }
 
-        @media (max-width: 480px) {
-          header h1 {
-            font-size: 1.6em;
-            white-space: normal;
-          }
-          header .header-link {
-            font-size: 0.85em;
-            margin: 0 5px;
-            padding: 4px 8px;
-          }
-          #settingsBtn {
-            font-size: 1.5em;
-            top: 12px; right: 12px;
-          }
-           #settingsPanel {
-            width: calc(100vw - 20px); left: 10px; right: 10px; top: 60px;
-          }
+    /* --- Header --- */
+    header {
+      background-image: url('https://i8.imageban.ru/out/2025/05/04/75362458277a6b1aa7b76085614aa66a.jpg');
+      background-size: cover;
+      background-position: center;
+      padding: 15px 15px;
+      border-bottom: 4px solid white;
+      position: relative;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      box-sizing: border-box;
+    }
 
-          .about-heading { font-size: 2.2rem; }
-          .about-paragraph { font-size: 0.95rem; }
-          .social-icon img { width: 45px; height: 45px; }
-          .social-icon.twitter-icon-larger img { width: 60px; height: 60px; }
-          .social-links-container { gap: 20px; margin-top: 30px; }
-        }
-        /* --- End Responsive Styles --- */
+    header::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background-color: rgba(0, 0, 0, 0.3);
+        z-index: 1;
+    }
 
-    </style>
+    .header-left {
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+        position: relative;
+        z-index: 2;
+    }
+
+    header .header-link {
+      font-family: 'Montserrat', sans-serif;
+      color: white;
+      font-size: 1em;
+      text-decoration: none;
+      margin: 0 8px;
+      padding: 5px 10px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+      opacity: 1;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+      white-space: nowrap;
+    }
+
+    header .header-link:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+      color: #e0f7fa;
+    }
+
+    header .header-link:active {
+        transform: scale(0.95);
+        background-color: rgba(255, 255, 255, 0.3);
+    }
+
+    header h1 {
+      font-family: 'Globoface-Gothic-Display-2001', sans-serif;
+      color: white;
+      font-size: 2.2em;
+      padding: 0 10px; 
+      letter-spacing: 2px;
+      opacity: 1;
+      text-align: center; 
+      white-space: nowrap;
+      user-select: none;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+      position: absolute; 
+      left: 50%;          
+      transform: translateX(-50%); 
+      z-index: 2;
+      min-width: 0; 
+    }
+
+
+    #settingsBtn {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.8em;
+        cursor: pointer;
+        padding: 0;
+        line-height: 1;
+        flex-shrink: 0;
+        position: relative; 
+        z-index: 2;
+        transition: color 0.3s ease, transform 0.2s ease;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    }
+    #settingsBtn:hover {
+        color: #e0f7fa;
+        transform: rotate(20deg);
+    }
+     #settingsBtn:active {
+         transform: scale(0.9) rotate(15deg);
+     }
+    /* --- End Header --- */
+
+
+    /* --- Settings Panel --- */
+    #settingsPanel {
+        position: fixed;
+        top: 70px;
+        right: 20px;
+        width: 300px;
+        max-height: calc(100vh - 90px);
+        background: rgba(30, 30, 30, 0.85);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 12px;
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.4);
+        z-index: 9999;
+        color: white;
+        font-family: 'Montserrat', sans-serif;
+        padding: 20px;
+        box-sizing: border-box;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px) scale(0.98);
+        transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+        overflow-y: auto;
+    }
+
+    #settingsPanel.visible {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0) scale(1);
+    }
+
+    #settingsPanel h3 {
+        margin-top: 0;
+        margin-bottom: 15px;
+        font-size: 1.1em;
+        font-weight: 600;
+        color: #e0f7fa;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        padding-bottom: 8px;
+    }
+
+    .setting-section { margin-bottom: 20px; }
+    .setting-section:last-child { margin-bottom: 5px; }
+
+    .cursor-options label {
+        display: block; margin-bottom: 8px; cursor: pointer;
+        font-size: 0.95em; color: #eee;
+    }
+    .cursor-options input[type="radio"] {
+        margin-right: 8px; accent-color: #4fc3f7; cursor: pointer;
+    }
+
+    #languageSelector {
+        width: 100%; padding: 8px 10px; border-radius: 5px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        background-color: rgba(0, 0, 0, 0.3); color: white;
+        font-family: 'Montserrat', sans-serif; font-size: 0.95em; cursor: pointer;
+    }
+    #languageSelector option { background-color: #333; color: white; }
+
+    .shortcuts-info ul { list-style: none; padding: 0; margin: 0; }
+    .shortcuts-info li { margin-bottom: 8px; font-size: 0.9em; color: #ccc; }
+    .shortcuts-info kbd {
+        display: inline-block; min-width: 20px; padding: 2px 6px; margin-right: 5px;
+        border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 4px;
+        background-color: rgba(0, 0, 0, 0.2); font-family: monospace;
+        font-size: 0.95em; text-align: center; color: #eee;
+    }
+    /* --- End Settings Panel --- */
+
+    /* --- Page Sections --- */
+    .page-section {
+      width: 100vw; min-height: 50vh; display: flex; flex-direction: column;
+      align-items: center; padding: 80px 20px 40px 20px; box-sizing: border-box;
+      background-size: cover; background-repeat: no-repeat;
+      background-position: center center; background-attachment: fixed;
+      position: relative; color: white; overflow: hidden;
+    }
+
+    .first-page {
+      min-height: 100vh; background-image: url('https://i1.imageban.ru/out/2025/04/06/5243d476031464519085b4403a378f02.jpg');
+      justify-content: center; padding-top: 60px; display: flex; align-items: center;
+    }
+
+    .second-page {
+      min-height: 65vh; background-image: url('https://i7.imageban.ru/out/2025/04/06/8c0dd853258a2a835557ab4c45a48d4b.jpg');
+      z-index: 1; text-align: center; padding: 50px 20px 40px 20px; justify-content: center;
+    }
+
+    .third-page {
+      min-height: 78vh; height: auto; background-image: url('https://i6.imageban.ru/out/2025/04/06/d275c17e0cab441306595f35e43d07bc.png');
+      z-index: 2; padding: 60px 20px; justify-content: flex-start;
+    }
+
+    .fourth-page {
+      min-height: 70vh; height: auto; background-image: url('https://i6.imageban.ru/out/2025/04/06/2a6b0f7d04b5c667054039cc093d710e.jpg');
+      background-color: #000; z-index: 3; display: flex; align-items: center;
+      justify-content: center; padding: 60px 20px;
+    }
+     .fourth-page-content-wrapper {
+        display: flex; flex-direction: column; align-items: center;
+        justify-content: center; width: 100%; max-width: 600px;
+     }
+
+    .section-stroke {
+      width: 100%; height: 4px; background-color: white; position: relative; z-index: 5;
+    }
+
+    /* --- Hero Content (First Page) --- */
+    .hero-content {
+      display: flex; 
+      /* Default: row for PC, column for mobile is handled in media query */
+      flex-direction: row; 
+      align-items: center; 
+      justify-content: space-around; /* Adjust as needed for spacing */
+      text-align: left; /* Default for PC */
+      max-width: 1000px; 
+      width: 90%; 
+      margin: 0 auto; 
+      z-index: 5; 
+      gap: 40px; 
+    }
+
+    .image-wrapper {
+      position: relative; background: #111; padding: 6px; border-radius: 14px;
+      /* width: 100%; PC: flex-basis will control width */
+      flex-basis: 40%; /* For PC layout */
+      max-width: 450px; 
+      margin: 0; /* Reset margin for flex layout */
+      user-select: none;
+      flex-shrink: 0;
+    }
+    .image-wrapper::before {
+      content: ""; position: absolute; top: -3px; left: -3px; right: -3px; bottom: -3px;
+      border-radius: 16px; background: linear-gradient(45deg, #330033, #003333, #333300, #330000, #000033);
+      background-size: 300% 300%; animation: rgbBorderDark 6s linear infinite; z-index: -1;
+    }
+    @keyframes rgbBorderDark { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+    .image-wrapper img { border-radius: 12px; width: 100%; display: block; }
+    
+    .hero-text-column { /* New wrapper for PC layout */
+        flex-basis: 55%;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Center content within this column */
+        text-align: center;
+    }
+
+    .welcome-text {
+      font-family: 'Dungeon Depths', sans-serif; font-size: 45px; color: white;
+      margin-top: 0; margin-bottom: 10px; text-shadow: 2px 2px 10px rgba(0,0,0,0.6);
+    }
+    .experience-container { 
+        font-family: 'Montserrat', sans-serif; 
+        margin-top: 0; 
+        width: 100%; /* Ensure it takes width for centering its content */
+    }
+    .experience-text {
+      font-size: 22px; color: white; margin-bottom: 25px; text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.5);
+      line-height: 1.5; max-width: 500px; 
+      margin-left: auto; /* Centering for mobile */
+      margin-right: auto; /* Centering for mobile */
+    }
+
+    .subscribe-button {
+      display: inline-block;
+      padding: 12px 25px;
+      text-decoration: none;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: var(--glass-text); 
+      background-color: var(--glass-bg); 
+      border: 1px solid var(--glass-border); 
+      backdrop-filter: blur(5px); 
+      -webkit-backdrop-filter: blur(5px); 
+      border-radius: 10px;
+      transition: background-color 0.3s ease, transform 0.2s ease-in-out, color 0.3s ease;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+    }
+    .subscribe-button:hover {
+      background-color: var(--glass-bg-hover); 
+      color: var(--glass-accent); 
+      transform: scale(1.03);
+    }
+    .subscribe-button:active {
+      background-color: var(--glass-bg-active); 
+      transform: scale(0.97);
+    }
+
+    /* --- Second Page Content --- */
+    .second-page img {
+        width: 40%; max-width: 200px; height: auto; margin: 10px auto;
+        display: block; user-select: none; pointer-events: none;
+    }
+    .quote-text {
+        font-family: 'Montserrat', sans-serif; color: white; font-size: 1.5rem;
+        max-width: 600px; margin: 25px auto; text-align: center; line-height: 1.6;
+        text-shadow: 1px 1px 6px rgba(0,0,0,0.5);
+    }
+
+    /* --- Third Page (FAQ) --- */
+    .third-page-heading {
+      width: 90%; max-width: 1200px; text-align: center; font-family: 'Dungeon Depths', sans-serif;
+      color: #fff; font-size: 36px; text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+      z-index: 6; margin: 0 auto 30px auto; padding: 0 10px; box-sizing: border-box; flex-shrink: 0;
+    }
+
+    /* --- FAQ STYLES --- */
+    .faq-container {
+      max-width: 750px; width: 90%; margin: 0 auto 40px auto; font-family: 'Montserrat', sans-serif;
+      position: relative; z-index: 11; max-height: 60vh; overflow-y: auto; padding-right: 5px;
+      background: var(--glass-bg); border-radius: 15px; border: 1px solid var(--glass-border);
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15); flex-shrink: 1;
+    }
+    .faq-container::-webkit-scrollbar { width: 8px; }
+    .faq-container::-webkit-scrollbar-track { background: var(--scrollbar-track); border-radius: 10px; margin: 5px 0; }
+    .faq-container::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 10px; }
+    .faq-container::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.45); }
+
+    .faq-list { list-style: none; padding: 10px 5px; margin: 0; }
+    .faq-item { margin-bottom: 5px; }
+    .faq-question {
+      font-family: 'Montserrat', sans-serif; font-weight: 600; background: transparent; color: var(--glass-text);
+      border: none; border-radius: 10px; padding: 18px 20px; width: 100%; text-align: left; font-size: 17px;
+      cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+      transition: background-color 0.3s ease, color 0.3s ease, transform 0.15s ease;
+    }
+    .faq-question:hover { background-color: var(--glass-bg-hover); }
+    .faq-question:active { transform: scale(0.99); background-color: var(--glass-bg-active); }
+    .faq-question.active { background-color: var(--glass-bg-active); color: var(--glass-accent); }
+    .faq-answer {
+      max-height: 0; overflow: hidden; background: transparent; color: var(--glass-text);
+      opacity: 0; padding: 0 25px; margin: 0 10px; transform: translateY(-10px); visibility: hidden;
+      transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in-out 0.05s,
+                  transform 0.4s ease-in-out, padding 0.4s ease-in-out,
+                  margin-bottom 0.4s ease-in-out, visibility 0s linear 0.4s;
+    }
+    .faq-answer p {
+      font-family: 'Montserrat', sans-serif; font-weight: 400; margin: 0; padding: 0;
+      font-size: 15px; line-height: 1.6; color: var(--glass-text);
+    }
+    .faq-answer.show {
+      max-height: 300px; opacity: 1; transform: translateY(0); padding: 15px 25px;
+      margin-top: -5px; margin-bottom: 10px; visibility: visible;
+      transition-delay: 0s; transition-timing-function: ease-in-out;
+    }
+    .icon {
+      font-size: 18px; color: var(--glass-text); transition: transform 0.4s ease-in-out, color 0.4s ease-in-out;
+      margin-left: 15px; flex-shrink: 0;
+    }
+    .faq-question.active .icon { transform: rotate(90deg); color: var(--glass-accent); }
+    .question-text { flex-grow: 1; margin-right: 10px; }
+
+    /* --- Fourth Page (Thanks/Contact/Form) --- */
+    .thanks-container {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 0 20px; margin-bottom: 20px;
+    }
+    .thanks-text {
+      font-family: 'Globoface-Gothic-Display-2001', sans-serif; font-size: 5rem; color: white;
+      animation: thanksBouncingText 3s ease-in-out infinite;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.6); margin-bottom: 10px;
+    }
+    .contact-text {
+      font-family: 'Montserrat', sans-serif; font-size: 1.1rem; color: white;
+      margin-top: 5px; text-shadow: 1px 1px 4px rgba(0,0,0,0.5); margin-bottom: 20px;
+    }
+    @keyframes thanksBouncingText { 0%, 100% { transform: translateY(0); } 40% { transform: translateY(-15px); } 60% { transform: translateY(-15px); } }
+
+    #openFeedbackFormBtn {
+        font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 1rem;
+        color: var(--glass-text); 
+        background-color: var(--glass-bg); 
+        border: 1px solid var(--glass-border); 
+        backdrop-filter: blur(5px); 
+        -webkit-backdrop-filter: blur(5px); 
+        border-radius: 8px; padding: 10px 20px; cursor: pointer;
+        transition: background-color 0.6s ease, transform 0.5s ease, color 0.6s ease; /* Slower */
+        margin-bottom: 30px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+    }
+    #openFeedbackFormBtn:hover {
+        background-color: var(--glass-bg-hover); 
+        color: var(--glass-accent); 
+        transform: scale(1.03);
+    }
+     #openFeedbackFormBtn:active {
+        background-color: var(--glass-bg-active); 
+        transform: scale(0.98);
+     }
+
+    /* --- Contact Form Styles --- */
+    #contact-form-section {
+      width: 100%;
+      padding: 25px;
+      background: var(--glass-bg);
+      border-radius: 12px;
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(8px); 
+      -webkit-backdrop-filter: blur(8px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      box-sizing: border-box;
+      position: relative;
+      opacity: 0;
+      visibility: hidden;
+      transform: scaleY(0.95) translateY(-15px);
+      transform-origin: top center;
+      max-height: 0;
+      overflow: hidden;
+      transition: opacity 0.8s cubic-bezier(0.25, 0.1, 0.25, 1),  /* Slower */
+                  visibility 0s linear 0.8s,                      /* Slower */
+                  transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1), /* Slower */
+                  max-height 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);/* Slower */
+    }
+    #contact-form-section.visible-form {
+        opacity: 1;
+        visibility: visible;
+        transform: scaleY(1) translateY(0);
+        max-height: 1000px; 
+        transition-delay: 0s, 0s, 0s, 0s; 
+    }
+
+
+    #closeFeedbackFormBtn {
+        position: absolute; top: 10px; right: 10px;
+        background: rgba(0,0,0,0.3); color: white;
+        border: 1px solid rgba(255,255,255,0.3); border-radius: 50%;
+        width: 30px; height: 30px; font-size: 16px; line-height: 28px;
+        text-align: center; cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    #closeFeedbackFormBtn:hover { background: rgba(0,0,0,0.5); transform: scale(1.1); }
+
+    #contact-form-section h3 {
+        margin-top: 0; margin-bottom: 20px; font-size: 1.4em; font-weight: 600;
+        color: var(--glass-accent); text-align: center; text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+    }
+    .form-group { margin-bottom: 15px; }
+    .form-group label {
+        display: block; margin-bottom: 5px; font-size: 0.95em; color: var(--glass-text);
+    }
+    .form-group input[type="text"],
+    .form-group textarea {
+        width: 100%; padding: 10px 12px; border-radius: 6px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        background-color: rgba(0, 0, 0, 0.2); color: white;
+        font-family: 'Montserrat', sans-serif; font-size: 1em; box-sizing: border-box;
+        transition: border-color 0.3s ease, background-color 0.3s ease;
+    }
+    .form-group input[type="text"]:focus,
+    .form-group textarea:focus {
+        border-color: #4fc3f7; background-color: rgba(0, 0, 0, 0.3); outline: none;
+    }
+    .form-group textarea { min-height: 100px; resize: vertical; }
+
+    #feedbackForm button[type="submit"] {
+        display: block; width: auto; margin: 20px auto 0 auto; padding: 10px 25px;
+        font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 1.05rem;
+        color: white; background-color: #007bff; border: none; border-radius: 8px;
+        cursor: pointer; transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+     #feedbackForm button[type="submit"]:hover { background-color: #0056b3; transform: scale(1.03); }
+     #feedbackForm button[type="submit"]:active { background-color: #004085; transform: scale(0.98); }
+     #form-status {
+        text-align: center; margin-top: 15px; font-size: 0.9em; color: #a0dfff;
+     }
+
+    /* --- Animation on Scroll --- */
+    .animate-on-scroll {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.25, 0.1, 0.25, 1.0), transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1.0);
+    }
+    .animate-on-scroll.animated { opacity: 1; transform: translateY(0); }
+    .image-wrapper.animate-on-scroll { transition-delay: 0.2s; }
+    .welcome-text.animate-on-scroll { transition-delay: 0.4s; }
+    .experience-container.animate-on-scroll { transition-delay: 0.6s; }
+
+    /* --- Scroll-to-Top Button --- */
+    #scrollTopBtn {
+      position: fixed; bottom: 20px; right: 20px; z-index: 999;
+      background-color: rgba(255, 255, 255, 0.25); color: white;
+      border: 1px solid rgba(255, 255, 255, 0.4); border-radius: 50%;
+      width: 45px; height: 45px; font-size: 20px; line-height: 43px;
+      text-align: center; cursor: pointer; opacity: 0; visibility: hidden;
+      transform: translateY(20px);
+      transition: opacity 0.4s ease, visibility 0.4s ease, transform 0.4s ease, background-color 0.3s ease;
+      backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);
+    }
+    #scrollTopBtn.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+    #scrollTopBtn:hover { background-color: rgba(255, 255, 255, 0.4); }
+    #scrollTopBtn:active { background-color: rgba(255, 255, 255, 0.5); transform: scale(0.95); }
+
+    /* --- Media Queries --- */
+    @media (max-width: 768px) {
+      /* --- Header Mobile --- */
+      header { 
+        flex-direction: column; 
+        align-items: center; 
+        padding: 10px; /* Adjust overall padding */
+      }
+      header h1 { 
+        position: static; /* Override absolute positioning */
+        transform: none;   /* Reset transform */
+        order: 1;          /* Title first */
+        margin-bottom: 10px; 
+        font-size: 1.8em; /* Adjusted for mobile */
+      }
+      .header-left {
+        order: 2;          /* Links second */
+        flex-direction: row; /* Links side-by-side */
+        justify-content: center;
+        width: 100%;       /* Allow links to take width for centering */
+        margin-bottom: 5px; /* Space below links */
+      }
+      header .header-link { 
+        font-size: 0.9em; 
+        margin: 0 10px; /* Space between links */
+      }
+      #settingsBtn { 
+        order: 3; /* Settings button last in visual flow */
+        position: absolute; /* Keep it cornered relative to header */
+        top: 15px; /* Adjust based on new header padding */
+        right: 15px;
+        font-size: 1.6em; 
+      }
+      /* --- End Header Mobile --- */
+
+      /* PC Hero Layout becomes stacked on mobile */
+      .hero-content {
+          flex-direction: column;
+          text-align: center; /* Center text for stacked items */
+          gap: 20px;
+      }
+      .image-wrapper {
+          margin: 0 auto 20px auto; /* Re-center for stacked */
+          max-width: 80%; /* Mobile image size */
+          flex-basis: auto; /* Reset flex-basis */
+      }
+       .hero-text-column {
+           align-items: center; /* Ensure text column content is centered */
+           flex-basis: auto; /* Reset flex-basis */
+       }
+      .experience-text {
+          margin-left: auto;
+          margin-right: auto; /* Keep it centered */
+      }
+
+
+      #settingsPanel { width: 280px; right: 10px; top: 65px; max-height: calc(100vh - 80px); }
+
+      .fourth-page { padding: 40px 15px; }
+      #openFeedbackFormBtn { font-size: 0.95rem; padding: 8px 18px; }
+      #contact-form-section { padding: 20px; }
+      #contact-form-section h3 { font-size: 1.3em; }
+
+      .welcome-text { font-size: 30px; }
+      .experience-text { font-size: 18px; line-height: 1.5; }
+      .subscribe-button { font-size: 1rem; padding: 10px 20px; }
+      /* .image-wrapper { max-width: 80%; } */ /* Moved up */
+
+      .third-page-heading { font-size: 28px; margin-bottom: 25px;}
+      .faq-container { max-height: 65vh; width: 95%; }
+      .faq-question { font-size: 16px; padding: 15px 18px; }
+      .faq-answer.show { padding: 12px 20px; }
+      .faq-answer p { font-size: 14px; }
+      .icon { font-size: 16px; }
+
+      .thanks-text { font-size: 3rem; }
+      .contact-text { font-size: 1rem; margin-bottom: 20px;}
+
+      .page-section { padding: 60px 15px 30px 15px; background-attachment: scroll; }
+      .second-page img { width: 50%; max-width: 150px; margin: 20px auto; }
+      .quote-text { font-size: 1.2rem; max-width: 90%; }
+      .second-page { padding-top: 40px; }
+
+      #scrollTopBtn { width: 40px; height: 40px; font-size: 18px; line-height: 38px; bottom: 15px; right: 15px; }
+    }
+
+    @media (max-width: 480px) {
+      header h1 { 
+          font-size: 1.5em; 
+          white-space: normal; /* Allow title to wrap if very long */
+      }
+      header .header-link { 
+          font-size: 0.8em; 
+          margin: 0 5px; 
+          padding: 3px 6px;
+      }
+      #settingsBtn { 
+          font-size: 1.5em; 
+          top: 12px; 
+          right: 12px;
+      }
+
+      #settingsPanel { width: calc(100vw - 20px); left: 10px; right: 10px; top: 60px; }
+
+      #openFeedbackFormBtn { font-size: 0.9rem; padding: 8px 15px; }
+      #contact-form-section { padding: 15px; }
+      #contact-form-section h3 { font-size: 1.2em; }
+      #feedbackForm button[type="submit"] { font-size: 1rem; padding: 8px 20px; }
+
+      .image-wrapper { max-width: 90%; }
+      .welcome-text { font-size: 24px; }
+      .experience-text { font-size: 16px; }
+
+      .third-page-heading { font-size: 24px; }
+      .faq-question { font-size: 15px; padding: 12px 15px; }
+      .faq-answer p { font-size: 13px; }
+      .thanks-text { font-size: 2.5rem; }
+      .quote-text { font-size: 1.1rem; }
+    }
+
+  </style>
 </head>
 <body>
+  <script>
+    // --- Global Error Handler ---
+    window.onerror = function(message, source, lineno, colno, error) {
+      console.error("Global error caught:", message, "at", source + ":" + lineno + ":" + colno, error);
+      // Uncomment the line below to enable redirection on error
+      // window.location.href = 'https://samplayshindi.github.io/Main/Error404.html';
+      return true; 
+    };
 
-    <div id="loader">
-        <div class="spinner"></div>
-        <div class="loader-text" data-translate-key="loader_text">Loading, Please Wait</div>
-    </div>
+    window.addEventListener('unhandledrejection', function(event) {
+      console.error("Unhandled promise rejection caught:", event.reason);
+      // Uncomment the line below to enable redirection on error
+      // window.location.href = 'https://samplayshindi.github.io/Main/Error404.html';
+    });
+  </script>
 
-    <header>
-        <div class="header-left">
-            <a href="https://samplayshindi.github.io/Main/About.html" class="header-link disabled" data-translate-key="nav_about">About</a>
-            <a href="https://samplayshindi.github.io/Main/RecentVideos.html" class="header-link" data-translate-key="nav_recent_videos">Recent Videos</a>
+  <div id="loader">
+    <div class="spinner"></div>
+    <div class="loader-text" data-translate-key="loader_text">Loading, Please Wait</div> </div>
+
+  <header>
+      <div class="header-left">
+        <a href="https://samplayshindi.github.io/Main/About.html" class="header-link" data-translate-key="nav_about">About</a>
+        <a href="https://samplayshindi.github.io/Main/RecentVideos.html" class="header-link" data-translate-key="nav_recent_videos">Recent Videos</a>
+      </div>
+      <h1 data-translate-key="title">Sam Plays</h1>
+      <button id="settingsBtn" title="Settings" aria-label="Open Settings">⚙️</button>
+  </header>
+
+
+  <div id="settingsPanel">
+    <div class="setting-section cursor-options">
+        <h3 data-translate-key="settings_cursor_title">Cursor Style</h3> <label>
+            <input type="radio" name="cursor-style" value="default" checked> <span data-translate-key="cursor_default">Default</span> </label>
+        <label>
+            <input type="radio" name="cursor-style" value="crosshair"> <span data-translate-key="cursor_crosshair">Crosshair</span> </label>
         </div>
-        <h1 data-translate-key="title">Sam Plays</h1>
-        <button id="settingsBtn" title="Settings" aria-label="Open Settings">⚙️</button>
-    </header>
 
-    <div id="settingsPanel">
-        <div class="setting-section cursor-options">
-            <h3 data-translate-key="settings_cursor_title">Cursor Style</h3>
-            <label>
-                <input type="radio" name="cursor-style" value="default" checked> <span data-translate-key="cursor_default">Default</span>
-            </label>
-            <label>
-                <input type="radio" name="cursor-style" value="crosshair"> <span data-translate-key="cursor_crosshair">Crosshair</span>
-            </label>
-        </div>
-        <div class="setting-section language-options">
-            <h3 data-translate-key="settings_language_title">Language</h3>
-            <select id="languageSelector" aria-label="Select language">
-                <option value="en">English</option>
-                <option value="es">Español (Spanish)</option>
-                <option value="hi">हिन्दी (Hindi)</option>
+    <div class="setting-section language-options">
+        <h3 data-translate-key="settings_language_title">Language</h3> <select id="languageSelector" aria-label="Select language">
+            <option value="en">English</option>
+            <option value="es">Español (Spanish)</option>
+            <option value="hi">हिन्दी (Hindi)</option>
             </select>
-        </div>
     </div>
 
-    <section class="fifth-page">
-        <a href="https://samplayshindi.github.io/Main/Index.html" class="go-back-btn" title="Go Back">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <path d="M15.5 19.5a1 1 0 0 1-.7-1.7l5.3-5.3H3a1 1 0 0 1 0-2h17.1l-5.3-5.3a1 1 0 0 1 1.4-1.4l7 7a1 1 0 0 1 0 1.4l-7 7a1 1 0 0 1-.7.3z"/>
-            </svg>
-        </a>
-
-        <div class="about-content-container">
-            <h2 class="about-heading" data-translate-key="about_heading">About me</h2>
-            <p class="about-paragraph" data-translate-key="about_paragraph">
-                Hey there! I'm Samar, the creator behind Sam Plays, where I dive into games like Minecraft, Would You Rather, and PUBG. It all started on a random day when a simple question popped into my head: "How do people upload videos to their channel?" That curiosity sparked something big—and just like that, Sam Plays was born. Now, I'm here to share my gaming adventures, have fun, and connect with awesome people like you. Hit that subscribe button and join the journey!
-            </p>
-            <div class="social-links-container">
-                <a href="https://www.youtube.com/channel/UCRLPBBL_LGFl14mIGaOMnxA" target="_blank" rel="noopener noreferrer" class="social-icon" title="YouTube Channel">
-                    <img src="https://i2.imageban.ru/out/2025/04/14/dcdcd08d76b1a05043c425b84780f448.png" alt="YouTube" onerror="this.style.display='none'">
-                </a>
-                <a href="https://www.instagram.com/the.silent.kidd/" target="_blank" rel="noopener noreferrer" class="social-icon" title="Instagram">
-                    <img src="https://i8.imageban.ru/out/2025/04/14/32c5cce9e8d2aca0ac20dbb24d314814.png" alt="Instagram" onerror="this.style.display='none'">
-                </a>
-                <a href="https://x.com/SamPlaysHindi" target="_blank" rel="noopener noreferrer" class="social-icon twitter-icon-larger" title="X (Twitter)">
-                    <img src="https://i1.imageban.ru/out/2025/04/14/716a4795e25646856d53bb80e4f0c63d.png" alt="X" onerror="this.style.display='none'">
-                </a>
-                <a href="https://discord.gg/shM9m47vBa" target="_blank" rel="noopener noreferrer" class="social-icon" title="Discord Server">
-                    <img src="https://i7.imageban.ru/out/2025/04/14/ba01657b172eb4a2cbe3d9a23a89e639.png" alt="Discord" onerror="this.style.display='none'">
-                </a>
+    <div class="setting-section shortcuts-info">
+        <h3 data-translate-key="settings_shortcuts_title">Keyboard Shortcuts</h3> <ul>
+            <li><kbd>S</kbd> <span data-translate-key="shortcut_toggle_settings">Toggle Settings Panel</span></li> <li><kbd>T</kbd> <span data-translate-key="shortcut_scroll_top">Scroll to Top</span></li> <li><kbd>H</kbd> <span data-translate-key="shortcut_go_home">Go to Home Section</span></li> <li><kbd>F</kbd> <span data-translate-key="shortcut_go_faq">Go to FAQ Section</span></li> <li><kbd>C</kbd> <span data-translate-key="shortcut_go_contact">Go to Contact Form</span></li> </ul>
+    </div>
+  </div>
+  <section class="first-page page-section" id="home">
+    <div class="hero-content">
+        <div class="image-wrapper animate-on-scroll">
+         <img src="https://i7.imageban.ru/out/2025/04/06/8ceada8ba819390324da470129adb577.jpg" alt="Gaming Setup">
+        </div>
+        <div class="hero-text-column animate-on-scroll"> <div class="welcome-text" data-translate-key="welcome">Welcome.</div> 
+            <div class="experience-container">
+                <div class="experience-text" data-translate-key="experience_text"> Experience high-quality gaming
+                content across titles like Minecraft,
+                Subnautica and Grand Theft Auto.
+                </div>
+                <a href="https://www.youtube.com/channel/UCRLPBBL_LGFl14mIGaOMnxA?sub_confirmation=1" class="subscribe-button" target="_blank" rel="noopener noreferrer" data-translate-key="subscribe_button">Subscribe</a> 
             </div>
         </div>
+    </div>
     </section>
 
-    <script>
-        // --- Translations Object (Subset for About page) ---
-        const translations = {
-            'en': {
-                'page_title_about': "Sam Plays - About",
-                'loader_text': "Loading, Please Wait",
-                'nav_about': "About",
-                'nav_recent_videos': "Recent Videos",
-                'title': "Sam Plays",
-                'settings_cursor_title': "Cursor Style",
-                'cursor_default': "Default",
-                'cursor_crosshair': "Crosshair",
-                'settings_language_title': "Language",
-                'about_heading': "About me",
-                'about_paragraph': 'Hey there! I\'m Samar, the creator behind Sam Plays, where I dive into games like Minecraft, Would You Rather, and PUBG. It all started on a random day when a simple question popped into my head: "How do people upload videos to their channel?" That curiosity sparked something big—and just like that, Sam Plays was born. Now, I\'m here to share my gaming adventures, have fun, and connect with awesome people like you. Hit that subscribe button and join the journey!'
-            },
-            'es': {
-                'page_title_about': "Sam Plays - Acerca de",
-                'loader_text': "Cargando, por favor espera",
-                'nav_about': "Acerca de",
-                'nav_recent_videos': "Videos Recientes",
-                'title': "Sam Plays",
-                'settings_cursor_title': "Estilo de Cursor",
-                'cursor_default': "Predeterminado",
-                'cursor_crosshair': "Mira",
-                'settings_language_title': "Idioma",
-                'about_heading': "Acerca de mí",
-                'about_paragraph': '¡Hola! Soy Samar, el creador detrás de Sam Plays, donde me sumerjo en juegos como Minecraft, ¿Qué Preferirías? y PUBG. Todo comenzó un día cualquiera cuando una simple pregunta surgió en mi cabeza: "¿Cómo sube la gente videos a su canal?" Esa curiosidad encendió algo grande, y así nació Sam Plays. Ahora, estoy aquí para compartir mis aventuras de juego, divertirme y conectar con gente increíble como tú. ¡Dale al botón de suscribir y únete al viaje!'
-            },
-             'hi': {
-                'page_title_about': "सैम प्लेज़ - बारे में",
-                'loader_text': "लोड हो रहा है, कृपया प्रतीक्षा करें",
-                'nav_about': "बारे में",
-                'nav_recent_videos': "हाल के वीडियो",
-                'title': "सैम प्लेज़",
-                'settings_cursor_title': "कर्सर शैली",
-                'cursor_default': "डिफ़ॉल्ट",
-                'cursor_crosshair': "क्रॉसहेयर",
-                'settings_language_title': "भाषा",
-                'about_heading': "मेरे बारे में",
-                'about_paragraph': 'नमस्ते! मैं समर हूँ, सैम प्लेज़ का निर्माता, जहाँ मैं माइनक्राफ्ट, वुड यू रैदर और पबजी जैसे गेम खेलता हूँ। यह सब एक सामान्य दिन शुरू हुआ जब मेरे दिमाग में एक सरल प्रश्न आया: "लोग अपने चैनल पर वीडियो कैसे अपलोड करते हैं?" उस जिज्ञासा ने कुछ बड़ा जगाया—और बस ऐसे ही, सैम प्लेज़ का जन्म हुआ। अब, मैं यहाँ अपने गेमिंग एडवेंचर्स साझा करने, मज़े करने और आप जैसे अद्भुत लोगों से जुड़ने के लिए हूँ। सब्सक्राइब बटन दबाएं और यात्रा में शामिल हों!'
-             }
-        };
+  <div class="section-stroke"></div>
 
-        document.addEventListener('DOMContentLoaded', () => {
-          // --- Loader Hiding ---
-          const loader = document.getElementById("loader");
-          if (loader) {
-            setTimeout(() => loader.classList.add("hide"), 100);
-          }
+  <section class="second-page page-section" id="quote">
+    <img src="https://i5.imageban.ru/out/2025/04/08/2896378b9be9960e625cccabbd9877bd.png" alt="Quote Image" class="animate-on-scroll">
+    <div class="quote-text animate-on-scroll" data-translate-key="quote_text">"Sam Plays is a very good content creator. His gaming videos are engaging and entertaining. Keep up the great work, Sam Plays! Thank you for providing such awesome videos. I hope he never quits."</div> </section>
 
-          // --- Elements ---
-          const settingsBtn = document.getElementById('settingsBtn');
-          const settingsPanel = document.getElementById('settingsPanel');
-          const cursorRadios = document.querySelectorAll('input[name="cursor-style"]');
-          const languageSelector = document.getElementById('languageSelector');
+  <div class="section-stroke"></div>
 
-          // --- Settings Panel Toggle ---
-          if (settingsBtn && settingsPanel) {
-              settingsBtn.addEventListener('click', (event) => {
-                  event.stopPropagation();
-                  settingsPanel.classList.toggle('visible');
-              });
-              document.addEventListener('click', (event) => {
-                  if (settingsPanel.classList.contains('visible') &&
-                      !settingsPanel.contains(event.target) &&
-                      event.target !== settingsBtn) {
-                      settingsPanel.classList.remove('visible');
-                  }
-              });
-          }
+  <section class="third-page page-section" id="faq">
+    <h2 class="third-page-heading animate-on-scroll" data-translate-key="faq_heading">Gaming Videos FAQs</h2> <div class="faq-container animate-on-scroll">
+      <ul class="faq-list">
+        <li class="faq-item">
+          <button class="faq-question">
+            <span class="question-text" data-translate-key="faq_q1">What types of games do you play?</span> <span class="icon">❯</span>
+          </button>
+          <div class="faq-answer">
+            <p data-translate-key="faq_a1">I play a wide variety of games, from popular AAA titles to indie games.</p> </div>
+        </li>
+        <li class="faq-item">
+          <button class="faq-question">
+            <span class="question-text" data-translate-key="faq_q2">Do you create original gaming content?</span> <span class="icon">❯</span>
+          </button>
+          <div class="faq-answer">
+            <p data-translate-key="faq_a2">Yes. I haven't and don't plan to copy anyone's content.</p> </div>
+        </li>
+        <li class="faq-item">
+          <button class="faq-question">
+            <span class="question-text" data-translate-key="faq_q3">Can I request a specific game to be featured?</span> <span class="icon">❯</span>
+          </button>
+          <div class="faq-answer">
+            <p data-translate-key="faq_a3">Absolutely! I welcome requests from my subscribers and consider featuring their favorite games in my upcoming videos.</p> </div>
+        </li>
+        <li class="faq-item">
+          <button class="faq-question">
+            <span class="question-text" data-translate-key="faq_q4">Are your videos family-friendly?</span> <span class="icon">❯</span>
+          </button>
+          <div class="faq-answer">
+            <p data-translate-key="faq_a4">Yes, my content is suitable for viewers of all ages, ensuring a fun and engaging experience for everyone in the family. But I still don't recommend watching with family.</p> </div>
+        </li>
+        <li class="faq-item">
+          <button class="faq-question">
+            <span class="question-text" data-translate-key="faq_q5">How frequently do you upload new videos?</span> <span class="icon">❯</span>
+          </button>
+          <div class="faq-answer">
+            <p data-translate-key="faq_a5">Since I am the only person who makes the content, I am not very consistent, but I mostly upload at least two videos in a month.</p> </div>
+        </li>
+      </ul>
+    </div>
+  </section>
 
-          // --- Cursor Style Functionality ---
-          function applyCursor(cursorType) {
-            document.body.className = document.body.className.replace(/cursor-\S*/g, '').trim();
-            if (cursorType !== 'default') {
-              document.body.classList.add(`cursor-${cursorType}`);
-            }
-            localStorage.setItem('selectedCursor', cursorType);
-          }
+  <div class="section-stroke"></div>
 
-          const savedCursor = localStorage.getItem('selectedCursor') || 'default';
-          cursorRadios.forEach(radio => {
-            if (radio.value === savedCursor) {
-              radio.checked = true;
-            }
-            radio.addEventListener('change', () => {
-              if (radio.checked) {
-                applyCursor(radio.value);
-              }
-            });
-          });
-          applyCursor(savedCursor); // Apply initially
+  <section class="fourth-page page-section" id="contact">
+      <div class="fourth-page-content-wrapper">
+          <div class="thanks-container animate-on-scroll">
+            <div class="thanks-text" data-translate-key="thanks_text">Thanks</div>
+            <div class="contact-text" data-translate-key="contact_text">Contact stgbussiness436@gmail.com for more info</div>
+          </div>
 
-          // --- Language Functionality ---
-          function getCurrentLang() {
-            return localStorage.getItem('selectedLanguage') || 'en';
-          }
+          <button id="openFeedbackFormBtn" class="animate-on-scroll" data-translate-key="open_form_button">Contact / Feedback</button>
 
-          function applyTranslations(lang) {
-            const langDict = translations[lang];
-            if (!langDict) {
-              console.warn(`Translations for "${lang}" not found.`);
-              return;
-            }
-            document.querySelectorAll('[data-translate-key]').forEach(element => {
-              const key = element.dataset.translateKey;
-              const translation = langDict[key];
-              if (translation !== undefined) {
-                 if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-                     if (element.placeholder) { element.placeholder = translation; }
-                 } else {
-                     element.textContent = translation;
-                 }
-              } else if (lang !== 'en' && translations['en'][key]) {
-                 // Fallback to English
-                 element.textContent = translations['en'][key];
-              }
-            });
-            document.documentElement.lang = lang;
-            localStorage.setItem('selectedLanguage', lang);
-          }
+          <div id="contact-form-section" class="animate-on-scroll"> 
+              <button id="closeFeedbackFormBtn" title="Close form" aria-label="Close feedback form">X</button>
+              <form id="feedbackForm" novalidate>
+                  <h3 data-translate-key="form_title">Contact / Feedback</h3>
+                  <div class="form-group">
+                    <label for="subjectInput" data-translate-key="form_label_subject">Subject</label>
+                    <input type="text" id="subjectInput" name="subject" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="messageInput" data-translate-key="form_label_message">Message</label>
+                    <textarea id="messageInput" name="message" required></textarea>
+                  </div>
+                  <button type="submit" data-translate-key="form_button_send">Send Feedback</button>
+                  <div id="form-status"></div>
+              </form>
+          </div>
+      </div>
+  </section>
 
-          const savedLanguage = getCurrentLang();
-          if (languageSelector) {
-            languageSelector.value = savedLanguage;
-            languageSelector.addEventListener('change', () => {
-              applyTranslations(languageSelector.value);
-            });
-          }
-          applyTranslations(savedLanguage); // Apply initially
+  <button id="scrollTopBtn" title="Go to top" aria-label="Scroll to top">▲</button>
 
-          // --- Disable Right-Click/Drag on Social Icons ---
-          const socialIcons = document.querySelectorAll('.social-icon img');
-          socialIcons.forEach(icon => {
-              icon.addEventListener('contextmenu', e => e.preventDefault());
-              icon.addEventListener('dragstart', e => e.preventDefault());
-          });
+  <script>
+    // --- Translations Object ---
+    const translations = {
+        'en': {
+            'page_title': "Sam Plays - Home", 'loader_text': "Loading, Please Wait", 'nav_about': "About", 'title': "Sam Plays",
+            'nav_recent_videos': "Recent Videos", 'settings_cursor_title': "Cursor Style", 'cursor_default': "Default",
+            'cursor_crosshair': "Crosshair", 'settings_language_title': "Language", 'settings_shortcuts_title': "Keyboard Shortcuts",
+            'shortcut_toggle_settings': "Toggle Settings Panel", 'shortcut_scroll_top': "Scroll to Top",
+            'shortcut_go_home': "Go to Home Section", 'shortcut_go_faq': "Go to FAQ Section", 'shortcut_go_contact': "Go to Contact Form",
+            'welcome': "Welcome.", 'experience_text': "Experience high-quality gaming content across titles like Minecraft, Subnautica and Grand Theft Auto.",
+            'subscribe_button': "Subscribe", 'quote_text': "\"Sam Plays is a very good content creator. His gaming videos are engaging and entertaining. Keep up the great work, Sam Plays! Thank you for providing such awesome videos. I hope he never quits.\"",
+            'faq_heading': "Gaming Videos FAQs", 'faq_q1': "What types of games do you play?",
+            'faq_a1': "I play a wide variety of games, from popular AAA titles to indie games.", 'faq_q2': "Do you create original gaming content?",
+            'faq_a2': "Yes. I haven't and don't plan to copy anyone's content.", 'faq_q3': "Can I request a specific game to be featured?",
+            'faq_a3': "Absolutely! I welcome requests from my subscribers and consider featuring their favorite games in my upcoming videos.",
+            'faq_q4': "Are your videos family-friendly?", 'faq_a4': "Yes, my content is suitable for viewers of all ages, ensuring a fun and engaging experience for everyone in the family. But I still don't recommend watching with family.",
+            'faq_q5': "How frequently do you upload new videos?", 'faq_a5': "Since I am the only person who makes the content, I am not very consistent, but I mostly upload at least two videos in a month.",
+            'thanks_text': "Thanks", 'contact_text': "Contact stgbussiness436@gmail.com for more info", 'open_form_button': "Contact / Feedback",
+            'form_title': "Contact / Feedback", 'form_label_subject': "Subject", 'form_label_message': "Message",
+            'form_button_send': "Send Feedback", 'form_status_success': "Opening email client...", 'form_status_error': "Please fill out all fields.",
+        },
+        'es': {
+            'page_title': "Sam Plays - Inicio", 'loader_text': "Cargando, por favor espera", 'nav_about': "Acerca de", 'title': "Sam Plays",
+            'nav_recent_videos': "Videos Recientes", 'settings_cursor_title': "Estilo de Cursor", 'cursor_default': "Predeterminado",
+            'cursor_crosshair': "Mira", 'settings_language_title': "Idioma", 'settings_shortcuts_title': "Atajos de Teclado",
+            'shortcut_toggle_settings': "Alternar Panel de Ajustes", 'shortcut_scroll_top': "Desplazar Arriba",
+            'shortcut_go_home': "Ir a Sección Inicio", 'shortcut_go_faq': "Ir a Sección FAQ", 'shortcut_go_contact': "Ir al Formulario de Contacto",
+            'welcome': "Bienvenido.", 'experience_text': "Experimenta contenido de juegos de alta calidad en títulos como Minecraft, Subnautica y Grand Theft Auto.",
+            'subscribe_button': "Suscribirse", 'quote_text': "\"Sam Plays es un muy buen creador de contenido. Sus videos de juegos son atractivos y entretenidos. ¡Sigue con el gran trabajo, Sam Plays! Gracias por proporcionar videos tan increíbles. Espero que nunca renuncie.\"",
+            'faq_heading': "Preguntas Frecuentes sobre Videos de Juegos", 'faq_q1': "¿Qué tipos de juegos juegas?",
+            'faq_a1': "Juego una amplia variedad de juegos, desde títulos populares AAA hasta juegos indie.", 'faq_q2': "¿Creas contenido de juegos original?",
+            'faq_a2': "Sí. No he copiado ni planeo copiar el contenido de nadie.", 'faq_q3': "¿Puedo solicitar que se presente un juego específico?",
+            'faq_a3': "¡Absolutamente! Acepto solicitudes de mis suscriptores y considero presentar sus juegos favoritos en mis próximos videos.",
+            'faq_q4': "¿Son tus videos aptos para toda la familia?", 'faq_a4': "Sí, mi contenido es adecuado para espectadores de todas las edades, asegurando una experiencia divertida y atractiva para todos en la familia. Pero todavía no recomiendo verlo en familia.",
+            'faq_q5': "¿Con qué frecuencia subes nuevos videos?", 'faq_a5': "Como soy la única persona que crea el contenido, no soy muy consistente, pero generalmente subo al menos dos videos al mes.",
+            'thanks_text': "Gracias", 'contact_text': "Contacta a stgbussiness436@gmail.com para más información", 'open_form_button': "Contacto / Comentarios",
+            'form_title': "Contacto / Comentarios", 'form_label_subject': "Asunto", 'form_label_message': "Mensaje",
+            'form_button_send': "Enviar Comentarios", 'form_status_success': "Abriendo cliente de correo...", 'form_status_error': "Por favor, rellena todos los campos.",
+        },
+         'hi': {
+            'page_title': "सैम प्लेज़ - होम", 'loader_text': "लोड हो रहा है, कृपया प्रतीक्षा करें", 'nav_about': "बारे में", 'title': "सैम प्लेज़",
+            'nav_recent_videos': "हाल के वीडियो", 'settings_cursor_title': "कर्सर शैली", 'cursor_default': "डिफ़ॉल्ट",
+            'cursor_crosshair': "क्रॉसहेयर", 'settings_language_title': "भाषा", 'settings_shortcuts_title': "कीबोर्ड शॉर्टकट",
+            'shortcut_toggle_settings': "सेटिंग्स पैनल टॉगल करें", 'shortcut_scroll_top': "शीर्ष पर स्क्रॉल करें",
+            'shortcut_go_home': "होम अनुभाग पर जाएँ", 'shortcut_go_faq': "FAQ अनुभाग पर जाएँ", 'shortcut_go_contact': "संपर्क फ़ॉर्म पर जाएँ",
+            'welcome': "स्वागत है।", 'experience_text': "माइनक्राफ्ट, सबनॉटिका और ग्रैंड थेफ्ट ऑटो जैसे शीर्षकों पर उच्च गुणवत्ता वाली गेमिंग सामग्री का अनुभव करें।",
+            'subscribe_button': "सदस्यता लें", 'quote_text': "\"सैम प्लेज़ एक बहुत अच्छा कंटेंट क्रिएटर है। उनके गेमिंग वीडियो आकर्षक और मनोरंजक हैं। बढ़िया काम करते रहो, सैम प्लेज़! इतने शानदार वीडियो प्रदान करने के लिए धन्यवाद। मुझे उम्मीद है कि वह कभी नहीं छोड़ेगा।\"",
+            'faq_heading': "गेमिंग वीडियो FAQs", 'faq_q1': "आप किस प्रकार के गेम खेलते हैं?",
+            'faq_a1': "मैं लोकप्रिय AAA शीर्षकों से लेकर इंडी गेम तक कई तरह के गेम खेलता हूं।", 'faq_q2': "क्या आप मूल गेमिंग सामग्री बनाते हैं?",
+            'faq_a2': "हाँ। मैंने किसी की सामग्री की नकल नहीं की है और न ही करने की योजना है।", 'faq_q3': "क्या मैं किसी विशिष्ट गेम को प्रदर्शित करने का अनुरोध कर सकता हूं?",
+            'faq_a3': "बिल्कुल! मैं अपने ग्राहकों के अनुरोधों का स्वागत करता हूं और अपने आगामी वीडियो में उनके पसंदीदा गेम को प्रदर्शित करने पर विचार करता हूं।",
+            'faq_q4': "क्या आपके वीडियो परिवार के अनुकूल हैं?", 'faq_a4': "हाँ, मेरी सामग्री सभी उम्र के दर्शकों के लिए उपयुक्त है, जो परिवार में सभी के लिए एक मजेदार और आकर्षक अनुभव सुनिश्चित करती है। लेकिन मैं अभी भी परिवार के साथ देखने की सलाह नहीं देता।",
+            'faq_q5': "आप कितनी बार नए वीडियो अपलोड करते हैं?", 'faq_a5': "चूंकि मैं अकेला व्यक्ति हूं जो सामग्री बनाता है, मैं बहुत सुसंगत नहीं हूं, लेकिन मैं ज्यादातर एक महीने में कम से कम दो वीडियो अपलोड करता हूं।",
+            'thanks_text': "धन्यवाद", 'contact_text': "अधिक जानकारी के लिए stgbussiness436@gmail.com पर संपर्क करें", 'open_form_button': "संपर्क / प्रतिक्रिया",
+            'form_title': "संपर्क / प्रतिक्रिया", 'form_label_subject': "विषय", 'form_label_message': "संदेश",
+            'form_button_send': "प्रतिक्रिया भेजें", 'form_status_success': "ईमेल क्लाइंट खोल रहा है...", 'form_status_error': "कृपया सभी फ़ील्ड भरें।",
+         }
+    };
 
+    document.addEventListener('DOMContentLoaded', () => {
+
+      setTimeout(() => { document.getElementById("loader")?.classList.add("hide"); }, 100);
+
+      const settingsBtn = document.getElementById('settingsBtn');
+      const settingsPanel = document.getElementById('settingsPanel');
+      const cursorRadios = document.querySelectorAll('input[name="cursor-style"]');
+      const languageSelector = document.getElementById('languageSelector');
+      const scrollTopBtn = document.getElementById('scrollTopBtn');
+      const faqQuestions = document.querySelectorAll('.faq-question');
+      const animatedElements = document.querySelectorAll('.animate-on-scroll');
+      const secondPageImg = document.querySelector('.second-page img');
+      const openFeedbackFormBtn = document.getElementById('openFeedbackFormBtn');
+      const closeFeedbackFormBtn = document.getElementById('closeFeedbackFormBtn');
+      const contactFormSection = document.getElementById('contact-form-section');
+      const feedbackForm = document.getElementById('feedbackForm');
+      const formStatusDiv = document.getElementById('form-status');
+      const subjectInput = document.getElementById('subjectInput');
+      const messageInput = document.getElementById('messageInput');
+
+      function getCurrentLang() { return localStorage.getItem('selectedLanguage') || 'en'; }
+
+      if (settingsBtn && settingsPanel) {
+        settingsBtn.addEventListener('click', (event) => {
+            event.stopPropagation(); settingsPanel.classList.toggle('visible');
         });
-    </script>
+        document.addEventListener('click', (event) => {
+            if (settingsPanel.classList.contains('visible') && !settingsPanel.contains(event.target) && event.target !== settingsBtn) {
+                settingsPanel.classList.remove('visible');
+            }
+        });
+      }
+
+      function applyCursor(cursorType) {
+        document.body.className = document.body.className.replace(/cursor-\S+/g, '').trim();
+        if (cursorType !== 'default') { document.body.classList.add(`cursor-${cursorType}`); }
+        localStorage.setItem('selectedCursor', cursorType);
+      }
+      const savedCursor = localStorage.getItem('selectedCursor') || 'default';
+      cursorRadios.forEach(radio => {
+        if (radio.value === savedCursor) { radio.checked = true; applyCursor(savedCursor); }
+        radio.addEventListener('change', () => { if (radio.checked) { applyCursor(radio.value); } });
+      });
+
+      function applyTranslations(lang) {
+        const langDict = translations[lang]; if (!langDict) { console.warn(`Translations for "${lang}" not found.`); return; }
+        document.querySelectorAll('[data-translate-key]').forEach(element => {
+          const key = element.dataset.translateKey; const translation = langDict[key];
+          if (translation !== undefined) {
+             if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                 if (element.placeholder) { element.placeholder = translation; }
+             } else { element.textContent = translation; }
+          }
+        });
+        document.documentElement.lang = lang; localStorage.setItem('selectedLanguage', lang);
+      }
+      const savedLanguage = getCurrentLang();
+      if (languageSelector) {
+        languageSelector.value = savedLanguage; applyTranslations(savedLanguage);
+        languageSelector.addEventListener('change', () => { applyTranslations(languageSelector.value); });
+      }
+
+      if (secondPageImg) {
+        secondPageImg.addEventListener('contextmenu', (e) => e.preventDefault());
+        secondPageImg.addEventListener('dragstart', (e) => e.preventDefault());
+      }
+
+      faqQuestions.forEach(button => {
+        button.addEventListener('click', () => {
+          const faqItem = button.closest('.faq-item'); const answer = faqItem?.querySelector('.faq-answer');
+          const wasVisible = answer?.classList.contains('show');
+          document.querySelectorAll('.faq-item').forEach(item => {
+              const otherAnswer = item.querySelector('.faq-answer'); const otherButton = item.querySelector('.faq-question');
+              if (item !== faqItem && otherAnswer?.classList.contains('show')) {
+                  otherAnswer.classList.remove('show'); otherButton?.classList.remove('active');
+              }
+          });
+          if (answer) {
+              if (!wasVisible) { answer.classList.add('show'); button.classList.add('active'); }
+              else { answer.classList.remove('show'); button.classList.remove('active'); }
+          }
+        });
+      });
+
+      const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('animated'); } });
+      }, { root: null, rootMargin: '0px', threshold: 0.1 });
+      animatedElements.forEach(el => { if (el) { observer.observe(el); } });
+
+      if (scrollTopBtn) {
+          window.addEventListener('scroll', () => {
+              scrollTopBtn.classList.toggle('visible', window.scrollY > window.innerHeight / 2);
+          }, { passive: true });
+          scrollTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+      }
+
+      if (openFeedbackFormBtn && contactFormSection) {
+          openFeedbackFormBtn.addEventListener('click', () => {
+              contactFormSection.classList.add('visible-form');
+              contactFormSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          });
+      }
+      if (closeFeedbackFormBtn && contactFormSection) {
+          closeFeedbackFormBtn.addEventListener('click', () => {
+              contactFormSection.classList.remove('visible-form');
+          });
+      }
+
+      if (feedbackForm) {
+          feedbackForm.addEventListener('submit', (event) => {
+              event.preventDefault();
+              const currentLang = getCurrentLang();
+              const subjectVal = subjectInput.value.trim(); const messageVal = messageInput.value.trim();
+              if (!subjectVal || !messageVal) {
+                  formStatusDiv.textContent = translations[currentLang]?.form_status_error || "Please fill out Subject and Message fields.";
+                  return;
+              }
+              const recipient = 'stgbussiness436@gmail.com';
+              const emailSubject = encodeURIComponent('Sam ' + subjectVal);
+              const emailBody = encodeURIComponent(messageVal);
+              const mailtoLink = `https://mail.google.com/mail/u/0/?fs=1&to=${recipient}&su=${emailSubject}&body=${emailBody}&tf=cm`;
+              formStatusDiv.textContent = translations[currentLang]?.form_status_success || "Opening email client...";
+              window.location.href = mailtoLink;
+              setTimeout(() => { formStatusDiv.textContent = ""; }, 3000);
+          });
+      }
+      
+      // --- Easter Egg Keyboard Shortcuts ---
+      let keySequence = [];
+      const samSequence = ['s', 'a', 'm'];
+
+      window.addEventListener('keydown', (event) => {
+        const targetTagName = event.target.tagName;
+        if (targetTagName === 'INPUT' || targetTagName === 'TEXTAREA' || event.target.isContentEditable || event.ctrlKey || event.altKey || event.metaKey) { 
+            keySequence = []; // Reset sequence if typing in input or using modifiers
+            return; 
+        }
+        
+        const key = event.key.toLowerCase();
+        let targetElement;
+
+        // Easter egg sequence check
+        keySequence.push(key);
+        if (keySequence.length > samSequence.length) {
+            keySequence.shift(); // Keep sequence to the length of the target sequence
+        }
+        if (JSON.stringify(keySequence) === JSON.stringify(samSequence)) {
+            console.log("🎉 Sam is awesome! Easter Egg unlocked! 🎉");
+            keySequence = []; // Reset after unlocking
+        }
+
+
+        switch (key) { // Use `key` directly as it's already lowercased
+            case 's': 
+                // Check if it's the settings toggle or part of SAM sequence
+                // If settingsPanel is defined and 's' is pressed alone (not as part of SAM sequence just typed)
+                // This simple switch case might conflict if 's' is the first letter of SAM sequence.
+                // For now, 's' will always toggle settings if not in an input field.
+                // The SAM sequence logic above handles 's' as part of the sequence independently.
+                settingsPanel?.classList.toggle('visible'); 
+                break;
+            case 't': window.scrollTo({ top: 0, behavior: 'smooth' }); break;
+            case 'h': targetElement = document.getElementById('home'); if (targetElement) targetElement.scrollIntoView({ behavior: 'smooth' }); break;
+            case 'f': targetElement = document.getElementById('faq'); if (targetElement) targetElement.scrollIntoView({ behavior: 'smooth' }); break;
+            case 'c':
+                targetElement = document.getElementById('openFeedbackFormBtn'); 
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+                break;
+        }
+      });
+
+    });
+  </script>
 
 </body>
 </html>
