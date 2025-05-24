@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title data-translate-key="page_title_about">Sam Plays - About</title>
+    <title>Sam Plays - About</title>
     <link rel="icon" type="image/png" href="https://i2.imageban.ru/out/2025/04/12/7f6f0dae06fbdc5d9a8b592f4a3ba931.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,7 +16,7 @@
         html {
             scroll-behavior: smooth;
             height: 100%;
-            overflow-x: hidden; /* Prevent horizontal scroll */
+            overflow-x: hidden;
         }
 
         body {
@@ -28,8 +28,16 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            overflow-x: hidden; /* Prevent horizontal scroll on body */
-            cursor: default; /* Default cursor */
+            overflow-x: hidden;
+            cursor: default;
+        }
+        
+        body.reduce-motion *,
+        body.reduce-motion *::before,
+        body.reduce-motion *::after {
+            animation-duration: 0s !important;
+            animation-delay: 0s !important;
+            transition: none !important;
         }
 
         /* --- Custom Cursor Classes --- */
@@ -46,7 +54,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            z-index: 10000; /* Ensure loader is on top */
+            z-index: 10000;
             transition: opacity 0.8s ease, visibility 0.8s ease;
         }
 
@@ -77,25 +85,24 @@
             opacity: 0;
             visibility: hidden;
         }
-        /* --- End Loader --- */
 
-        /* --- Header (Copied from Index.html) --- */
+        /* --- Header --- */
         header {
           background-image: url('https://i8.imageban.ru/out/2025/05/04/75362458277a6b1aa7b76085614aa66a.jpg');
           background-size: cover;
           background-position: center;
-          padding: 15px 15px;
+          padding: 15px 20px;
           border-bottom: 4px solid white;
-          position: relative;
+          position: sticky;
           top: 0;
           left: 0;
           z-index: 1000;
           display: flex;
           align-items: center;
-          justify-content: space-between;
+          justify-content: center; /* Center h1 */
           width: 100%;
           box-sizing: border-box;
-          flex-shrink: 0; /* Prevent header shrinking */
+          position: relative; /* For absolute positioning of button */
         }
 
         header::before {
@@ -106,121 +113,102 @@
             z-index: 1;
         }
 
-        .header-left {
-            display: flex;
-            align-items: center;
-            flex-shrink: 0;
-            position: relative;
-            z-index: 2;
-        }
-
-        header .header-link {
-          font-family: 'Montserrat', sans-serif;
-          color: white;
-          font-size: 1em;
-          text-decoration: none;
-          margin: 0 8px;
-          padding: 5px 10px;
-          border-radius: 5px;
-          transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
-          opacity: 1;
-          text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-          white-space: nowrap;
-        }
-
-        header .header-link:hover {
-          background-color: rgba(255, 255, 255, 0.2);
-          color: #e0f7fa;
-        }
-
-        header .header-link:active {
-            transform: scale(0.95);
-            background-color: rgba(255, 255, 255, 0.3);
-        }
-
-        /* Style for the disabled/current page link */
-        header a.header-link.disabled {
-          opacity: 0.6;
-          cursor: default;
-          pointer-events: none;
-          background-color: transparent !important;
-          color: white !important;
-        }
-
         header h1 {
           font-family: 'Globoface-Gothic-Display-2001', sans-serif;
           color: white;
           font-size: 2.2em;
-          padding: 0 10px;
           letter-spacing: 2px;
-          opacity: 1;
-          text-align: center;
-          white-space: nowrap;
-          user-select: none;
           text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
-          position: absolute;
-          left: 50%;
-          transform: translateX(-50%);
           z-index: 2;
           margin: 0;
-          min-width: 0;
         }
-
-        #settingsBtn {
+        
+        /* Hamburger Menu Button */
+        #menuBtn {
             background: none;
             border: none;
-            color: white;
-            font-size: 1.8em;
             cursor: pointer;
-            padding: 0;
-            line-height: 1;
-            flex-shrink: 0;
+            padding: 10px;
+            z-index: 1002;
+            position: absolute; /* Position relative to header */
+            right: 20px; /* Align to the right */
+        }
+
+        .menu-icon {
+            width: 30px;
+            height: 22px;
             position: relative;
-            z-index: 2;
-            transition: color 0.3s ease, transform 0.2s ease;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            transform: rotate(0deg);
+            transition: .5s ease-in-out;
         }
-        #settingsBtn:hover {
-            color: #e0f7fa;
-            transform: rotate(20deg);
-        }
-         #settingsBtn:active {
-             transform: scale(0.9) rotate(15deg);
-         }
-        /* --- End Header Styles --- */
 
-        /* --- Settings Panel --- */
-        #settingsPanel {
+        .menu-icon span {
+            display: block;
+            position: absolute;
+            height: 4px;
+            width: 100%;
+            background: #fff;
+            border-radius: 2px;
+            opacity: 1;
+            left: 0;
+            transform: rotate(0deg);
+            transition: .25s ease-in-out;
+        }
+
+        .menu-icon span:nth-child(1) { top: 0px; }
+        .menu-icon span:nth-child(2), .menu-icon span:nth-child(3) { top: 9px; }
+        .menu-icon span:nth-child(4) { top: 18px; }
+
+        #menuBtn:hover .menu-icon span:nth-child(1) { transform: scaleX(0.8); }
+        #menuBtn:hover .menu-icon span:nth-child(4) { transform: scaleX(0.8); }
+
+        #menuBtn.open .menu-icon span:nth-child(1) { top: 9px; width: 0%; left: 50%; }
+        #menuBtn.open .menu-icon span:nth-child(2) { transform: rotate(45deg); }
+        #menuBtn.open .menu-icon span:nth-child(3) { transform: rotate(-45deg); }
+        #menuBtn.open .menu-icon span:nth-child(4) { top: 9px; width: 0%; left: 50%; }
+
+        /* --- Side Menu Panel (Stinger) --- */
+        #sideMenu {
             position: fixed;
-            top: 70px;
-            right: 20px;
-            width: 300px;
-            max-height: calc(100vh - 90px);
-            background: rgba(30, 30, 30, 0.85);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 12px;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.4);
-            z-index: 9999;
-            color: white;
-            font-family: 'Montserrat', sans-serif;
-            padding: 20px;
-            box-sizing: border-box;
-            opacity: 0;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px) saturate(180%);
+            -webkit-backdrop-filter: blur(10px) saturate(180%);
+            z-index: 1001;
             visibility: hidden;
-            transform: translateY(-10px) scale(0.98);
-            transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
-            overflow-y: auto;
+            opacity: 0;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+            display: flex;
+            justify-content: flex-end;
         }
-
-        #settingsPanel.visible {
+        
+        #sideMenu.visible {
             opacity: 1;
             visibility: visible;
-            transform: translateY(0) scale(1);
+        }
+        
+        .side-menu-content {
+            background: #111;
+            width: 320px;
+            max-width: 90%;
+            height: 100%;
+            padding: 80px 25px 25px;
+            box-sizing: border-box;
+            color: white;
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        #sideMenu.visible .side-menu-content {
+            transform: translateX(0);
         }
 
-        #settingsPanel h3 {
+        .setting-section { margin-bottom: 25px; }
+
+        .setting-section h3 {
             margin-top: 0;
             margin-bottom: 15px;
             font-size: 1.1em;
@@ -229,32 +217,71 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.2);
             padding-bottom: 8px;
         }
-
-        .setting-section { margin-bottom: 20px; }
-        .setting-section:last-child { margin-bottom: 5px; }
-
-        /* Styles for Cursor Options */
+        
         .cursor-options label {
-            display: block; margin-bottom: 8px; cursor: pointer;
+            display: block; margin-bottom: 10px; cursor: pointer;
             font-size: 0.95em; color: #eee;
         }
         .cursor-options input[type="radio"] {
-            margin-right: 8px; accent-color: #4fc3f7; cursor: pointer;
+            margin-right: 10px; accent-color: #4fc3f7; cursor: pointer;
         }
 
-        /* Styles for Language Selector */
-        #languageSelector {
-            width: 100%; padding: 8px 10px; border-radius: 5px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            background-color: rgba(0, 0, 0, 0.3); color: white;
-            font-family: 'Montserrat', sans-serif; font-size: 0.95em; cursor: pointer;
+        .reduce-motion-option {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        #languageSelector option { background-color: #333; color: white; }
-        /* --- End Settings Panel Styles --- */
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 28px;
+        }
+        .toggle-switch input { display: none; }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #555;
+            transition: .4s;
+            border-radius: 28px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider { background-color: #4fc3f7; }
+        input:checked + .slider:before { transform: translateX(22px); }
 
-        /* Main Content Section Styles */
+        .menu-nav-links a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: background-color 0.3s ease;
+        }
+        .menu-nav-links a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .menu-nav-links a.disabled {
+            opacity: 0.6;
+            cursor: default;
+            pointer-events: none;
+            background-color: transparent !important;
+        }
+
+        /* --- Main Content Section Styles --- */
         .fifth-page {
-            flex-grow: 1; /* Allows section to fill remaining space */
+            flex-grow: 1;
             width: 100%;
             display: flex;
             flex-direction: column;
@@ -270,15 +297,14 @@
             position: relative;
             color: white;
             text-align: center;
-            overflow: hidden; /* Prevent content overflow issues */
+            overflow: hidden;
         }
 
-        /* Go Back Button Styles */
         .go-back-btn {
             position: absolute;
             top: 20px;
             left: 20px;
-            background: rgba(255, 255, 255, 0.1); /* Slightly more visible */
+            background: rgba(255, 255, 255, 0.1);
             padding: 10px;
             border-radius: 50%;
             display: flex;
@@ -287,7 +313,7 @@
             transition: all 0.3s ease;
             cursor: pointer;
             text-decoration: none;
-            z-index: 15; /* Below header, above page content */
+            z-index: 15;
         }
 
         .go-back-btn:hover {
@@ -299,32 +325,31 @@
             width: 22px;
             height: 22px;
             fill: white;
-            transform: scaleX(-1); /* Flips arrow */
+            transform: scaleX(-1);
         }
 
-        /* Container for the main about text content */
         .about-content-container {
             max-width: 800px;
-            width: 95%; /* Use percentage for better flexibility */
-            margin-top: 30px; /* Add some space below back button */
-            margin-bottom: 30px; /* Add space above footer if any */
+            width: 95%;
+            margin-top: 30px;
+            margin-bottom: 30px;
         }
 
         .about-heading {
             font-family: 'Dungeon Depths', sans-serif;
-            font-size: 3.5rem; /* Adjusted size */
+            font-size: 3.5rem;
             margin-bottom: 25px;
             margin-top: 0;
             text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.7);
             opacity: 0;
             animation: expandIn 1s ease-out forwards;
-            animation-delay: 0.1s; /* Faster delay */
+            animation-delay: 0.1s;
             font-weight: normal;
         }
 
         .about-paragraph {
             font-family: 'Montserrat', sans-serif;
-            font-size: 1.1rem; /* Adjusted size */
+            font-size: 1.1rem;
             max-width: 750px;
             color: #f0f0f0;
             text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
@@ -332,52 +357,49 @@
             margin: 0 auto;
             opacity: 0;
             animation: expandIn 1s ease-out forwards;
-            animation-delay: 0.3s; /* Staggered delay */
-            user-select: text; /* Allow selecting paragraph text */
+            animation-delay: 0.3s;
+            user-select: text;
         }
 
-        /* Social Links Styles */
+        /* --- Social Links Styles --- */
         .social-links-container {
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 30px;
-            margin-top: 40px; /* Reduced margin */
+            margin-top: 40px;
             width: 100%;
             flex-wrap: wrap;
             opacity: 0;
-            /* Apply base animation to container */
             animation: expandIn 1s ease-out forwards;
-            animation-delay: 0.5s; /* Delay for container */
+            animation-delay: 0.5s;
             padding: 10px 0;
         }
 
         .social-icon {
             display: inline-block;
             line-height: 0;
-            /* Add individual animation properties */
-            opacity: 0; /* Start hidden for staggered effect */
+            opacity: 0;
             animation: fadeInIcon 0.6s ease-out forwards;
         }
 
-        /* Staggered animation delays for icons */
         .social-icon:nth-child(1) { animation-delay: 0.7s; }
         .social-icon:nth-child(2) { animation-delay: 0.8s; }
-        .social-icon:nth-child(3) { animation-delay: 0.9s; } /* Twitter */
+        .social-icon:nth-child(3) { animation-delay: 0.9s; }
         .social-icon:nth-child(4) { animation-delay: 1.0s; }
+        .social-icon:nth-child(5) { animation-delay: 1.1s; }
 
-        /* Default size for social icons */
         .social-icon img {
             width: 55px;
             height: 55px;
             border-radius: 10px;
             opacity: 0.85;
             transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
-                        opacity 0.3s ease; /* Removed box-shadow transition */
+                        opacity 0.3s ease;
             vertical-align: middle;
+            border: 1px solid #000000;
         }
 
-        /* Specific larger size for the Twitter icon */
         .social-icon.twitter-icon-larger img {
             width: 70px;
             height: 70px;
@@ -387,132 +409,84 @@
             opacity: 1;
             transform: scale(1.2) translateY(-5px);
         }
-        /* End Social Links Styles */
 
-        /* Animation Keyframes */
-        @keyframes expandIn { /* Used for main content blocks */
+        /* --- Animation Keyframes --- */
+        @keyframes expandIn {
             from { opacity: 0; transform: scale(0.95); }
             to { opacity: 1; transform: scale(1); }
         }
 
-        @keyframes fadeInIcon { /* Used for individual icons */
+        @keyframes fadeInIcon {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        /* End Animation Keyframes */
-
 
         /* --- Responsive Styles --- */
         @media (max-width: 768px) {
-          header {
-            flex-direction: column;
-            align-items: center;
-            padding: 10px;
-          }
-          header h1 {
-            position: static;
-            transform: none;
-            order: 1;
-            margin-bottom: 10px;
-            font-size: 1.8em;
-          }
-          .header-left {
-            order: 2;
-            flex-direction: row;
-            justify-content: center;
-            width: 100%;
-            margin-bottom: 5px;
-          }
-          header .header-link {
-            font-size: 0.9em;
-            margin: 0 10px;
-          }
-          #settingsBtn {
-            order: 3;
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            font-size: 1.6em;
-          }
-          #settingsPanel {
-            width: 280px; right: 10px; top: 65px;
-            max-height: calc(100vh - 80px);
-          }
-
+          header h1 { font-size: 1.8em; }
           .about-heading { font-size: 2.5rem; }
           .about-paragraph { font-size: 1rem; max-width: 95%; }
-
           .social-links-container { gap: 25px; margin-top: 35px; }
           .social-icon img { width: 50px; height: 50px; }
           .social-icon.twitter-icon-larger img { width: 65px; height: 65px; }
-
           .go-back-btn { padding: 8px; top: 15px; left: 15px; }
           .go-back-btn svg { width: 20px; height: 20px; }
-
-          .fifth-page { padding: 50px 15px; background-attachment: scroll; /* Mobile performance */ }
+          .fifth-page { padding: 50px 15px; background-attachment: scroll; }
         }
 
         @media (max-width: 480px) {
-          header h1 {
-            font-size: 1.6em;
-            white-space: normal;
-          }
-          header .header-link {
-            font-size: 0.85em;
-            margin: 0 5px;
-            padding: 4px 8px;
-          }
-          #settingsBtn {
-            font-size: 1.5em;
-            top: 12px; right: 12px;
-          }
-           #settingsPanel {
-            width: calc(100vw - 20px); left: 10px; right: 10px; top: 60px;
-          }
-
+          header h1 { font-size: 1.6em; white-space: normal; }
           .about-heading { font-size: 2.2rem; }
           .about-paragraph { font-size: 0.95rem; }
           .social-icon img { width: 45px; height: 45px; }
           .social-icon.twitter-icon-larger img { width: 60px; height: 60px; }
           .social-links-container { gap: 20px; margin-top: 30px; }
         }
-        /* --- End Responsive Styles --- */
-
     </style>
 </head>
 <body>
 
     <div id="loader">
         <div class="spinner"></div>
-        <div class="loader-text" data-translate-key="loader_text">Loading, Please Wait</div>
+        <div class="loader-text">Loading, Please Wait</div>
     </div>
 
     <header>
-        <div class="header-left">
-            <a href="https://samplayshindi.github.io/Main/About.html" class="header-link disabled" data-translate-key="nav_about">About</a>
-            <a href="https://samplayshindi.github.io/Main/RecentVideos.html" class="header-link" data-translate-key="nav_recent_videos">Recent Videos</a>
-        </div>
-        <h1 data-translate-key="title">Sam Plays</h1>
-        <button id="settingsBtn" title="Settings" aria-label="Open Settings">⚙️</button>
+        <h1>Sam Plays</h1>
+        <button id="menuBtn" title="Open Menu" aria-label="Open Menu">
+            <div class="menu-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </button>
     </header>
-
-    <div id="settingsPanel">
-        <div class="setting-section cursor-options">
-            <h3 data-translate-key="settings_cursor_title">Cursor Style</h3>
-            <label>
-                <input type="radio" name="cursor-style" value="default" checked> <span data-translate-key="cursor_default">Default</span>
-            </label>
-            <label>
-                <input type="radio" name="cursor-style" value="crosshair"> <span data-translate-key="cursor_crosshair">Crosshair</span>
-            </label>
-        </div>
-        <div class="setting-section language-options">
-            <h3 data-translate-key="settings_language_title">Language</h3>
-            <select id="languageSelector" aria-label="Select language">
-                <option value="en">English</option>
-                <option value="es">Español (Spanish)</option>
-                <option value="hi">हिन्दी (Hindi)</option>
-            </select>
+    
+    <div id="sideMenu">
+        <div class="side-menu-content">
+            <div class="setting-section menu-nav-links">
+                 <a href="https://samplayshindi.github.io/Main/About.html" class="header-link disabled">About</a>
+                 <a href="https://samplayshindi.github.io/Main/RecentVideos.html" class="header-link">Recent Videos</a>
+            </div>
+            <div class="setting-section cursor-options">
+                <h3>Cursor Style</h3>
+                <label>
+                    <input type="radio" name="cursor-style" value="default" checked> <span>Default</span>
+                </label>
+                <label>
+                    <input type="radio" name="cursor-style" value="crosshair"> <span>Crosshair</span>
+                </label>
+            </div>
+            <div class="setting-section">
+                <div class="reduce-motion-option">
+                    <h3 style="margin: 0; border: none; padding: 0;">Reduce Motion</h3>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="reduceMotionToggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -524,8 +498,8 @@
         </a>
 
         <div class="about-content-container">
-            <h2 class="about-heading" data-translate-key="about_heading">About me</h2>
-            <p class="about-paragraph" data-translate-key="about_paragraph">
+            <h2 class="about-heading">About me</h2>
+            <p class="about-paragraph">
                 Hey there! I'm Samar, the creator behind Sam Plays, where I dive into games like Minecraft, Would You Rather, and PUBG. It all started on a random day when a simple question popped into my head: "How do people upload videos to their channel?" That curiosity sparked something big—and just like that, Sam Plays was born. Now, I'm here to share my gaming adventures, have fun, and connect with awesome people like you. Hit that subscribe button and join the journey!
             </p>
             <div class="social-links-container">
@@ -541,54 +515,14 @@
                 <a href="https://discord.gg/shM9m47vBa" target="_blank" rel="noopener noreferrer" class="social-icon" title="Discord Server">
                     <img src="https://i7.imageban.ru/out/2025/04/14/ba01657b172eb4a2cbe3d9a23a89e639.png" alt="Discord" onerror="this.style.display='none'">
                 </a>
+                <a href="https://github.com/Samplayshindi/Main" target="_blank" rel="noopener noreferrer" class="social-icon" title="GitHub">
+                    <img src="https://i4.imageban.ru/out/2025/05/24/9bf4590e4193d7ef381e1bb29f02deb5.png" alt="GitHub" style='border: 1px solid #000000'>
+                </a>
             </div>
         </div>
     </section>
 
     <script>
-        // --- Translations Object (Subset for About page) ---
-        const translations = {
-            'en': {
-                'page_title_about': "Sam Plays - About",
-                'loader_text': "Loading, Please Wait",
-                'nav_about': "About",
-                'nav_recent_videos': "Recent Videos",
-                'title': "Sam Plays",
-                'settings_cursor_title': "Cursor Style",
-                'cursor_default': "Default",
-                'cursor_crosshair': "Crosshair",
-                'settings_language_title': "Language",
-                'about_heading': "About me",
-                'about_paragraph': 'Hey there! I\'m Samar, the creator behind Sam Plays, where I dive into games like Minecraft, Would You Rather, and PUBG. It all started on a random day when a simple question popped into my head: "How do people upload videos to their channel?" That curiosity sparked something big—and just like that, Sam Plays was born. Now, I\'m here to share my gaming adventures, have fun, and connect with awesome people like you. Hit that subscribe button and join the journey!'
-            },
-            'es': {
-                'page_title_about': "Sam Plays - Acerca de",
-                'loader_text': "Cargando, por favor espera",
-                'nav_about': "Acerca de",
-                'nav_recent_videos': "Videos Recientes",
-                'title': "Sam Plays",
-                'settings_cursor_title': "Estilo de Cursor",
-                'cursor_default': "Predeterminado",
-                'cursor_crosshair': "Mira",
-                'settings_language_title': "Idioma",
-                'about_heading': "Acerca de mí",
-                'about_paragraph': '¡Hola! Soy Samar, el creador detrás de Sam Plays, donde me sumerjo en juegos como Minecraft, ¿Qué Preferirías? y PUBG. Todo comenzó un día cualquiera cuando una simple pregunta surgió en mi cabeza: "¿Cómo sube la gente videos a su canal?" Esa curiosidad encendió algo grande, y así nació Sam Plays. Ahora, estoy aquí para compartir mis aventuras de juego, divertirme y conectar con gente increíble como tú. ¡Dale al botón de suscribir y únete al viaje!'
-            },
-             'hi': {
-                'page_title_about': "सैम प्लेज़ - बारे में",
-                'loader_text': "लोड हो रहा है, कृपया प्रतीक्षा करें",
-                'nav_about': "बारे में",
-                'nav_recent_videos': "हाल के वीडियो",
-                'title': "सैम प्लेज़",
-                'settings_cursor_title': "कर्सर शैली",
-                'cursor_default': "डिफ़ॉल्ट",
-                'cursor_crosshair': "क्रॉसहेयर",
-                'settings_language_title': "भाषा",
-                'about_heading': "मेरे बारे में",
-                'about_paragraph': 'नमस्ते! मैं समर हूँ, सैम प्लेज़ का निर्माता, जहाँ मैं माइनक्राफ्ट, वुड यू रैदर और पबजी जैसे गेम खेलता हूँ। यह सब एक सामान्य दिन शुरू हुआ जब मेरे दिमाग में एक सरल प्रश्न आया: "लोग अपने चैनल पर वीडियो कैसे अपलोड करते हैं?" उस जिज्ञासा ने कुछ बड़ा जगाया—और बस ऐसे ही, सैम प्लेज़ का जन्म हुआ। अब, मैं यहाँ अपने गेमिंग एडवेंचर्स साझा करने, मज़े करने और आप जैसे अद्भुत लोगों से जुड़ने के लिए हूँ। सब्सक्राइब बटन दबाएं और यात्रा में शामिल हों!'
-             }
-        };
-
         document.addEventListener('DOMContentLoaded', () => {
           // --- Loader Hiding ---
           const loader = document.getElementById("loader");
@@ -597,22 +531,23 @@
           }
 
           // --- Elements ---
-          const settingsBtn = document.getElementById('settingsBtn');
-          const settingsPanel = document.getElementById('settingsPanel');
+          const menuBtn = document.getElementById('menuBtn');
+          const sideMenu = document.getElementById('sideMenu');
           const cursorRadios = document.querySelectorAll('input[name="cursor-style"]');
-          const languageSelector = document.getElementById('languageSelector');
+          const reduceMotionToggle = document.getElementById('reduceMotionToggle');
 
-          // --- Settings Panel Toggle ---
-          if (settingsBtn && settingsPanel) {
-              settingsBtn.addEventListener('click', (event) => {
+          // --- Side Menu Toggle ---
+          if (menuBtn && sideMenu) {
+              menuBtn.addEventListener('click', (event) => {
                   event.stopPropagation();
-                  settingsPanel.classList.toggle('visible');
+                  menuBtn.classList.toggle('open');
+                  sideMenu.classList.toggle('visible');
               });
-              document.addEventListener('click', (event) => {
-                  if (settingsPanel.classList.contains('visible') &&
-                      !settingsPanel.contains(event.target) &&
-                      event.target !== settingsBtn) {
-                      settingsPanel.classList.remove('visible');
+              
+              sideMenu.addEventListener('click', (event) => {
+                  if (event.target === sideMenu) {
+                     menuBtn.classList.remove('open');
+                     sideMenu.classList.remove('visible');
                   }
               });
           }
@@ -639,44 +574,20 @@
           });
           applyCursor(savedCursor); // Apply initially
 
-          // --- Language Functionality ---
-          function getCurrentLang() {
-            return localStorage.getItem('selectedLanguage') || 'en';
+          // --- Reduce Motion Functionality ---
+          function applyReduceMotion(isReduced) {
+              document.body.classList.toggle('reduce-motion', isReduced);
+              localStorage.setItem('reduceMotion', isReduced ? 'true' : 'false');
           }
+          
+          const savedReduceMotion = localStorage.getItem('reduceMotion') === 'true';
+          reduceMotionToggle.checked = savedReduceMotion;
+          applyReduceMotion(savedReduceMotion);
 
-          function applyTranslations(lang) {
-            const langDict = translations[lang];
-            if (!langDict) {
-              console.warn(`Translations for "${lang}" not found.`);
-              return;
-            }
-            document.querySelectorAll('[data-translate-key]').forEach(element => {
-              const key = element.dataset.translateKey;
-              const translation = langDict[key];
-              if (translation !== undefined) {
-                 if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-                     if (element.placeholder) { element.placeholder = translation; }
-                 } else {
-                     element.textContent = translation;
-                 }
-              } else if (lang !== 'en' && translations['en'][key]) {
-                 // Fallback to English
-                 element.textContent = translations['en'][key];
-              }
-            });
-            document.documentElement.lang = lang;
-            localStorage.setItem('selectedLanguage', lang);
-          }
-
-          const savedLanguage = getCurrentLang();
-          if (languageSelector) {
-            languageSelector.value = savedLanguage;
-            languageSelector.addEventListener('change', () => {
-              applyTranslations(languageSelector.value);
-            });
-          }
-          applyTranslations(savedLanguage); // Apply initially
-
+          reduceMotionToggle.addEventListener('change', () => {
+              applyReduceMotion(reduceMotionToggle.checked);
+          });
+          
           // --- Disable Right-Click/Drag on Social Icons ---
           const socialIcons = document.querySelectorAll('.social-icon img');
           socialIcons.forEach(icon => {
