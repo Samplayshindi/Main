@@ -28,6 +28,8 @@ If spot something off or have an idea, feel free to open an issue or drop me a m
 
 └── README.md (This file)
 
+---
+
 
 The main website files are inside this github repository called `Main/`.
 
@@ -51,4 +53,48 @@ New videos are on the way!
 
 ---
 
-Thanks for stopping by. your support means a lot.
+## 🧾 Release Notes
+
+✅ v1.8.0
+
+Clearer and more organized main menu
+Removed unnecessary settings to improve performance
+Smoother, more fluid scrolling
+Support for reduced motion preferences
+Faster and more responsive animations
+GitHub repository icon added to the site
+Subscribe button now styled in red for better visibility
+Redesigned contact and feedback section
+Smarter loading screen that appears only when everything is ready
+Sticky header that stays visible while scrolling
+Optimized mobile layout for better performance across devices
+
+✅ v1.6.0
+
+Contact and feedback form added
+Keyboard navigation support introduced
+Hidden easter egg accessible via keyboard shortcut
+New custom cursor options
+Multi-language support added
+
+✅ v1.4.0
+
+Reworked homepage layout
+Enhanced Recent Videos tab
+Even smoother animations
+Scroll-to-top button added
+Redesigned social media icons
+Performance boosts across the site
+Improved touch experience on mobile devices
+
+✅ v1.2.0
+
+Improved animations
+Faster loading times
+Updated FAQ section
+Social media links added
+New Recent Videos tab added
+
+---
+
+Thanks for visiting and supporting Samplayshindi. Every bit of feedback, every suggestion, and every view means a lot. 🍻
