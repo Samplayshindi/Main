@@ -45,8 +45,6 @@ New gaming videos and updates are on the way. Stay tuned!
 
 ## 🧾 Release Notes
 
-Here’s a summary of key updates and changes across versions:
-
 ---
 
 ### ✅ v1.8.0  
