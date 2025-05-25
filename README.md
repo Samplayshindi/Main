@@ -20,13 +20,13 @@ Main/
 ├── Index.html           # The main homepage
 ├── About.html           # The 'About Me' page
 ├── RecentVideos.html    # A page showcasing recent videos
-├── [Assets]             # Images, stylesheets, and other media
+├── [Assets]             # Images and other media
 └── README.md            # This file
 ```
 
 - **Index.html**: The homepage and the first page visitors see.  
-- **About.html**: Learn more about me and my journey — like a mini Wikipedia page.  
-- **RecentVideos.html**: Stay updated with my latest gaming content.  
+- **About.html**: It is like a Wikipedia page. Telling you more about me.
+- **RecentVideos.html**: Stay updated with my latest gaming content.
 - **README.md**: The file you're reading now, containing all key information about the project.
 
 ---
