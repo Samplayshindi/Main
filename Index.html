@@ -87,38 +87,53 @@
       position: fixed;
       width: 100vw;
       height: 100vh;
-      background: #081c2c;
+      background: #0a0f14; /* Darker background */
       color: white;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       z-index: 10000;
-      transition: opacity 0.8s ease, visibility 0.8s ease;
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 0.8s ease-out 0.5s, visibility 0.8s ease-out 0.5s; /* Added delay for fade-out */
       user-select: none;
     }
 
-    .spinner {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      border: 8px solid rgba(255, 255, 255, 0.3);
-      border-top-color: #4fc3f7;
-      animation: spin 1.4s linear infinite;
-      margin-bottom: 20px;
+    .loader-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        animation: pulseLoaderContent 2s infinite ease-in-out;
     }
 
-    @keyframes spin {
+    @keyframes pulseLoaderContent {
+        0%, 100% { transform: scale(1); opacity: 0.8; }
+        50% { transform: scale(1.03); opacity: 1; }
+    }
+
+    .spinner {
+      width: 70px; /* Slightly smaller */
+      height: 70px;
+      border-radius: 50%;
+      border: 6px solid rgba(255, 255, 255, 0.2); /* Lighter border base */
+      border-top-color: #61dafb; /* Brighter accent */
+      border-right-color: #61dafb; /* Second accent for effect */
+      animation: spinEnhanced 1.2s linear infinite;
+      margin-bottom: 25px;
+    }
+
+    @keyframes spinEnhanced {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
 
     .loader-text {
       font-family: 'Montserrat', sans-serif;
-      font-size: 1.4em;
+      font-size: 1.3em;
       text-align: center;
-      color: #e0f7fa;
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+      color: #cce7ff; /* Lighter text */
+      letter-spacing: 1px;
     }
 
     #loader.hide {
@@ -660,8 +675,10 @@
   <div data-scroll-container>
 
     <div id="loader">
-      <div class="spinner"></div>
-      <div class="loader-text">Loading, Please Wait</div>
+      <div class="loader-content">
+        <div class="spinner"></div>
+        <div class="loader-text">Loading, Please Wait</div>
+      </div>
     </div>
 
     <header>
@@ -901,9 +918,18 @@
 
     // --- DOMContentLoaded Event Listener ---
     document.addEventListener('DOMContentLoaded', () => {
-      // Hide Loader
-      if(loader) {
-        setTimeout(() => { loader.classList.add("hide"); }, 100);
+      // Loader Logic
+      const firstVisitSessionKey = 'indexPageFirstVisitDone'; // Unique key for Index.html
+      const isFirstVisit = !localStorage.getItem(firstVisitSessionKey);
+      const loaderDisplayDuration = isFirstVisit ? 4000 : 200; // 4 seconds for first visit, 200ms otherwise
+
+      if (loader) {
+        setTimeout(() => {
+            loader.classList.add("hide");
+            if (isFirstVisit) {
+                localStorage.setItem(firstVisitSessionKey, 'true');
+            }
+        }, loaderDisplayDuration);
       }
       
       // Menu Toggle
