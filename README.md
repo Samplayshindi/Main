@@ -45,8 +45,6 @@ New gaming videos and updates are on the way. Stay tuned!
 
 ## 🧾 Release Notes
 
----
-
 ### ✅ v1.8.0  
 - Clearer and more organized main menu  
 - Removed unnecessary settings to improve performance  
