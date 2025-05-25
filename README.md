@@ -1,6 +1,6 @@
 # 🎮 Samplayshindi – The Website
 
-Welcome to the official repository of **Samplayshindi** — a personal website built using **HTML**, **CSS**, and **JavaScript**, and hosted on **GitHub Pages**. This site is a continuing work in progress and keeps improving with every update.
+Welcome to my personal site repository. built with HTML, CSS, and JavaScript, and hosted on GitHub Pages. It’s a work in progress, getting better every time.
 
 ### 🔗 [Visit Live Site](https://samplayshindi.github.io/Main/Index.html)
 
@@ -8,7 +8,7 @@ Welcome to the official repository of **Samplayshindi** — a personal website b
 
 ## 🚧 Project Status
 
-The website is now fully functional and actively maintained. I regularly release new features, make design improvements, and update content to keep everything fresh. If you notice a bug or have a suggestion, feel free to [open an issue](https://github.com/samplayshindi/Main/issues) or reach out directly. Your feedback helps shape this project.
+The website is now fully functional and actively maintained. I regularly release new features, make design improvements, and update content to keep everything fresh. If you notice a bug or have a suggestion, feel free to [open an issue](https://github.com/samplayshindi/Main/issues) or reach out directly. Your feedback helps to shape this project.
 
 ---
 
