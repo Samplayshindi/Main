@@ -3,7 +3,7 @@
 Welcome to the official repository of **Samplayshindi** — a personal website built using **HTML**, **CSS**, and **JavaScript**, and hosted on **GitHub Pages**. This site is a continuing work in progress and keeps improving with every update.
 
 ### 🔗 Live Site  
-[Visit Samplayshindi](https://samplayshindi.github.io/Main/Index.html)
+[Visit](https://samplayshindi.github.io/Main/Index.html)
 
 ---
 
