@@ -44,9 +44,9 @@
         transform: none !important;
     }
 
-    /* Reduce Motion: Ensure html/body allow native scrolling */
-    html.reduce-motion-active {
-        overflow-y: auto !important; /* Override Locomotive's html.has-scroll-smooth */
+    /* Reduce Motion: Ensure /body allow native scrolling */
+    .reduce-motion-active {
+        overflow-y: auto !important; /* Override Locomotive's .has-scroll-smooth */
     }
     body.reduce-motion {
         overflow-y: auto !important; /* Ensure body can scroll if needed */
@@ -817,7 +817,7 @@
     const faqQuestions = document.querySelectorAll('.faq-question');
     const secondPageImg = document.querySelector('.second-page img');
     const scrollContainer = document.querySelector('[data-scroll-container]');
-    const htmlElement = document.documentElement; // Reference to <html>
+    const Element = document.documentElement; // Reference to <>
 
     // --- Native Scroll Event Handler (for scroll-to-top when LocoScroll is off) ---
     function handleNativeScroll() {
@@ -863,7 +863,7 @@
             window.removeEventListener('scroll', handleNativeScroll);
             nativeScrollListenerActive = false;
         }
-        htmlElement.classList.remove('reduce-motion-active'); // Ensure this is removed
+        Element.classList.remove('reduce-motion-active'); // Ensure this is removed
     }
 
     // --- Destroy Locomotive Scroll ---
