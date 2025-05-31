@@ -1,6 +1,6 @@
 # 🎮 Samplayshindi – The Website
 
-Welcome to my personal site repository. built with HTML, CSS, and JavaScript, and hosted on GitHub Pages. It’s a work in progress, getting better every time.
+Welcome to my personal site repository. currently built with HTML and hosted on GitHub Pages. It’s a work in progress, getting better every time.
 
 ### 🔗 [Visit Live Site](https://samplayshindi.github.io/Main/Index.html)
 
@@ -43,50 +43,4 @@ New gaming videos and updates are on the way. Stay tuned!
 
 ---
 
-## 🧾 Release Notes
-
-### ✅ v1.8.0  
-- Clearer and more organized main menu  
-- Removed unnecessary settings to improve performance  
-- Smoother, more fluid scrolling  
-- Support for reduced motion preferences  
-- Faster and more responsive animations  
-- GitHub repository icon added to the site  
-- Subscribe button now styled in red for better visibility  
-- Redesigned contact and feedback section  
-- Smarter loading screen that appears only when everything is ready  
-- Sticky header that stays visible while scrolling  
-- Optimized mobile layout for better performance across devices
-
----
-
-### ✅ v1.6.0  
-- Contact and feedback form added  
-- Keyboard navigation support introduced  
-- Hidden easter egg accessible via keyboard shortcut  
-- New custom cursor options  
-- Multi-language support added
-
----
-
-### ✅ v1.4.0  
-- Reworked homepage layout  
-- Enhanced Recent Videos tab  
-- Even smoother animations  
-- Scroll-to-top button added  
-- Redesigned social media icons  
-- Performance boosts across the site  
-- Improved touch experience on mobile devices
-
----
-
-### ✅ v1.2.0  
-- Improved animations  
-- Faster loading times  
-- Updated FAQ section  
-- Social media links added  
-- New Recent Videos tab added
-
----
-
-Thanks for visiting and supporting Samplayshindi. Every bit of feedback, every suggestion, and every view means a lot.
+Thanks for visiting and supporting the project. Every bit of feedback and every view means a lot.
