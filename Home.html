@@ -44,9 +44,9 @@
         transform: none !important;
     }
 
-    /* Reduce Motion: Ensure /body allow native scrolling */
-    .reduce-motion-active {
-        overflow-y: auto !important; /* Override Locomotive's .has-scroll-smooth */
+    /* Reduce Motion: Ensure html/body allow native scrolling */
+    html.reduce-motion-active {
+        overflow-y: auto !important; /* Override Locomotive's html.has-scroll-smooth */
     }
     body.reduce-motion {
         overflow-y: auto !important; /* Ensure body can scroll if needed */
@@ -696,8 +696,8 @@
     <div id="sideMenu">
         <div class="side-menu-content">
             <div class="setting-section menu-nav-links">
-                 <a href="https://samplayshindi.github.io/Main/About" class="header-link">About</a>
-                 <a href="https://samplayshindi.github.io/Main/RecentVideos" class="header-link">RecentVideos</a>
+                 <a href="https://samplayshindi.github.io/Main/About.html" class="header-link">About</a>
+                 <a href="https://samplayshindi.github.io/Main/RecentVideos.html" class="header-link">Recent Videos</a>
             </div>
             <div class="setting-section cursor-options">
                 <h3>Cursor Style</h3>
@@ -817,7 +817,7 @@
     const faqQuestions = document.querySelectorAll('.faq-question');
     const secondPageImg = document.querySelector('.second-page img');
     const scrollContainer = document.querySelector('[data-scroll-container]');
-    const Element = document.documentElement; // Reference to <>
+    const htmlElement = document.documentElement; // Reference to <html>
 
     // --- Native Scroll Event Handler (for scroll-to-top when LocoScroll is off) ---
     function handleNativeScroll() {
@@ -863,7 +863,7 @@
             window.removeEventListener('scroll', handleNativeScroll);
             nativeScrollListenerActive = false;
         }
-        Element.classList.remove('reduce-motion-active'); // Ensure this is removed
+        htmlElement.classList.remove('reduce-motion-active'); // Ensure this is removed
     }
 
     // --- Destroy Locomotive Scroll ---
@@ -919,7 +919,7 @@
     // --- DOMContentLoaded Event Listener ---
     document.addEventListener('DOMContentLoaded', () => {
       // Loader Logic
-      const firstVisitSessionKey = 'indexPageFirstVisitDone'; // Unique key for Index
+      const firstVisitSessionKey = 'indexPageFirstVisitDone'; // Unique key for Index.html
       const isFirstVisit = !localStorage.getItem(firstVisitSessionKey);
       const loaderDisplayDuration = isFirstVisit ? 4000 : 200; // 4 seconds for first visit, 200ms otherwise
 
