@@ -1,6 +1,6 @@
 # 🎮 Samplayshindi – The Website
 
-Welcome to my personal site repository. currently built with HTML and hosted on GitHub Pages. It’s a work in progress, getting better every time.
+Welcome to my personal site repository. currently built with HTML and hosted on GitHub Pages.
 
 ### 🔗 [Visit Site](https://samplayshindi.github.io/Main/Home.html)
 
