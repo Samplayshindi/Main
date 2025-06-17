@@ -36,10 +36,4 @@ Open an issue or send me a message. I’d love to hear from you.
 
 ---
 
-## 📹 Upcoming Content
-
-New gaming videos and updates are on the way. Stay tuned!
-
----
-
-Thanks for visiting and supporting the project. Every bit of feedback and every view means a lot.
+Thanks for visiting and supporting the project ✨
