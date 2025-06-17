@@ -19,7 +19,6 @@ Main/
 ├── Index.html           # The main homepage
 ├── About.html           # The 'About Me' page
 ├── RecentVideos.html    # A page showcasing recent videos
-├── [Assets]             # Images and other media
 └── README.md            # This file
 ```
 
