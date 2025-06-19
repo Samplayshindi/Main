@@ -40,17 +40,15 @@ Open an issue or send me a message. I’d love to hear from you.
 
 ## Now Let's talk about Samplays Website v2.0.0 – The Biggest Update Yet!
 
----
-
-I am excited to announce that **Samplays Website v2.0.0** is currently in the works! This will not just be another update, but a complete overhaul, crafted to deliver the most polished and user-friendly experience yet. 
+I am excited to announce that v2.0.0 is currently in the works. This will be a significant improvement from any of the releases yet.
 Here's only half of what's coming in v2.0.0 :
 
 ---
 
-* **Dynamic Previews:** Hover over recent videos for video previews.
-* **Smooth Navigation:** Animated page entrance effects and a completely redesigned home hero section.
-* **Refined Design System:** A fine-tuned color palette for optimal contrast and improved header text shadow adjustments for superior readability.
-* **Modern Touches:** minimalist rotating loader (replacing the old full-screen version), new animated divider effects between sections.
+* **Dynamic Previews:** Video previews on hovering over recent videos.
+* **Navigation Additions:** Animated page entrance effects.
+* **Refined Design:** A finely tuned color palette for optimal contrast.
+* **Modern Touches:** minimalist rotating loader (replacing the old full-screen version).
 * **Fast Loads:** Significantly improved loading times thanks to asset optimization.
 * **Efficient Codebase:** CSS and JavaScript files will undergone a major reorganization and cleaning.
 * **Optimized Media:** Responsive image scaling across all devices and optimized backgrounds. All icons optimized as SVG or inline paths for crisp display.
