@@ -40,7 +40,7 @@ Open an issue or send me a message. I’d love to hear from you.
 
 ## Now Let's talk about Samplays Website v2.0.0 – The Biggest Update Yet!
 
-I am excited to announce that v2.0.0 is currently in the works. This will be a significant improvement from any of the releases yet.
+I am excited to announce that v2.0.0 is currently in the works. This will be a significant improvement from any of the releases yet. Coming Early September with 50+ Changes
 
 
 ---
