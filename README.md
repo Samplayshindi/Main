@@ -2,7 +2,7 @@
 
 Welcome to my personal site repository. currently built with HTML and hosted on GitHub Pages.
 
-### 🔗 [Visit Site](https://samplayshindi.github.io/Main/Home.html)
+### 🔗 [Visit Site](samplayshindi.work.gd/Home)
 
 ---
 
@@ -38,9 +38,9 @@ Open an issue or send me a message. I’d love to hear from you.
 ---
 
 
-## Now Let's talk about Samplays Website v2.0.0 – The Biggest Update Yet!
+## v2.0.0 – The Biggest Update Yet!
 
-I am excited to announce that v2.0.0 is currently in the works. This will be a significant improvement from any of the releases yet. Coming Early September with 50+ Changes
+I am excited to announce that v2.0.0 is currently in the works. This will be a significant improvement from any of the releases yet. Coming September 5th with many changes!
 
 
 ---
