@@ -2,7 +2,7 @@
 
 Welcome to my personal site repository. currently built with HTML and hosted on GitHub Pages.
 
-### 🔗 [Visit Site](samplayshindi.work.gd/Home)
+### 🔗 [Visit Site](http://samplayshindi.work.gd/Home)
 
 ---
 
