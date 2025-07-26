@@ -1,6 +1,6 @@
 # 🎮 Samplayshindi – The Website
 
-Welcome to my personal site repository. currently built with HTML and hosted on GitHub Pages.
+Welcome to my personal site repository. currently built with HTML.
 
 ### 🔗 [Visit Site](http://samplayshindi.work.gd/Home)
 
@@ -8,7 +8,15 @@ Welcome to my personal site repository. currently built with HTML and hosted on 
 
 ## 🚧 Project Status
 
-The website is now fully functional and actively maintained. I regularly release new features, make design improvements, and update content to keep everything fresh. If you notice a bug or have a suggestion, feel free to [open an issue](https://github.com/samplayshindi/Main/issues) or reach out directly. Your feedback helps to shape this project.
+The website is fully functional and actively maintained. I regularly add new features, polish designs, and update content to keep everything fresh. Your feedback is invaluable. if you spot any bugs or have suggestions, please open an issue or contact me directly.
+
+---
+
+### 📅 Announcing v2.0.0 – The Biggest Update Yet!
+
+- **Release Date:** September 5th
+
+This major update will bring a host of exciting new features, refined designs, and improved user experience that surpasses all previous versions. So stay tuned.
 
 ---
 
@@ -16,16 +24,21 @@ The website is now fully functional and actively maintained. I regularly release
 
 ```
 Main/
-├── Index.html           # The main homepage
-├── About.html           # The 'About Me' page
-├── RecentVideos.html    # A page showcasing recent videos
-└── README.md            # This file
+├── Home            # The main homepage
+├── About           # The 'About Me' page
+├── RecentVideos    # A page showcasing recent videos
+└── README.md       # This file
 ```
 
-- **Index.html**: The homepage and the first page visitors see.  
-- **About.html**: It is like a Wikipedia page. Telling you more about me.
-- **RecentVideos.html**: Stay updated with my latest gaming content.
-- **README.md**: The file you're reading now, containing all key information about the project.
+- **Home**: The homepage and first impression.
+  
+- **About**: learn more about me.
+  
+- **RecentVideos**: Showcasing the latest gaming videos.
+  
+- **README.md**: This overview and project info.
+
+ **Note:** The project structure will be updated with the release of the next update on September 5th.
 
 ---
 
@@ -34,16 +47,8 @@ Main/
 Got an idea for a new feature? Found a bug? Think something could work or look better?  
 Open an issue or send me a message. I’d love to hear from you.
 
-
----
-
-
-## v2.0.0 – The Biggest Update Yet!
-
-I am excited to announce that v2.0.0 is currently in the works. This will be a significant improvement from any of the releases yet. Coming September 5th with many changes!
-
-
 ---
 
 
 Thanks for visiting and supporting the project ✨
+— Samplayshindi
