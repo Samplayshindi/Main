@@ -1,0 +1,39 @@
+name: Scheduled Website Launch
+
+on:
+  schedule:
+    - cron: "30 18 4 9 *"
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout main branch
+        uses: actions/checkout@v3
+        with:
+          ref: main
+
+      - name: Download release package
+        run: |
+          curl -L -o release.zip "${{ secrets.https://drive.google.com/uc?export=download&id=1Ql-aJyrinPjyD2E_Vejly-kTtfW1UHAz }}"
+          unzip release.zip -d release
+
+      - name: Replace old files with new release
+        run: |
+          shopt -s extglob
+          rm -rf !( .git )
+          cp -r release/* .
+          # Handle Index.html capitalization
+          if [ -f index.html ]; then
+            mv index.html Index.html
+          fi
+          rm -rf release
+
+      - name: Commit and push
+        run: |
+          git config user.name "GitHub Robot"
+          git config user.email "robot@example.com"
+          git add .
+          git commit -m "v2.0.0"
+          git push origin main
