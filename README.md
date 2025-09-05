@@ -1,22 +1,29 @@
-# 🎮 Samplayshindi – The Website
+# 🎮 Samplayshindi – The Official Website
 
-Welcome to my personal site repository. currently built with HTML.
+**Welcome to the home of all things Samplayshindi!**  
+This is my personal website, built with love (and HTML, CSS and Java) and hosted on **GitHub Pages**.
 
-### 🔗 [Visit Site](http://samplayshindi.work.gd/Home)
+### 🔗 **[Visit the Live Site](https://samplayshindi.work.gd)**  
 
----
+📅 Latest Version: `v2.0.0` – Released September 2025
 
-## 🚧 Project Status
-
-The website is fully functional and actively maintained. I regularly add new features, polish designs, and update content to keep everything fresh. Your feedback is invaluable. if you spot any bugs or have suggestions, please open an issue or contact me directly.
 
 ---
 
-### 📅 Announcing v2.0.0 – The Biggest Update Yet!
+## 🚀 What's New in v2.0.0 — The Biggest Update Yet!
 
-- **Release Date:** September 5th
+The wait is over. Version 2.0.0 is here!  
+it's a complete **refresh**, with:
 
-This major update will bring a host of exciting new features, refined designs, and improved user experience that surpasses all previous versions. So stay tuned.
+- ✅ Over **50+ improvements** and new features
+- 🎨 A fully **redesigned layout** for better readability and style
+- ⚡ Performance boosts and faster loading times
+- 📱 Better mobile responsiveness
+- 🧠 Smarter structure and cleaner code
+
+If you want more info about the update, the complete changelog is available on the site.
+
+Whether you're a new visitor or a returning one, there's something fresh for you to explore.
 
 ---
 
@@ -24,31 +31,34 @@ This major update will bring a host of exciting new features, refined designs, a
 
 ```
 Main/
-├── Home            # The main homepage
-├── About           # The 'About Me' page
-├── RecentVideos    # A page showcasing recent videos
-└── README.md       # This file
+├── index.html           # The main homepage
+├── index.css
+├── index.js
+├── about.html           # The 'About Me' page
+├── about.css
+├── about.js
+├── recentvideos.html    # A page showcasing recent videos
+├── recentvideos.css
+├── recentvideos.js
+├── changelog.html       # Page for updates regarding the website UI
+├── changelog.css
+├── changelog .js
+└── README.md            # This file
 ```
+---
 
-- **Home**: The homepage and first impression.
-  
-- **About**: learn more about me.
-  
-- **RecentVideos**: Showcasing the latest gaming videos.
-  
-- **README.md**: This overview and project info.
+## 💡 Feedback
 
- **Note:** The project structure will be updated with the release of the next update on September 5th.
+Your feedback helps to improve the experience.
+If you have an idea for a new feature, a bug to report, or just want to suggest an improvement
+
+Feel free to [open an issue](https://github.com/Samplayshindi/Main/issues) or reach out directly.  
 
 ---
 
-## 💡 Contributing & Suggestions
+## 🙏 Thanks for Visiting
 
-Got an idea for a new feature? Found a bug? Think something could work or look better?  
-Open an issue or send me a message. I’d love to hear from you.
+I appreciate you stopping by and checking out my work.  
+**Stay tuned**—more updates, content, and cool stuff are always on the way!
 
----
-
-
-Thanks for visiting and supporting the project ✨
-— Samplayshindi
+✨ _Samplayshindi_
