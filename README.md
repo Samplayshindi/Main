@@ -31,19 +31,23 @@ Whether you're a new visitor or a returning one, there's something fresh for you
 
 ```
 Main/
-├── index.html           # The main homepage
-├── index.css
-├── index.js
-├── about.html           # The 'About Me' page
-├── about.css
-├── about.js
-├── recentvideos.html    # A page showcasing recent videos
-├── recentvideos.css
-├── recentvideos.js
-├── changelog.html       # Page for updates regarding the website UI
-├── changelog.css
-├── changelog .js
-└── README.md            # This file
+├── index.html           # Homepage
+├── index.css            # Styles for homepage layout & design
+├── index.js             # Scripts for homepage interactivity
+│
+├── about.html           # About Me page
+├── about.css            # Styling for About page content & layout
+├── about.js             # Any animations or logic for About page
+│
+├── recentvideos.html    # Recent Videos showcase
+├── recentvideos.css     # Grid, thumbnails, and styling for videos section
+├── recentvideos.js      # Handles video embeds, interactions, or dynamic loading
+│
+├── changelog.html       # UI updates and changelog
+├── changelog.css        # Styling for changelog entries & timeline
+├── changelog.js         # Manages changelog item toggles or animations
+│
+└── README.md            # Documentation
 ```
 ---
 
