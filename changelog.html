@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samplays - Complete Changelog</title>
+    <link id="favicon" rel="icon" type="image/png" href="https://raw.githubusercontent.com/SamarYT567/Test/refs/heads/main/Assets/FaviconLight.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/dungeon-depths" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css">
+
+    <link rel="stylesheet" href="changelog.css">
+</head>
+<body>
+    <div class="cursor-dot"></div>
+    <div class="cursor-follower"></div>
+
+    <div data-scroll-container>
+        <div id="loader">
+            <div class="spinner"></div>
+        </div>
+
+        <header id="mainHeader">
+            <div class="header-placeholder"></div>
+            <div class="header-title">
+                <h1 data-i18n-key="channelTitle">Sam Plays</h1>
+            </div>
+            <button id="menuBtn" title="Open Menu" aria-label="Open Menu">
+                <div class="menu-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </button>
+        </header>
+
+        <div id="sideMenu">
+            <div class="side-menu-header">
+                <button id="closeMenuBtn" title="Close Menu" aria-label="Close Menu">×</button>
+            </div>
+            <div class="side-menu-content">
+                <div class="setting-section menu-nav-links">
+                    <a href="https://samplayshindi.work.gd/" data-i18n-key="navHome">Home</a>
+                    <a href="https://samplayshindi.work.gd/about" data-i18n-key="navAbout">About</a>
+                    <a href="https://samplayshindi.work.gd/recentvideos" data-i18n-key="navRecentVideos">Recent Videos</a>
+                </div>
+                <div class="setting-section accessibility-options">
+                    <h3 data-i18n-key="headingAccessibility">Accessibility</h3>
+                    <div class="toggle-switch-container">
+                        <span data-i18n-key="optionReduceMotion">Reduce Motion</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="reduceMotionToggle">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="setting-section cursor-options">
+                    <h3 data-i18n-key="headingCursorStyle">Cursor Style</h3>
+                    <div class="radio-option">
+                        <input type="radio" id="cursor-ambient-dot" name="cursor-style" value="ambient-dot" checked>
+                        <label for="cursor-ambient-dot" data-i18n-key="cursorAmbientDot">Ambient Dot</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="cursor-default" name="cursor-style" value="default">
+                        <label for="cursor-default" data-i18n-key="cursorDefault">Default</label>
+                    </div>
+                </div>
+                <div class="setting-section theme-options">
+                    <h3 data-i18n-key="headingTheme">Theme</h3>
+                    <div class="radio-option">
+                        <input type="radio" id="theme-system" name="theme-style" value="system">
+                        <label for="theme-system" data-i18n-key="themeSystem">System</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="theme-light" name="theme-style" value="light">
+                        <label for="theme-light" data-i18n-key="themeLight">Light</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="theme-dark" name="theme-style" value="dark">
+                        <label for="theme-dark" data-i18n-key="themeDark">Dark</label>
+                    </div>
+                </div>
+                <div class="setting-section language-options">
+                    <h3 data-i18n-key="headingLanguage">Language</h3>
+                    <select id="languageSelector" aria-label="Select Language">
+                        <option value="en">English</option>
+                        <option value="de">Deutsch</option>
+                    </select>
+                </div>
+                <div class="sidebar-version">v2.0.0</div>
+            </div>
+        </div>
+
+        <main class="main-container" data-scroll-section>
+            <div class="grid-item" style="max-width: 900px; margin: 0 auto; padding: 2rem 3rem;">
+                <h1 class="section-heading" style="font-size: clamp(2rem, 6vw, 2.5rem); font-weight: 800; margin-bottom: 2.5rem;">
+                    Complete Changelog
+                </h1>
+
+                <div class="changelog-entry">
+                    <h2>v2.0.0 - The Overhaul Update</h2>
+                    <p class="release-date">Release Date: September 5, 2025</p>
+                    
+                    <h3>🎨 Design Changes</h3>
+                    <ul>
+                        <li>Complete site layout has been redesigned for a modern look</li>
+                        <li>Modular card based layout system introduced across pages</li>
+                        <li>Updated video thumbnails with rounded corners</li>
+                        <li>Simplified navigation bar with intuitive iconography and cleaner hierarchy</li>
+                        <li>Unified section padding, margins, and spacing system site-wide</li>
+                        <li>Consistent border radius applied for a softer UI across components</li>
+                        <li>Different colored backgrounds replacing the old backgrounds.</li>
+                        <li>Footer redesigned with modern grid layout and better mobile support</li>
+                        <li>Button styles overhauled for uniformity and visual consistency</li>
+                        <li>New section headers with animated underlines and highlight effects</li>
+                    </ul>
+
+                    <h3>🚀 Performance</h3>
+                    <ul>
+                        <li>Optimized assets for faster load times</li>
+                        <li>Deferred all scripts for better performance</li>
+                        <li>Reorganized CSS and JS files</li>
+                        <li>Refactored JavaScript using ES6 modules</li>
+                        <li>Better Image scaling across all devices</li>
+                        <li>Backgrounds optimized for performance across low end devices</li>
+                        <li>Icons converted to SVG/Webp for scalability</li>
+                        <li>Reduced layout shift on page transitions</li>
+                        <li>Smoother scroll behavior with JavaScript</li>
+                    </ul>
+                
+                    <h3>✨ Enhanced Visuals</h3>
+                    <ul>
+                        <li>New font styling and typography</li>
+                        <li>Fine tuned color palette</li>
+                        <li>Improved header background</li>
+                        <li>Interactive button press effects</li>
+                        <li>Simple rotating loader</li>
+                        <li>Animated effects between sections</li>
+                        <li>Enhanced custom cursor style options</li>
+                    </ul>
+                
+                    <h3>📱 Mobile Improvements</h3>
+                    <ul>
+                        <li>Improved mobile menu with touch enhancements</li>
+                        <li>Optimized layout spacing for mobile devices</li>
+                        <li>Added support for landscape phone orientation</li>
+                        <li>Auto adjusting of font sizes by screen size is now better</li>
+                        <li>Better spacing on tablet width screens</li>
+                        <li>Adjusted image loading priorities for mobile users</li>
+                        <li>Gesture support for swipe to close</li>
+                    </ul>
+                
+                    <h3>⚙️ General Improvements and Additions</h3>
+                    <ul>
+                        <li>Keyboard shortcuts for faster navigation</li>
+                        <li>Reworked FAQ with improved collapsible accordions</li>
+                        <li>Changelog viewer added on the site</li>
+                        <li>Recent video list is now generated using JS objects</li>
+                        <li>Cleaned full project structure</li>
+                        <li>Improved default settings</li>
+                        <li>Added link to changelog in settings panel with full list</li>
+                        <li>Smoother scroll behavior with JavaScript and passive listeners</li>
+                        <li>Lazy loading for all off screen images</li>
+                        <li>Leveraged browser caching policies for static assets.</li>
+                        <li>Migrated asset hosting to a global Content Delivery Network (CDN).</li>
+                        <li>Added a glass morphism effect to the header.</li>
+                        <li>Interactive button press effects with subtle haptic feedback on compatible devices</li>
+                        <li>Theme switcher (Light, Dark, and System modes) added</li>
+                        <li>Dynamic favicon that updates based on the current theme.</li>
+                        <li>Multi-language support scaffolding (i18n)</li>
+                        <li>Cookie consent banner with privacy settings</li>
+                        <li>Hotkey help menu (press ? or H) to show available shortcuts</li>
+                    </ul>
+                </div>
+
+                <div class="changelog-entry">
+                    <h2>v1.8.5 - URL Update</h2>
+                    <p class="release-date">Release Date: May 26, 2025</p>
+                    <ul>
+                        <li>Changed the site’s main URL structure.</li>
+                        <li>Updated all internal links to reflect the new domain path.</li>
+                        <li>Ensured all navigation, feedback, and video pages point to the correct new URLs.</li>
+                        <li>Verified compatibility across desktop and mobile browsers.</li>
+                    </ul>
+                </div>
+
+                <div class="changelog-entry">
+                    <h2>v1.8.0 - A Better, Smoother Experience</h2>
+                    <p class="release-date">Release Date: May 25, 2025</p>
+                    <h3>What's New:</h3>
+                    <ul>
+                        <li>Clearer and more organized menu options for easier navigation.</li>
+                        <li>Support for reduced motion based on user device settings.</li>
+                        <li>GitHub icon added to the site header linking to the project repository.</li>
+                        <li>Subscribe button updated with a red style for improved visibility.</li>
+                        <li>Contact and feedback section redesigned for better usability.</li>
+                    </ul>
+                    <h3>Performance and Usability Improvements:</h3>
+                    <ul>
+                        <li>Sticky header added for easier access to navigation while scrolling.</li>
+                        <li>Optimized mobile layout for better experience on small screens.</li>
+                        <li>Smoother scrolling and faster animation transitions.</li>
+                        <li>Cleaned up unused settings for improved performance.</li>
+                    </ul>
+                </div>
+
+                <div class="changelog-entry">
+                    <h2>v1.6.0 - New Features</h2>
+                    <p class="release-date">Release Date: Early May 2025</p>
+                    <h3>What's New and Improved:</h3>
+                    <ul>
+                        <li>Contact / Feedback Form added to engage with visitors.</li>
+                        <li>Keyboard navigation support introduced.</li>
+                        <li>Easter-egg keyboard shortcut added for fun interactions.</li>
+                        <li>Custom cursor style options introduced.</li>
+                        <li>Multi-language support added for broader accessibility.</li>
+                    </ul>
+                </div>
+
+                <div class="changelog-entry">
+                    <h2>v1.4.0 - Improvements and New Features</h2>
+                    <p class="release-date">Release Date: April 2025</p>
+                    <h3>What’s New:</h3>
+                    <ul>
+                        <li>Reworked homepage layout with cleaner structure.</li>
+                        <li>Improved Recent Videos section with better formatting.</li>
+                        <li>Smoother and more responsive animations.</li>
+                        <li>Scroll-to-top button added for convenience.</li>
+                        <li>Redesigned social media icons.</li>
+                        <li>General performance enhancements.</li>
+                        <li>Better touch handling for mobile users.</li>
+                    </ul>
+                </div>
+
+                <div class="changelog-entry">
+                    <h2>v1.2.0 - First Update</h2>
+                    <p class="release-date">Release Date: March 2025</p>
+                    <h3>What’s New:</h3>
+                    <ul>
+                        <li>Better animations for smoother user experience.</li>
+                        <li>Faster page load time with optimizations.</li>
+                        <li>Redesigned and improved FAQ section.</li>
+                        <li>Social media icons and links added.</li>
+                        <li>New "Recent Videos" tab introduced.</li>
+                    </ul>
+                </div>
+
+                <div class="changelog-entry">
+                    <h2>v1.0.0 - Early Development Files</h2>
+                    <p class="release-date">Release Date: February 2025</p>
+                    <ul>
+                        <li>First ever version of the site.</li>
+                        <li>Basic homepage layout and navigation.</li>
+                        <li>Early test content with placeholder elements.</li>
+                        <li>File names and structure may differ from final versions.</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+
+        <button id="scrollTopBtn" title="Go to top" aria-label="Scroll to top">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4l8 8h-6v8h-4v-8H4l8-8z"/></svg>
+        </button>
+    </div> 
+
+    <div id="hotkeyHelpModal" class="hotkey-modal" role="dialog" aria-modal="true" aria-labelledby="hotkey-title" hidden>
+        <div class="modal-content">
+            <button id="closeHelpModalBtn" class="close-btn" aria-label="Close hotkey help">&times;</button>
+            <h2 id="hotkey-title" data-i18n-key="hotkeyTitle">Keyboard Shortcuts</h2>
+            <ul>
+                <li><span data-i18n-key="hotkeyHelp">Show this help menu</span><div><span>?</span> or <span>H</span></div></li>
+                <li><span data-i18n-key="hotkeyMenu">Toggle menu</span><span>M</span></li>
+                <li><span data-i18n-key="hotkeyScrollTop">Scroll to top</span><span>T</span></li>
+                <li><span data-i18n-key="hotkeyScrollBottom">Scroll to bottom</span><span>B</span></li>
+                <li><span data-i18n-key="hotkeyClose">Close menu or dialog</span><span>ESC</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="cookie-consent-banner">
+      <div class="cookie-text" data-i18n-key="cookieText">
+          This website uses cookies to enhance the user experience. By continuing to browse, you agree to our use of cookies.
+      </div>
+      <div class="cookie-buttons">
+          <button id="cookie-decline-btn" class="cookie-btn" data-i18n-key="cookieDecline">Decline</button>
+          <button id="cookie-accept-btn" class="cookie-btn" data-i18n-key="cookieAccept">Accept</button>
+      </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.min.js"></script>
+    <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+
+    <script defer src="changelog.js"></script>
+</body>
+</html>
