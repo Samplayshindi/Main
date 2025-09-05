@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sam Plays - Recent Videos</title>
+  <link id="favicon" rel="icon" type="image/png" href="https://raw.githubusercontent.com/SamarYT567/Test/refs/heads/main/Assets/FaviconLight.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/dungeon-depths" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css">
+
+  <link rel="stylesheet" href="recentvideos.css">
+</head>
+<body>
+  <div class="cursor-dot"></div>
+  <div class="cursor-follower"></div>
+
+  <div data-scroll-container>
+    <div id="loader">
+      <div class="spinner"></div>
+    </div>
+
+    <header id="mainHeader">
+        <div class="header-placeholder"></div>
+        <div class="header-title">
+            <h1 data-i18n-key="channelTitle">Sam Plays</h1>
+        </div>
+        <button id="menuBtn" title="Open Menu" aria-label="Open Menu">
+            <div class="menu-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </button>
+    </header>
+
+    <div id="sideMenu">
+        <div class="side-menu-header">
+            <button id="closeMenuBtn" title="Close Menu" aria-label="Close Menu">×</button>
+        </div>
+        <div class="side-menu-content">
+            <div class="setting-section menu-nav-links">
+                 <a href="https://samplayshindi.work.gd/" data-i18n-key="navHome">Home</a>
+                 <a href="https://samplayshindi.work.gd/about" data-i18n-key="navAbout">About</a>
+                 <a href="https://samplayshindi.work.gd/changelog" data-i18n-key="navChangelog">Changelog</a>
+            </div>
+            <div class="setting-section accessibility-options">
+                <h3 data-i18n-key="headingAccessibility">Accessibility</h3>
+                <div class="toggle-switch-container">
+                    <span data-i18n-key="optionReduceMotion">Reduce Motion</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="reduceMotionToggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+            <div class="setting-section cursor-options">
+                <h3 data-i18n-key="headingCursorStyle">Cursor Style</h3>
+                <div class="radio-option">
+                    <input type="radio" id="cursor-ambient-dot" name="cursor-style" value="ambient-dot" checked>
+                    <label for="cursor-ambient-dot" data-i18n-key="cursorAmbientDot">Ambient Dot</label>
+                </div>
+                <div class="radio-option">
+                    <input type="radio" id="cursor-default" name="cursor-style" value="default">
+                    <label for="cursor-default" data-i18n-key="cursorDefault">Default</label>
+                </div>
+            </div>
+            <div class="setting-section theme-options">
+                <h3 data-i18n-key="headingTheme">Theme</h3>
+                <div class="radio-option">
+                    <input type="radio" id="theme-system" name="theme-style" value="system">
+                    <label for="theme-system" data-i18n-key="themeSystem">System</label>
+                </div>
+                <div class="radio-option">
+                    <input type="radio" id="theme-light" name="theme-style" value="light">
+                    <label for="theme-light" data-i18n-key="themeLight">Light</label>
+                </div>
+                <div class="radio-option">
+                    <input type="radio" id="theme-dark" name="theme-style" value="dark">
+                    <label for="theme-dark" data-i18n-key="themeDark">Dark</label>
+                </div>
+            </div>
+            <div class="setting-section language-options">
+                <h3 data-i18n-key="headingLanguage">Language</h3>
+                <select id="languageSelector" aria-label="Select Language">
+                    <option value="en">English</option>
+                    <option value="de">Deutsch</option>
+                </select>
+            </div>
+            <div class="sidebar-version">v2.0.0</div>
+        </div>
+    </div>
+
+    <main class="main-container" data-scroll-section>
+      <h2 class="page-heading" data-i18n-key="recentVideosTitle">Recent Videos</h2>
+
+      <div class="content-container" id="videoContainer">
+      </div>
+
+      <div class="view-more-container">
+          <button id="viewMoreBtn">
+              <span data-i18n-key="viewMoreVideos">View More Videos</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-down"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+          </button>
+      </div>
+    </main>
+
+    <button id="scrollTopBtn" title="Go to top" aria-label="Scroll to top">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4l8 8h-6v8h-4v-8H4l8-8z"/></svg>
+    </button>
+  </div> 
+
+  <div id="hotkeyHelpModal" class="hotkey-modal" role="dialog" aria-modal="true" aria-labelledby="hotkey-title" hidden>
+      <div class="modal-content">
+          <button id="closeHelpModalBtn" class="close-btn" aria-label="Close hotkey help">&times;</button>
+          <h2 id="hotkey-title" data-i18n-key="hotkeyTitle">Keyboard Shortcuts</h2>
+          <ul>
+              <li><span data-i18n-key="hotkeyHelp">Show this help menu</span><div><span>?</span> or <span>H</span></div></li>
+              <li><span data-i18n-key="hotkeyMenu">Toggle menu</span><span>M</span></li>
+              <li><span data-i18n-key="hotkeyScrollTop">Scroll to top</span><span>T</span></li>
+              <li><span data-i18n-key="hotkeyScrollBottom">Scroll to bottom</span><span>B</span></li>
+              <li><span data-i18n-key="hotkeyClose">Close menu or dialog</span><span>ESC</span></li>
+          </ul>
+      </div>
+  </div>
+
+  <div id="cookie-consent-banner">
+    <div class="cookie-text" data-i18n-key="cookieText">
+        This website uses cookies to enhance the user experience. By continuing to browse, you agree to our use of cookies.
+    </div>
+    <div class="cookie-buttons">
+        <button id="cookie-decline-btn" class="cookie-btn" data-i18n-key="cookieDecline">Decline</button>
+        <button id="cookie-accept-btn" class="cookie-btn" data-i18n-key="cookieAccept">Accept</button>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.min.js"></script>
+  <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+
+  <script defer src="recentvideos.js"></script>
+
+</body>
+</html>
