@@ -1,68 +1,74 @@
-# 🎮 Samplayshindi – The Official Website
+# SamPlays (2020 to 2026)
 
-**Welcome to the home of all things Samplayshindi!**  
-This is my personal website, built with love (and HTML, CSS and Java) and hosted on **GitHub Pages**.
+This website was once the center of a huge part of my life.
 
-### 🔗 **[Visit the Live Site](https://samplayshindi.work.gd)**  
+Built slowly over years with late nights, random ideas, redesigns, unfinished experiments, and countless small details, SamPlays became more than just a website to me. It became a reflection of who I was during that time.
 
-📅 Latest Version: `v2.0.0` – Released September 2025
+From the outside, it was just pages, updates, videos, changelogs, and projects.
 
-
----
-
-## 🚀 What's New in v2.0.0 — The Biggest Update Yet!
-
-The wait is over. Version 2.0.0 is here!  
-it's a complete **refresh**, with:
-
-- ✅ Over **50+ improvements** and new features
-- 🎨 A fully **redesigned layout** for better readability and style
-- ⚡ Performance boosts and faster loading times
-- 📱 Better mobile responsiveness
-- 🧠 Smarter structure and cleaner code
-
-If you want more info about the update, the complete changelog is available on the site.
-
-Whether you're a new visitor or a returning one, there's something fresh for you to explore.
+To me, it was home.
 
 ---
 
-## 📁 Project Structure
+## Final Status
+
+The project has officially ended.
+
+There will be no future updates, no rebrand, no relaunch, and no hidden comeback later on.
+
+Version `v2.0.0` was the final release.
+
+What started in 2020 now ends in 2026.
+
+Quietly.
+Completely.
+
+---
+
+## Looking Back
+
+A lot changed during these years.
+
+The person who created this website is not the same person writing this now.
+
+That version of me cared about different things, had different goals, and saw the world differently. For a long time, I kept trying to hold onto this project because letting go of it felt like deleting a part of myself.
+
+But some chapters are not meant to stay open forever.
+
+And maybe growing up also means knowing when something has reached its ending.
+
+---
+
+## Thank You
+
+If you ever visited this site, watched something, read an update, checked a changelog, or supported me in any way, thank you.
+
+Genuinely.
+
+Even if it was only once.
+
+You were part of this story too.
+
+---
+
+## Archive
 
 ```
 Main/
-├── index.html           # Homepage
-├── index.css            # Styles for homepage layout & design
-├── index.js             # Scripts for homepage interactivity
-│
-├── about.html           # About Me page
-├── about.css            # Styling for About page content & layout
-├── about.js             # Any animations or logic for About page
-│
-├── recentvideos.html    # Recent Videos showcase
-├── recentvideos.css     # Grid, thumbnails, and styling for videos section
-├── recentvideos.js      # Handles video embeds, interactions, or dynamic loading
-│
-├── changelog.html       # UI updates and changelog
-├── changelog.css        # Styling for changelog entries & timeline
-├── changelog.js         # Manages changelog item toggles or animations
-│
-└── README.md            # Documentation
+├── memories
+├── unfinished ideas
+├── late night redesigns
+├── old projects
+├── forgotten experiments
+└── a different version of me
 ```
----
-
-## 💡 Feedback
-
-Your feedback helps to improve the experience.
-If you have an idea for a new feature, a bug to report, or just want to suggest an improvement
-
-Feel free to [open an issue](https://github.com/Samplayshindi/Main/issues) or reach out directly.  
 
 ---
 
-## 🙏 Thanks for Visiting
+## Goodbye
 
-I appreciate you stopping by and checking out my work.  
-**Stay tuned**—more updates, content, and cool stuff are always on the way!
+This was SamPlays.
 
-✨ _Samplayshindi_
+And this is where it ends.
+
+✨ Samar
